@@ -6,6 +6,7 @@ import * as en from '../data/cv.en';
 interface Props { lang: 'es' | 'en'; }
 const { lang } = Astro.props;
 const { projects, ui, profile } = lang === 'en' ? en : es;
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base title={`${ui.projectsTitle} · ${profile.name}`} active="proyectos" lang={lang}>
   <section class="wrap" style="padding-top:140px">
@@ -20,6 +21,6 @@ const { projects, ui, profile } = lang === 'en' ? en : es;
         </article>
       ))}
     </div>
-    <a class="more reveal" href={`${ui.prefix}/`}>{ui.back}</a>
+    <a class="more reveal" href={`${root}${ui.prefix}/`}>{ui.back}</a>
   </section>
 </Base>

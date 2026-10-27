@@ -7,7 +7,8 @@ import * as en from '../data/cv.en';
 interface Props { title: string; active?: string; lang: 'es' | 'en'; }
 const { title, active = '', lang } = Astro.props;
 const d = lang === 'en' ? en : es;
-const p = d.ui.prefix;
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const p = root + d.ui.prefix;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -17,9 +18,9 @@ const p = d.ui.prefix;
     <meta name="theme-color" content="#0b0b0b" />
     <meta name="description" content={`${d.profile.title} · ${d.profile.tagline}`} />
     <title>{title}</title>
-    <link rel="icon" href="/avatar.jpg" />
-    <link rel="alternate" hreflang="es" href="/" />
-    <link rel="alternate" hreflang="en" href="/en/" />
+    <link rel="icon" href={root + "/avatar.jpg"} />
+    <link rel="alternate" hreflang="es" href={root + "/"} />
+    <link rel="alternate" hreflang="en" href={root + "/en/"} />
     <ClientRouter />
   </head>
   <body>
@@ -30,7 +31,7 @@ const p = d.ui.prefix;
         <a href={`${p}/#experiencia`}><span>02</span>{d.ui.nav2}</a>
         <a href={`${p}/#formacion`}><span>03</span>{d.ui.nav3}</a>
         <a href={`${p}/#contacto`}><span>04</span>{d.ui.nav4}</a>
-        <a href={d.ui.switchHref}>{d.ui.switchLabel}</a>
+        <a href={root + d.ui.switchHref}>{d.ui.switchLabel}</a>
       </nav>
     </header>
     <slot />
