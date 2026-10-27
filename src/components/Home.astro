@@ -11,7 +11,18 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
 ---
 <Base title={`${profile.name} · ${profile.title}`} lang={lang}>
   <section class="hero">
-    <div class="tacho" aria-hidden="true" data-labels={JSON.stringify(chart.labels)} data-now={chart.now}>
+    <div class="hero-content">
+      <p class="mono hero-eyebrow">{profile.name} · {profile.location}</p>
+      <h1 class="hero-title">
+        <span class="line line-dev">{ext.heroLine1}</span>
+        <span class="line line-accent">{ext.heroLine2}</span>
+      </h1>
+      <p class="hero-sub">{profile.tagline}. {ui.lead}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary magnetic" href={`${root}${ui.prefix}/proyectos`}>{ui.projects}</a>
+        <a class="btn btn-ghost magnetic" href={root + "/cv.pdf"} download>{ui.cv}</a>
+      </div>
+      <div class="tacho" aria-hidden="true" data-labels={JSON.stringify(chart.labels)} data-now={chart.now}>
       <div class="tacho-plot">
         {chart.lanes.map((segs, li) => (
           <div class="lane">
@@ -29,17 +40,6 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
       <p class="tacho-status mono"><span class="dot"></span><span class="status-text">{chart.now}</span></p>
       <p class="tacho-note mono">{chart.note}</p>
     </div>
-    <div class="hero-content">
-      <p class="mono hero-eyebrow">{profile.name} · {profile.location}</p>
-      <h1 class="hero-title">
-        <span class="line line-dev">{ext.heroLine1}</span>
-        <span class="line line-accent">{ext.heroLine2}</span>
-      </h1>
-      <p class="hero-sub">{profile.tagline}. {ui.lead}</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary magnetic" href={`${root}${ui.prefix}/proyectos`}>{ui.projects}</a>
-        <a class="btn btn-ghost magnetic" href={root + "/cv.pdf"} download>{ui.cv}</a>
-      </div>
     </div>
     <div class="scroll-indicator" aria-hidden="true"><span>Scroll</span><div class="line-v"></div></div>
   </section>
