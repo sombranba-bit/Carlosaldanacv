@@ -114,6 +114,10 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
     </div>
   </section>
 
+  <section class="zoom-band reveal" aria-hidden="true">
+    <div class="zoom-frame"><img class="zoom-img" src={root + "/foto-zoom.jpg"} alt="" loading="lazy"/></div>
+  </section>
+
   <section class="section" id="formacion">
     <div class="section-head reveal">
       <span class="section-no">03</span>
@@ -204,6 +208,18 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
       };
       if (window.__tachoRaf) cancelAnimationFrame(window.__tachoRaf);
       window.__tachoRaf = requestAnimationFrame(frame);
+    }
+
+    // Foto con zoom que se ajusta al hacer scroll
+    const zimg = document.querySelector('.zoom-img');
+    if (zimg && !reduce) {
+      const zoom = () => {
+        const r = zimg.parentElement.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height)));
+        zimg.style.transform = `scale(${1.25 - p * 0.25})`;
+      };
+      addEventListener('scroll', zoom, { passive: true });
+      zoom();
     }
 
     // Contadores de cifras al entrar en pantalla
