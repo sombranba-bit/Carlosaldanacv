@@ -116,7 +116,7 @@ export const ui = {
   switchHref: '/',
   nav1: 'Work', nav2: 'Experience', nav3: 'Education', nav4: 'Contact',
   projects: 'View projects', cv: 'Download CV',
-  lead: 'I keep a fleet of 500+ vehicles compliant and turn tachograph data into decisions that cut repeat infringements.',
+  lead: 'I work on three pillars: prevention, training and awareness. I keep a fleet of 500+ vehicles compliant, train its drivers and turn tachograph data into decisions that cut repeat infringements.',
   aboutTitle: 'About',
   workTitle: 'Selected work',
   workSub: 'Tools I have built for the fleet’s day-to-day work.',

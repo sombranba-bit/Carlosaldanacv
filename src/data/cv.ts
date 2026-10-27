@@ -116,7 +116,7 @@ export const ui = {
   switchHref: '/en/',
   nav1: 'Trabajo', nav2: 'Experiencia', nav3: 'Formación', nav4: 'Contacto',
   projects: 'Ver proyectos', cv: 'Descargar CV',
-  lead: 'Mantengo una flota de +500 vehículos en regla y convierto sus datos de tacógrafo en decisiones que reducen las infracciones.',
+  lead: 'Trabajo sobre tres pilares: prevención, formación y concienciación. Mantengo una flota de +500 vehículos en regla, formo a sus conductores y convierto los datos de tacógrafo en decisiones que reducen las infracciones.',
   aboutTitle: 'Acerca de',
   workTitle: 'Trabajo seleccionado',
   workSub: 'Herramientas que he construido para el día a día de la flota.',
