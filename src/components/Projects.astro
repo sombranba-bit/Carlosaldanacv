@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import * as es from '../data/cv';
+import * as en from '../data/cv.en';
+
+interface Props { lang: 'es' | 'en'; }
+const { lang } = Astro.props;
+const { projects, ui, profile } = lang === 'en' ? en : es;
+---
+<Base title={`${ui.projectsTitle} · ${profile.name}`} active="proyectos" lang={lang}>
+  <section class="wrap" style="padding-top:140px">
+    <div class="sec-head reveal"><span class="num">01</span><h1 style="font-size:clamp(2rem,4.5vw,3.2rem)">{ui.projectsTitle}</h1></div>
+    <p class="lead reveal" style="margin-top:-24px;margin-bottom:56px">{ui.projectsLead}</p>
+    <div class="grid">
+      {projects.map((p, i) => (
+        <article class="card reveal" style={`--d:${(i % 3) * 0.1}s`}>
+          <h3>{p.name}</h3>
+          <p>{p.desc}</p>
+          <div>{p.tags.map((t) => <span class="tag">{t}</span>)}</div>
+        </article>
+      ))}
+    </div>
+    <a class="more reveal" href={`${ui.prefix}/`}>{ui.back}</a>
+  </section>
+</Base>

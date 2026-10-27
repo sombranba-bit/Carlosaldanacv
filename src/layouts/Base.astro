@@ -1,0 +1,59 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+import * as es from '../data/cv';
+import * as en from '../data/cv.en';
+
+interface Props { title: string; active?: string; lang: 'es' | 'en'; }
+const { title, active = '', lang } = Astro.props;
+const d = lang === 'en' ? en : es;
+const p = d.ui.prefix;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0b0b" />
+    <meta name="description" content={`${d.profile.title} · ${d.profile.tagline}`} />
+    <title>{title}</title>
+    <link rel="icon" href="/avatar.jpg" />
+    <link rel="alternate" hreflang="es" href="/" />
+    <link rel="alternate" hreflang="en" href="/en/" />
+    <ClientRouter />
+  </head>
+  <body>
+    <header class="nav">
+      <a href={`${p}/`} class="brand">CA</a>
+      <nav>
+        <a href={`${p}/proyectos`} class:list={[{ active: active === 'proyectos' }]}><span>01</span>{d.ui.nav1}</a>
+        <a href={`${p}/#experiencia`}><span>02</span>{d.ui.nav2}</a>
+        <a href={`${p}/#formacion`}><span>03</span>{d.ui.nav3}</a>
+        <a href={`${p}/#contacto`}><span>04</span>{d.ui.nav4}</a>
+        <a href={d.ui.switchHref}>{d.ui.switchLabel}</a>
+      </nav>
+    </header>
+    <slot />
+    <footer>© {new Date().getFullYear()} {d.profile.name}</footer>
+    <script>
+      // Revelado al hacer scroll: se ejecuta en cada carga y en cada navegación
+      function reveal() {
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+          }
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal:not(.in), .timeline:not(.in), .job:not(.in)')
+          .forEach((el) => io.observe(el));
+      }
+      document.addEventListener('astro:page-load', reveal);
+
+      // Navegación con fondo al bajar
+      const onScroll = () => {
+        document.querySelector('.nav')?.classList.toggle('scrolled', window.scrollY > 20);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      document.addEventListener('astro:page-load', onScroll);
+    </script>
+  </body>
+</html>

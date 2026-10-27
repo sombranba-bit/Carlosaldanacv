@@ -1,0 +1,92 @@
+---
+import Base from '../layouts/Base.astro';
+import * as es from '../data/cv';
+import * as en from '../data/cv.en';
+
+interface Props { lang: 'es' | 'en'; }
+const { lang } = Astro.props;
+const { profile, projects, experience, education, certs, skills, about, ui } = lang === 'en' ? en : es;
+---
+<Base title={`${profile.name} · ${profile.title}`} lang={lang}>
+  <section class="hero wrap" style="padding-top:140px">
+    <img class="avatar reveal" src="/avatar.jpg" alt={profile.name} width="120" height="120" />
+    <p class="muted reveal" style="--d:.05s">{profile.location}</p>
+    <h1 class="reveal" style="--d:.1s">{profile.name}</h1>
+    <p class="role reveal" style="--d:.2s">{profile.title}</p>
+    <p class="lead reveal" style="--d:.3s">{profile.tagline}. {ui.lead}</p>
+    <div class="btns reveal" style="--d:.4s">
+      <a class="btn primary" href={`${ui.prefix}/proyectos`}>{ui.projects}</a>
+      <a class="btn" href="/cv.pdf" download>{ui.cv}</a>
+    </div>
+    <pre class="code reveal" style="--d:.5s"><span class="c">// {ui.codeFile}</span>
+<span class="k">export const</span> {ui.codeName} = {`{`}
+  {ui.codeRoleKey}: <span class="s">"{ui.codeRole}"</span>,
+  {ui.codeFocusKey}: [<span class="s">{ui.codeFocus.map((f) => `"${f}"`).join(', ')}</span>],
+  {ui.codeToolsKey}: [<span class="s">{ui.codeTools.map((f) => `"${f}"`).join(', ')}</span>],
+{`}`} <span class="k">satisfies</span> {ui.codeType};</pre>
+    <div class="scroll">{ui.nav2}</div>
+  </section>
+
+  <section class="wrap" id="acerca">
+    <div class="sec-head reveal"><h2>{ui.aboutTitle}</h2></div>
+    <div class="about">
+      {about.map((t, i) => <p class="reveal" style={`--d:${i * 0.1}s`}>{t}</p>)}
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="sec-head reveal"><span class="num">01</span><h2>{ui.workTitle}</h2></div>
+    <p class="muted reveal" style="margin:-32px 0 40px">{ui.workSub}</p>
+    <div class="grid">
+      {projects.slice(0, 3).map((p, i) => (
+        <article class="card reveal" style={`--d:${i * 0.1}s`}>
+          <h3>{p.name}</h3>
+          <p>{p.desc}</p>
+          <div>{p.tags.map((t) => <span class="tag">{t}</span>)}</div>
+        </article>
+      ))}
+    </div>
+    <a class="more reveal" href={`${ui.prefix}/proyectos`}>{ui.allProjects} ({projects.length}) →</a>
+  </section>
+
+  <section class="wrap" id="experiencia">
+    <div class="sec-head reveal"><span class="num">02</span><h2>{ui.experience}</h2></div>
+    <ol class="timeline">
+      {experience.map((j) => (
+        <li class="job">
+          <p class="period">{j.period}</p>
+          <h3>{j.role}</h3>
+          <p class="company">{j.company}</p>
+          <ul>{j.bullets.map((b) => <li>{b}</li>)}</ul>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="wrap" id="formacion">
+    <div class="sec-head reveal"><span class="num">03</span><h2>{ui.eduTitle}</h2></div>
+    <div class="two reveal">
+      <div>
+        <h3>{ui.education}</h3>
+        <ul>{education.map((e) => <li>{e.title}<small>{e.place} · {e.period}</small></li>)}</ul>
+        <h3 style="margin-top:40px">{ui.certsTitle}</h3>
+        <ul>{certs.map((c) => <li>{c.title}<small>{c.place}</small></li>)}</ul>
+      </div>
+      <div>
+        <h3>{ui.skillsTitle}</h3>
+        <div>{skills.map((s) => <span class="tag">{s}</span>)}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="contacto">
+    <div class="sec-head reveal"><span class="num">04</span><h2>{ui.contact}</h2></div>
+    <p class="lead reveal" style="margin-top:0">{ui.contactLead}</p>
+    <div class="btns reveal">
+      <a class="btn primary" href={`mailto:${profile.email}`}>{profile.email}</a>
+      <a class="btn" href={`tel:${profile.phoneHref}`}>{profile.phone}</a>
+      <a class="btn" href={profile.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn" href="/cv.pdf" download>{ui.cv}</a>
+    </div>
+  </section>
+</Base>
