@@ -160,7 +160,7 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
       window.onscroll();
     }
 
-    // Gráfico de tacógrafo en vivo: aguja, rastro, tramos recorridos y estado actual
+    // Gráfico de tacógrafo animado: un día completo cada minuto, con aguja, rastro y tramos
     const tac = document.querySelector('.tacho');
     if (tac) {
       const labels = JSON.parse(tac.dataset.labels);
@@ -168,9 +168,10 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
       const trail = tac.querySelector('.trail');
       const needle = tac.querySelector('.needle');
       const text = tac.querySelector('.status-text');
-      const tick = () => {
-        const d = new Date();
-        const h = d.getHours() + d.getMinutes() / 60 + d.getSeconds() / 3600;
+      const cycle = 60000;
+      let last = -1;
+      const frame = (now) => {
+        const h = ((now % cycle) / cycle) * 24;
         const pct = (h / 24) * 100;
         needle.style.left = pct + '%';
         trail.style.width = pct + '%';
@@ -182,11 +183,14 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
           sg.classList.toggle('current', on);
           if (on) active = Number(sg.dataset.lane);
         }
-        text.textContent = `${tac.dataset.now} ${active === null ? '' : labels[active]}`;
+        const hh = String(Math.floor(h)).padStart(2, '0');
+        const mm = String(Math.floor((h % 1) * 60)).padStart(2, '0');
+        const label = `${hh}:${mm} · ${active === null ? '' : labels[active]}`;
+        if (label !== last) { text.textContent = `${tac.dataset.now} ${label}`; last = label; }
+        window.__tachoRaf = requestAnimationFrame(frame);
       };
-      tick();
-      if (window.__tachoTimer) clearInterval(window.__tachoTimer);
-      window.__tachoTimer = setInterval(tick, 1000);
+      if (window.__tachoRaf) cancelAnimationFrame(window.__tachoRaf);
+      window.__tachoRaf = requestAnimationFrame(frame);
     }
 
     // Contadores de cifras al entrar en pantalla

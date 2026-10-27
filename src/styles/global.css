@@ -93,8 +93,8 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 @keyframes glow { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.35); } }
 @keyframes grow { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
 .needle-rail { position: absolute; top: -8px; bottom: -8px; left: 144px; right: 0; pointer-events: none; }
-.trail { position: absolute; top: 0; bottom: 0; left: 0; width: 0; background: linear-gradient(to right, #0000, #00e5a02e); transition: width 1s linear; }
-.needle { position: absolute; top: 0; bottom: 0; left: 0; width: 2px; margin-left: -1px; background: var(--accent); box-shadow: 0 0 10px var(--accent); transition: left 1s linear; }
+.trail { position: absolute; top: 0; bottom: 0; left: 0; width: 0; background: linear-gradient(to right, #0000, #00e5a02e); }
+.needle { position: absolute; top: 0; bottom: 0; left: 0; width: 2px; margin-left: -1px; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
 .tacho-hours { display: flex; justify-content: space-between; margin: 12px 0 0 144px; font: 11px var(--font-mono); color: var(--muted); opacity: .75; }
 .tacho-status { display: flex; align-items: center; gap: .6rem; margin: 24px 0 0 144px; font: 13px var(--font-mono); color: var(--fg); }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: ping 1.8s var(--ease) infinite; }
@@ -191,7 +191,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
   html { scroll-behavior: auto; }
   .reveal, .job, .tl-list::before { opacity: 1; transform: none; transition: none; }
   .line-v, .seg, .dot { animation: none; }
-  .needle, .trail { transition: none; }
+  .tacho * { animation: none !important; }
 }
 
 /* Camión sobre la línea de experiencia */

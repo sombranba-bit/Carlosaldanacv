@@ -157,7 +157,7 @@ export const ext = {
 export const chart = {
   now: 'Now:',
   labels: ['Rest', 'Driving', 'Other work', 'Availability'],
-  note: 'Illustrative example · the needle shows the current time',
+  note: 'Illustrative example · one full day per minute',
   lanes: [
     [[0, 6], [9.5, 10], [13.5, 15], [19, 24]],
     [[6, 9.5], [10, 13.5], [15, 19]],
