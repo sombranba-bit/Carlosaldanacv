@@ -24,20 +24,27 @@ const p = root + d.ui.prefix;
     <ClientRouter />
   </head>
   <body>
+    <div class="background" aria-hidden="true"><div class="glow"></div><div class="grid"></div></div>
     <header class="nav">
-      <a href={`${p}/`} class="brand">CA</a>
-      <nav>
-        <a href={`${p}/proyectos`} class:list={[{ active: active === 'proyectos' }]}><span>01</span>{d.ui.nav1}</a>
-        <a href={`${p}/#experiencia`}><span>02</span>{d.ui.nav2}</a>
-        <a href={`${p}/#formacion`}><span>03</span>{d.ui.nav3}</a>
-        <a href={`${p}/#contacto`}><span>04</span>{d.ui.nav4}</a>
-        <a href={root + d.ui.switchHref}>{d.ui.switchLabel}</a>
-      </nav>
+      <div class="nav-inner">
+        <a href={`${p}/`} class="brand" aria-label={d.profile.name}>
+          <span class="brand-avatar"><img src={root + "/avatar.jpg"} alt="" width="112" height="112" /></span>
+        </a>
+        <nav class="nav-list">
+          <a href={`${p}/proyectos`} class:list={['nav-link', { active: active === 'proyectos' }]}><span class="nav-index">01</span><span class="nav-text" data-text={d.ui.nav1}>{d.ui.nav1}</span></a>
+          <a href={`${p}/#experiencia`} class="nav-link"><span class="nav-index">02</span><span class="nav-text" data-text={d.ui.nav2}>{d.ui.nav2}</span></a>
+          <a href={`${p}/#formacion`} class="nav-link"><span class="nav-index">03</span><span class="nav-text" data-text={d.ui.nav3}>{d.ui.nav3}</span></a>
+          <a href={`${p}/#contacto`} class="nav-link"><span class="nav-index">04</span><span class="nav-text" data-text={d.ui.nav4}>{d.ui.nav4}</span></a>
+        </nav>
+        <div class="nav-actions">
+          <a href={root + d.ui.switchHref} class="lang">{d.ui.switchLabel}</a>
+          <a href={`${p}/#contacto`} class="cta">{d.ui.contact}</a>
+        </div>
+      </div>
     </header>
     <slot />
     <footer>© {new Date().getFullYear()} {d.profile.name}</footer>
     <script>
-      // Revelado al hacer scroll: se ejecuta en cada carga y en cada navegación
       function reveal() {
         const io = new IntersectionObserver((entries) => {
           for (const e of entries) {
@@ -48,8 +55,6 @@ const p = root + d.ui.prefix;
           .forEach((el) => io.observe(el));
       }
       document.addEventListener('astro:page-load', reveal);
-
-      // Navegación con fondo al bajar
       const onScroll = () => {
         document.querySelector('.nav')?.classList.toggle('scrolled', window.scrollY > 20);
       };
