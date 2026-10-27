@@ -225,7 +225,11 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 @media (prefers-reduced-motion: reduce) { ::view-transition-new(root) { animation: none !important; } }
 
 /* Intro: los anillos del disco se dibujan y la aguja da una vuelta */
-.intro { position: fixed; inset: 0; z-index: 300; background: var(--bg); display: grid; place-items: center; pointer-events: none; animation: intro-out .6s var(--ease) 2.2s forwards; }
+.intro { position: fixed; inset: 0; z-index: 300; background: var(--bg); display: grid; place-items: center; pointer-events: none; animation: intro-out .6s var(--ease) 3.6s forwards; }
+.intro-box { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+.intro-text { text-align: center; opacity: 0; animation: fade-in .8s var(--ease) 1.2s forwards; }
+.intro-name { display: block; font-size: clamp(20px, 3vw, 28px); font-weight: 600; letter-spacing: -.01em; }
+.intro-role { display: block; margin-top: 8px; font: 13px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 .intro svg { width: min(60vw, 260px); height: auto; overflow: visible; }
 .intro .ring { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.1s var(--ease) forwards; }
 .intro .r1 { animation-delay: .05s; } .intro .r2 { animation-delay: .2s; } .intro .r3 { animation-delay: .35s; } .intro .r4 { animation-delay: .5s; }
