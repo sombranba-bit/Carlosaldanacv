@@ -5,20 +5,28 @@ import * as en from '../data/cv.en';
 
 interface Props { lang: 'es' | 'en'; }
 const { lang } = Astro.props;
-const { profile, projects, experience, education, certs, skills, about, ui, ext } = lang === 'en' ? en : es;
+const { profile, projects, experience, education, certs, skills, about, ui, ext, chart } = lang === 'en' ? en : es;
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
-// Líneas del código decorativo, cada una con su número de caracteres y su retardo
-const codeClass = (l: string) => (l.startsWith('//') ? 'com' : l.includes('"') ? 'str' : '');
 ---
 <Base title={`${profile.name} · ${profile.title}`} lang={lang}>
   <section class="hero">
-    <div class="hero-code" aria-hidden="true">
-      {ext.codeLines.map((l, i) => {
-        const last = i === ext.codeLines.length - 1;
-        const delay = (i * 0.6).toFixed(2);
-        return <span class:list={['cl', codeClass(l), { last }]} style={`--ch:${l.length};--d:${delay}s;--dur:${(l.length * 0.045).toFixed(2)}s`}>{l}</span>;
-      })}
+    <div class="tacho" aria-hidden="true">
+      <div class="tacho-plot">
+        {chart.lanes.map((segs, li) => (
+          <div class="lane">
+            <span class="lane-label">{chart.labels[li]}</span>
+            <div class="track">
+              {segs.map(([a, b], si) => (
+                <span class={`seg seg-${li}`} style={`left:${(a / 24 * 100).toFixed(2)}%;width:${((b - a) / 24 * 100).toFixed(2)}%;--d:${(li * 0.35 + si * 0.12).toFixed(2)}s`}></span>
+              ))}
+            </div>
+          </div>
+        ))}
+        <div class="needle-rail"><span class="needle"></span></div>
+      </div>
+      <div class="tacho-hours"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+      <p class="tacho-note mono">{chart.note}</p>
     </div>
     <div class="hero-content">
       <p class="mono hero-eyebrow">{profile.name} · {profile.location}</p>

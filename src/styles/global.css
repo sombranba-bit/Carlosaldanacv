@@ -78,21 +78,31 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 .btn-ghost { border: 1px solid var(--line); color: var(--muted); background: #1116; }
 .btn-ghost:hover { color: var(--fg); border-color: var(--accent); transform: translateY(-1px); }
 
-/* Código decorativo con escritura animada */
-.hero-code { position: absolute; top: 50%; right: 6vw; transform: translateY(-50%); pointer-events: none; user-select: none; font: clamp(.65rem, 1vw, .85rem)/1.75 var(--font-mono); -webkit-mask-image: linear-gradient(270deg, #000 52%, #0000 100%); mask-image: linear-gradient(270deg, #000 52%, #0000 100%); }
-.cl { display: block; white-space: pre; overflow: hidden; width: calc(var(--ch) * 1ch); color: #f4f4f233; border-right: 1.5px solid transparent; animation: type-line var(--dur) steps(var(--ch), end) var(--d) backwards; }
-.cl.str { color: #00e5a057; }
-.cl.kw { color: #f4f4f257; }
-.cl.com { color: #f4f4f229; font-style: italic; }
-.cl.last { animation: type-line var(--dur) steps(var(--ch), end) var(--d) backwards, caret 1.05s step-end calc(var(--d) + var(--dur)) infinite; }
-@keyframes type-line { 0% { width: 0; border-right-color: transparent; } 1%, 99% { border-right-color: var(--accent); } 100% { width: calc(var(--ch) * 1ch); border-right-color: transparent; } }
-@keyframes caret { 0%, 49% { border-right-color: var(--accent); } 50%, 100% { border-right-color: transparent; } }
-@media (max-width: 860px) { .hero { padding: var(--header-h) 1.5rem 0; } .hero-code { display: none; } }
+/* Gráfico de tacógrafo (24 h) */
+.tacho { position: absolute; top: 50%; right: 6vw; transform: translateY(-50%); width: min(520px, 42vw); pointer-events: none; user-select: none; -webkit-mask-image: linear-gradient(270deg, #000 60%, #0000 100%); mask-image: linear-gradient(270deg, #000 60%, #0000 100%); }
+.tacho-plot { position: relative; display: grid; gap: 14px; }
+.lane { display: grid; grid-template-columns: 110px 1fr; align-items: center; gap: 14px; }
+.lane-label { font: 11px var(--font-mono); color: var(--muted); letter-spacing: .04em; }
+.track { position: relative; height: 16px; background: #ffffff0a; border-radius: 3px; overflow: hidden; }
+.seg { position: absolute; top: 0; bottom: 0; background: var(--accent); opacity: .6; transform-origin: left; animation: grow .9s var(--ease) var(--d, 0s) backwards; }
+.seg-0 { background: #ffffff4d; }
+.seg-2 { background: #ffffff80; }
+.seg-3 { background: #00e5a04d; }
+@keyframes grow { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+.needle-rail { position: absolute; top: -6px; bottom: -6px; left: 124px; right: 0; pointer-events: none; }
+.needle { position: absolute; top: 0; bottom: 0; left: 0; width: 1px; background: var(--accent); box-shadow: 0 0 8px var(--accent); animation: sweep 16s linear infinite; }
+@keyframes sweep { 0% { left: 0; opacity: 0; } 5% { opacity: 1; } 95% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+.tacho-hours { display: flex; justify-content: space-between; margin: 10px 0 0 124px; font: 10px var(--font-mono); color: var(--muted); opacity: .7; }
+.tacho-note { margin: 18px 0 0 124px; font-size: .62rem; opacity: .6; }
+@media (max-width: 1100px) { .tacho { display: none; } }
+
+@media (max-width: 860px) { .hero { padding: var(--header-h) 1.5rem 0; } }
 
 /* Indicador de scroll */
 .scroll-indicator { position: absolute; bottom: 2.5rem; right: 3rem; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; font: .62rem var(--font-mono); letter-spacing: .3em; text-transform: uppercase; color: var(--muted); }
 .scroll-indicator span { writing-mode: vertical-rl; }
-.line-v { width: 1px; height: 64px; background: linear-gradient(to bottom, var(--muted), transparent); transform-origin: top; animation: drip 2.4s var(--ease) infinite; }
+.line-v { width: 1px; height: 64px; background: repeating-linear-gradient(to bottom, var(--accent) 0 6px, transparent 6px 12px); opacity: .6; animation: road 1.2s linear infinite; }
+@keyframes road { from { background-position: 0 0; } to { background-position: 0 12px; } }
 @keyframes drip { 0% { opacity: 0; transform: scaleY(0); } 35% { opacity: 1; transform: scaleY(1); } 100% { opacity: 0; transform: scaleY(1); } }
 @media (max-width: 860px) { .scroll-indicator { right: 1.5rem; } }
 
@@ -173,6 +183,6 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal, .job, .tl-list::before { opacity: 1; transform: none; transition: none; }
-  .line-v, .cl, .cl.last { animation: none; }
-  .cl { width: calc(var(--ch) * 1ch); }
+  .line-v, .seg, .needle { animation: none; }
+  .needle { display: none; }
 }

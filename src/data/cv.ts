@@ -153,3 +153,15 @@ export const ext = {
   ],
   footer: 'Zaragoza, España',
 };
+
+export const chart = {
+  labels: ['Descanso', 'Conducción', 'Otros trabajos', 'Disponibilidad'],
+  note: 'Ejemplo ilustrativo de un día',
+  // [inicio, fin] en horas, por carril: descanso, conducción, otros trabajos, disponibilidad
+  lanes: [
+    [[0, 6], [9.5, 10], [13.5, 15], [19, 24]],
+    [[6, 9.5], [10, 13.5], [15, 19]],
+    [[9.5, 10], [13.5, 14], [19, 19.5]],
+    [[14, 15]],
+  ],
+};
