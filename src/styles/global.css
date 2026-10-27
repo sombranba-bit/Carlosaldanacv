@@ -236,8 +236,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 /* Experiencia: línea a la izquierda y placa con el logo de la empresa activa a la derecha */
 .exp-layout { display: grid; grid-template-columns: minmax(0, 1fr) 424px; gap: 56px; align-items: start; }
 .exp-stage { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; }
-.stage-inner { position: relative; width: 100%; height: 280px; display: grid; place-items: center; padding: 2rem; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: radial-gradient(70% 90% at 50% 45%, #ffffff12, transparent 70%), #161616; }
+.stage-inner { position: relative; width: 100%; height: 280px; display: grid; place-items: center; }
 .mark { grid-area: 1 / 1; max-width: 300px; max-height: 130px; width: auto; height: auto; object-fit: contain; opacity: 0; transform: translateY(26px) scale(.97); transition: opacity .5s var(--ease), transform .75s var(--ease); user-select: none; }
-.mark.on { opacity: .95; transform: none; }
-.mark-text { font: italic 500 2.4rem var(--font-serif); color: var(--fg); }
+.mark.on { opacity: .9; transform: none; }
 @media (max-width: 1000px) { .exp-layout { grid-template-columns: 1fr; } .exp-stage { display: none; } }
