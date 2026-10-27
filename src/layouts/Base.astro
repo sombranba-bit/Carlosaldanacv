@@ -43,7 +43,10 @@ const p = root + d.ui.prefix;
       </div>
     </header>
     <slot />
-    <footer>© {new Date().getFullYear()} {d.profile.name}</footer>
+    <footer class="bottom-bar">
+      <span class="mono">© {new Date().getFullYear()} {d.profile.name}</span>
+      <span class="mono">{d.ext.footer}</span>
+    </footer>
     <script>
       function reveal() {
         const io = new IntersectionObserver((entries) => {
@@ -51,7 +54,7 @@ const p = root + d.ui.prefix;
             if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
           }
         }, { threshold: 0.15 });
-        document.querySelectorAll('.reveal:not(.in), .timeline:not(.in), .job:not(.in)')
+        document.querySelectorAll('.reveal:not(.in), .tl-list:not(.in), .job:not(.in)')
           .forEach((el) => io.observe(el));
       }
       document.addEventListener('astro:page-load', reveal);

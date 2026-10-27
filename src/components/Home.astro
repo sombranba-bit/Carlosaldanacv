@@ -5,54 +5,74 @@ import * as en from '../data/cv.en';
 
 interface Props { lang: 'es' | 'en'; }
 const { lang } = Astro.props;
-const { profile, projects, experience, education, certs, skills, about, ui } = lang === 'en' ? en : es;
+const { profile, projects, experience, education, certs, skills, about, ui, ext } = lang === 'en' ? en : es;
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+// Líneas del código decorativo, cada una con su número de caracteres y su retardo
+const codeClass = (l: string) => (l.startsWith('//') ? 'com' : l.includes('"') ? 'str' : '');
 ---
 <Base title={`${profile.name} · ${profile.title}`} lang={lang}>
-  <section class="hero wrap" style="padding-top:140px">
-    <img class="avatar-hero reveal" src={root + "/avatar.jpg"} alt={profile.name} width="120" height="120" />
-    <p class="muted reveal" style="--d:.05s">{profile.location}</p>
-    <h1 class="reveal" style="--d:.1s">{profile.name}</h1>
-    <p class="role reveal" style="--d:.2s">{profile.title}</p>
-    <p class="lead reveal" style="--d:.3s">{profile.tagline}. {ui.lead}</p>
-    <div class="btns reveal" style="--d:.4s">
-      <a class="btn primary" href={`${root}${ui.prefix}/proyectos`}>{ui.projects}</a>
-      <a class="btn" href={root + "/cv.pdf"} download>{ui.cv}</a>
+  <section class="hero">
+    <div class="hero-code" aria-hidden="true">
+      {ext.codeLines.map((l, i) => {
+        const last = i === ext.codeLines.length - 1;
+        const delay = (i * 0.6).toFixed(2);
+        return <span class:list={['cl', codeClass(l), { last }]} style={`--ch:${l.length};--d:${delay}s;--dur:${(l.length * 0.045).toFixed(2)}s`}>{l}</span>;
+      })}
     </div>
-    <pre class="code reveal" style="--d:.5s"><span class="c">// {ui.codeFile}</span>
-<span class="k">export const</span> {ui.codeName} = {`{`}
-  {ui.codeRoleKey}: <span class="s">"{ui.codeRole}"</span>,
-  {ui.codeFocusKey}: [<span class="s">{ui.codeFocus.map((f) => `"${f}"`).join(', ')}</span>],
-  {ui.codeToolsKey}: [<span class="s">{ui.codeTools.map((f) => `"${f}"`).join(', ')}</span>],
-{`}`} <span class="k">satisfies</span> {ui.codeType};</pre>
-    <div class="scroll">{ui.nav2}</div>
+    <div class="hero-content">
+      <p class="mono hero-eyebrow">{profile.name} · {profile.location}</p>
+      <h1 class="hero-title">
+        <span class="line line-dev">{ext.heroLine1}</span>
+        <span class="line line-accent">{ext.heroLine2}</span>
+      </h1>
+      <p class="hero-sub">{profile.tagline}. {ui.lead}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href={`${root}${ui.prefix}/proyectos`}>{ui.projects}</a>
+        <a class="btn btn-ghost" href={root + "/cv.pdf"} download>{ui.cv}</a>
+      </div>
+    </div>
+    <div class="scroll-indicator" aria-hidden="true"><span>Scroll</span><div class="line-v"></div></div>
   </section>
 
-  <section class="wrap" id="acerca">
-    <div class="sec-head reveal"><h2>{ui.aboutTitle}</h2></div>
+  <section class="section" id="acerca">
+    <div class="section-head"><h2 class="gradient">{ui.aboutTitle}</h2></div>
     <div class="about">
       {about.map((t, i) => <p class="reveal" style={`--d:${i * 0.1}s`}>{t}</p>)}
     </div>
   </section>
 
-  <section class="wrap">
-    <div class="sec-head reveal"><span class="num">01</span><h2>{ui.workTitle}</h2></div>
-    <p class="muted reveal" style="margin:-32px 0 40px">{ui.workSub}</p>
+  <section class="section" id="trabajo">
+    <div class="section-head reveal">
+      <span class="section-no">01</span>
+      <div>
+        <h2 class="gradient">{ui.workTitle}</h2>
+        <p class="section-sub">{ui.workSub}</p>
+      </div>
+    </div>
     <div class="grid-cards">
       {projects.slice(0, 3).map((p, i) => (
-        <article class="card reveal" style={`--d:${i * 0.1}s`}>
-          <h3>{p.name}</h3>
-          <p>{p.desc}</p>
-          <div>{p.tags.map((t) => <span class="tag">{t}</span>)}</div>
+        <article class="project-card reveal" style={`--d:${i * 0.1}s`}>
+          <div class="thumb"><span class="thumb-mark">{initials(p.name)}</span></div>
+          <div class="card-body">
+            <h3>{p.name}</h3>
+            <p class="summary">{p.desc}</p>
+            <ul class="tech">{p.tags.map((t) => <li>{t}</li>)}</ul>
+          </div>
         </article>
       ))}
     </div>
-    <a class="more reveal" href={`${root}${ui.prefix}/proyectos`}>{ui.allProjects} ({projects.length}) →</a>
+    <div class="view-all-wrap reveal">
+      <a class="view-all" href={`${root}${ui.prefix}/proyectos`}>{ui.allProjects} ({projects.length}) <span class="arrow">→</span></a>
+    </div>
   </section>
 
-  <section class="wrap" id="experiencia">
-    <div class="sec-head reveal"><span class="num">02</span><h2>{ui.experience}</h2></div>
-    <ol class="timeline">
+  <section class="section" id="experiencia">
+    <div class="section-head reveal">
+      <span class="section-no">02</span>
+      <h2 class="gradient">{ui.experience}</h2>
+    </div>
+    <ol class="tl-list">
       {experience.map((j) => (
         <li class="job">
           <p class="period">{j.period}</p>
@@ -64,8 +84,11 @@ const root = import.meta.env.BASE_URL.replace(/\/$/, '');
     </ol>
   </section>
 
-  <section class="wrap" id="formacion">
-    <div class="sec-head reveal"><span class="num">03</span><h2>{ui.eduTitle}</h2></div>
+  <section class="section" id="formacion">
+    <div class="section-head reveal">
+      <span class="section-no">03</span>
+      <h2 class="gradient">{ui.eduTitle}</h2>
+    </div>
     <div class="two reveal">
       <div>
         <h3>{ui.education}</h3>
@@ -75,19 +98,22 @@ const root = import.meta.env.BASE_URL.replace(/\/$/, '');
       </div>
       <div>
         <h3>{ui.skillsTitle}</h3>
-        <div>{skills.map((s) => <span class="tag">{s}</span>)}</div>
+        <ul class="tech">{skills.map((s) => <li>{s}</li>)}</ul>
       </div>
     </div>
   </section>
 
-  <section class="wrap" id="contacto">
-    <div class="sec-head reveal"><span class="num">04</span><h2>{ui.contact}</h2></div>
-    <p class="lead reveal" style="margin-top:0">{ui.contactLead}</p>
-    <div class="btns reveal">
-      <a class="btn primary" href={`mailto:${profile.email}`}>{profile.email}</a>
-      <a class="btn" href={`tel:${profile.phoneHref}`}>{profile.phone}</a>
-      <a class="btn" href={profile.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a class="btn" href={root + "/cv.pdf"} download>{ui.cv}</a>
-    </div>
+  <section class="contact-inner" id="contacto">
+    <p class="eyebrow reveal">04 · {ui.contact}</p>
+    <a class="cta-block reveal" href={`mailto:${profile.email}`}>
+      <span class="cta-line cta-sans">{ext.contactA}</span>
+      <span class="cta-line cta-serif">{ext.contactB}</span>
+    </a>
+    <ul class="socials reveal">
+      <li><a class="social-link" href={`mailto:${profile.email}`}><span class="social-text" data-text={profile.email}>{profile.email}</span></a></li>
+      <li><a class="social-link" href={`tel:${profile.phoneHref}`}><span class="social-text" data-text={profile.phone}>{profile.phone}</span></a></li>
+      <li><a class="social-link" href={profile.linkedin} target="_blank" rel="noopener"><span class="social-text" data-text="LinkedIn">LinkedIn</span><span class="social-arrow">↗</span></a></li>
+      <li><a class="social-link" href={root + "/cv.pdf"} download><span class="social-text" data-text={ui.cv}>{ui.cv}</span><span class="social-arrow">↓</span></a></li>
+    </ul>
   </section>
 </Base>

@@ -7,20 +7,31 @@ interface Props { lang: 'es' | 'en'; }
 const { lang } = Astro.props;
 const { projects, ui, profile } = lang === 'en' ? en : es;
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
 ---
 <Base title={`${ui.projectsTitle} · ${profile.name}`} active="proyectos" lang={lang}>
-  <section class="wrap" style="padding-top:140px">
-    <div class="sec-head reveal"><span class="num">01</span><h1 style="font-size:clamp(2rem,4.5vw,3.2rem)">{ui.projectsTitle}</h1></div>
-    <p class="lead reveal" style="margin-top:-24px;margin-bottom:56px">{ui.projectsLead}</p>
+  <section class="section" style="padding-top:180px">
+    <div class="section-head reveal">
+      <span class="section-no">01</span>
+      <div>
+        <h1 class="gradient" style="font-size:clamp(2.4rem,5vw,3.6rem);letter-spacing:-.03em">{ui.projectsTitle}</h1>
+        <p class="section-sub">{ui.projectsLead}</p>
+      </div>
+    </div>
     <div class="grid-cards">
       {projects.map((p, i) => (
-        <article class="card reveal" style={`--d:${(i % 3) * 0.1}s`}>
-          <h3>{p.name}</h3>
-          <p>{p.desc}</p>
-          <div>{p.tags.map((t) => <span class="tag">{t}</span>)}</div>
+        <article class="project-card reveal" style={`--d:${(i % 3) * 0.1}s`}>
+          <div class="thumb"><span class="thumb-mark">{initials(p.name)}</span></div>
+          <div class="card-body">
+            <h3>{p.name}</h3>
+            <p class="summary">{p.desc}</p>
+            <ul class="tech">{p.tags.map((t) => <li>{t}</li>)}</ul>
+          </div>
         </article>
       ))}
     </div>
-    <a class="more reveal" href={`${root}${ui.prefix}/`}>{ui.back}</a>
+    <div class="view-all-wrap">
+      <a class="view-all" href={`${root}${ui.prefix}/`}>{ui.back}</a>
+    </div>
   </section>
 </Base>

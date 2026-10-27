@@ -137,3 +137,19 @@ export const ui = {
   codeFocus: ['regulatory compliance', 'fleet management'],
   codeTools: ['advanced excel', 'power bi', 'a3ERP', 'sap'],
 };
+
+export const ext = {
+  heroLine1: 'Regulatory compliance',
+  heroLine2: 'and fleet management.',
+  contactA: "Let's talk.",
+  contactB: 'Write or call me.',
+  codeLines: [
+    '// profile.config.ts',
+    'export const profile = {',
+    '  role: "tachograph compliance manager",',
+    '  focus: ["regulatory compliance", "fleet management"],',
+    '  tools: ["advanced excel", "power bi", "a3ERP", "sap"],',
+    '} satisfies Profile;',
+  ],
+  footer: 'Zaragoza, Spain',
+};

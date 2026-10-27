@@ -137,3 +137,19 @@ export const ui = {
   codeFocus: ['cumplimiento normativo', 'gestión de flotas'],
   codeTools: ['excel avanzado', 'power bi', 'a3ERP', 'sap'],
 };
+
+export const ext = {
+  heroLine1: 'Cumplimiento normativo',
+  heroLine2: 'y gestión de flotas.',
+  contactA: '¿Hablamos?',
+  contactB: 'Escríbeme o llámame.',
+  codeLines: [
+    '// perfil.config.ts',
+    'export const perfil = {',
+    '  rol: "responsable de tacógrafos",',
+    '  enfoque: ["cumplimiento normativo", "gestión de flotas"],',
+    '  herramientas: ["excel avanzado", "power bi", "a3ERP", "sap"],',
+    '} satisfies Perfil;',
+  ],
+  footer: 'Zaragoza, España',
+};
