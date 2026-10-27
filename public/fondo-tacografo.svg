@@ -10,11 +10,11 @@
   <g fill="#ffb000" fill-opacity=".35">
     <circle cx="60" cy="520" r="3"/><circle cx="330" cy="480" r="3"/><circle cx="660" cy="260" r="3"/>
   </g>
-  <g stroke="none" font-family="JetBrains Mono, monospace" font-size="11" fill="#ffffff" fill-opacity=".22" text-anchor="middle">
+  <g stroke="none" font-family="JetBrains Mono, monospace" font-size="14" fill="#ffffff" fill-opacity=".4" text-anchor="middle">
     <text x="360.0" y="47.5">00</text><text x="518.0" y="89.8">02</text><text x="633.7" y="205.5">04</text><text x="676.0" y="363.5">06</text><text x="633.7" y="521.5">08</text><text x="518.0" y="637.2">10</text><text x="360.0" y="679.5">12</text><text x="202.0" y="637.2">14</text><text x="86.3" y="521.5">16</text><text x="44.0" y="363.5">18</text><text x="86.3" y="205.5">20</text><text x="202.0" y="89.8">22</text>
   </g>
   <g stroke="none" font-family="JetBrains Mono, monospace" fill="#ffffff" text-anchor="middle">
-    <text x="200.0" y="363.0" font-size="9" fill-opacity=".14">20</text><text x="246.9" y="249.9" font-size="9" fill-opacity=".14">40</text><text x="360.0" y="203.0" font-size="9" fill-opacity=".14">60</text><text x="473.1" y="249.9" font-size="9" fill-opacity=".14">80</text><text x="520.0" y="363.0" font-size="9" fill-opacity=".14">100</text><text x="473.1" y="476.1" font-size="9" fill-opacity=".14">120</text>
+    <text x="200.0" y="363.0" font-size="12" fill-opacity=".3">20</text><text x="246.9" y="249.9" font-size="12" fill-opacity=".3">40</text><text x="360.0" y="203.0" font-size="12" fill-opacity=".3">60</text><text x="473.1" y="249.9" font-size="12" fill-opacity=".3">80</text><text x="520.0" y="363.0" font-size="12" fill-opacity=".3">100</text><text x="473.1" y="476.1" font-size="12" fill-opacity=".3">120</text>
   </g>
   <g fill="#ffb000" fill-opacity=".75">
     <g>
