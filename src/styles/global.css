@@ -148,7 +148,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 .tl-list.in::before { transform: scaleY(1); }
 .job { position: relative; padding-bottom: 48px; opacity: 0; transform: translateX(-12px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
 .job.in { opacity: 1; transform: none; }
-.job::before { content: ''; position: absolute; left: -27px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--line-strong); transition: background .5s var(--ease), box-shadow .5s var(--ease); }
+.job::before { content: ''; position: absolute; left: -26px; top: 10px; width: 9px; height: 9px; border-radius: 50%; background: var(--line-strong); transition: background .5s var(--ease), box-shadow .5s var(--ease); }
 .job.lit::before { background: var(--accent); box-shadow: 0 0 12px var(--accent-glow); }
 .period { font: 13px var(--font-mono); color: var(--muted); }
 .company { color: var(--muted); }
