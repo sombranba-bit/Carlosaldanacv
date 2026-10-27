@@ -116,7 +116,7 @@ export const ui = {
   switchHref: '/',
   nav1: 'Work', nav2: 'Experience', nav3: 'Education', nav4: 'Contact',
   projects: 'View projects', cv: 'Download CV',
-  lead: 'I make sure the fleet stays compliant and turn tachograph data into decisions.',
+  lead: 'I keep a fleet of 500+ vehicles compliant and turn tachograph data into decisions that cut repeat infringements.',
   aboutTitle: 'About',
   workTitle: 'Selected work',
   workSub: 'Tools I have built for the fleet’s day-to-day work.',
