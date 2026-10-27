@@ -155,6 +155,7 @@ export const ext = {
 };
 
 export const chart = {
+  now: 'Ahora:',
   labels: ['Descanso', 'Conducción', 'Otros trabajos', 'Disponibilidad'],
   note: 'Ejemplo ilustrativo · la aguja marca la hora actual',
   // [inicio, fin] en horas, por carril: descanso, conducción, otros trabajos, disponibilidad

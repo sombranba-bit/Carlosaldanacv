@@ -78,22 +78,28 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 .btn-ghost { border: 1px solid var(--line); color: var(--muted); background: #1116; }
 .btn-ghost:hover { color: var(--fg); border-color: var(--accent); transform: translateY(-1px); }
 
-/* Gráfico de tacógrafo (24 h) */
-.tacho { position: absolute; top: 50%; right: 6vw; transform: translateY(-50%); width: min(520px, 42vw); pointer-events: none; user-select: none; -webkit-mask-image: linear-gradient(270deg, #000 60%, #0000 100%); mask-image: linear-gradient(270deg, #000 60%, #0000 100%); }
-.tacho-plot { position: relative; display: grid; gap: 14px; }
-.lane { display: grid; grid-template-columns: 110px 1fr; align-items: center; gap: 14px; }
-.lane-label { font: 11px var(--font-mono); color: var(--muted); letter-spacing: .04em; }
-.track { position: relative; height: 16px; background: #ffffff0a; border-radius: 3px; overflow: hidden; }
-.seg { position: absolute; top: 0; bottom: 0; background: var(--accent); opacity: .6; transform-origin: left; animation: grow .9s var(--ease) var(--d, 0s) backwards; }
-.seg-0 { background: #ffffff4d; }
-.seg-2 { background: #ffffff80; }
-.seg-3 { background: #00e5a04d; }
+/* Gráfico de tacógrafo (24 h) en vivo */
+.tacho { position: absolute; top: 50%; right: 6vw; transform: translateY(-50%); width: min(680px, 46vw); pointer-events: none; user-select: none; -webkit-mask-image: linear-gradient(270deg, #000 70%, #0000 100%); mask-image: linear-gradient(270deg, #000 70%, #0000 100%); }
+.tacho-plot { position: relative; display: grid; gap: 18px; }
+.lane { display: grid; grid-template-columns: 130px 1fr; align-items: center; gap: 14px; }
+.lane-label { font: 12px var(--font-mono); color: var(--muted); letter-spacing: .03em; }
+.track { position: relative; height: 22px; background: #ffffff0a; border-radius: 4px; overflow: hidden; }
+.seg { position: absolute; top: 0; bottom: 0; background: var(--accent); opacity: .22; transform-origin: left; animation: grow .9s var(--ease) var(--d, 0s) backwards; transition: opacity .6s var(--ease), box-shadow .6s var(--ease); }
+.seg-0 { background: #ffffff; }
+.seg-2 { background: #ffffffb3; }
+.seg-3 { background: #00e5a0; }
+.seg.passed { opacity: .75; }
+.seg.current { opacity: 1; box-shadow: 0 0 16px var(--accent-glow), inset 0 0 0 1px #ffffff40; animation: grow .9s var(--ease) var(--d, 0s) backwards, glow 1.6s ease-in-out infinite; }
+@keyframes glow { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.35); } }
 @keyframes grow { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
-.needle-rail { position: absolute; top: -6px; bottom: -6px; left: 124px; right: 0; pointer-events: none; }
-.needle { position: absolute; top: 0; bottom: 0; left: 0; width: 1px; background: var(--accent); box-shadow: 0 0 8px var(--accent); animation: sweep 16s linear infinite; }
-@keyframes sweep { 0% { left: 0; opacity: 0; } 5% { opacity: 1; } 95% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
-.tacho-hours { display: flex; justify-content: space-between; margin: 10px 0 0 124px; font: 10px var(--font-mono); color: var(--muted); opacity: .7; }
-.tacho-note { margin: 18px 0 0 124px; font-size: .62rem; opacity: .6; }
+.needle-rail { position: absolute; top: -8px; bottom: -8px; left: 144px; right: 0; pointer-events: none; }
+.trail { position: absolute; top: 0; bottom: 0; left: 0; width: 0; background: linear-gradient(to right, #0000, #00e5a02e); transition: width 1s linear; }
+.needle { position: absolute; top: 0; bottom: 0; left: 0; width: 2px; margin-left: -1px; background: var(--accent); box-shadow: 0 0 10px var(--accent); transition: left 1s linear; }
+.tacho-hours { display: flex; justify-content: space-between; margin: 12px 0 0 144px; font: 11px var(--font-mono); color: var(--muted); opacity: .75; }
+.tacho-status { display: flex; align-items: center; gap: .6rem; margin: 24px 0 0 144px; font: 13px var(--font-mono); color: var(--fg); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: ping 1.8s var(--ease) infinite; }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 #00e5a099; } 100% { box-shadow: 0 0 0 10px #00e5a000; } }
+.tacho-note { margin: 12px 0 0 144px; font-size: .66rem; opacity: .6; }
 @media (max-width: 1100px) { .tacho { display: none; } }
 
 @media (max-width: 860px) { .hero { padding: var(--header-h) 1.5rem 0; } }
@@ -184,8 +190,8 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal, .job, .tl-list::before { opacity: 1; transform: none; transition: none; }
-  .line-v, .seg { animation: none; }
-  .needle { display: none; }
+  .line-v, .seg, .dot { animation: none; }
+  .needle, .trail { transition: none; }
 }
 
 /* Camión sobre la línea de experiencia */

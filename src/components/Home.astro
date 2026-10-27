@@ -11,21 +11,22 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
 ---
 <Base title={`${profile.name} · ${profile.title}`} lang={lang}>
   <section class="hero">
-    <div class="tacho" aria-hidden="true">
+    <div class="tacho" aria-hidden="true" data-labels={JSON.stringify(chart.labels)} data-now={chart.now}>
       <div class="tacho-plot">
         {chart.lanes.map((segs, li) => (
           <div class="lane">
             <span class="lane-label">{chart.labels[li]}</span>
             <div class="track">
               {segs.map(([a, b], si) => (
-                <span class={`seg seg-${li}`} style={`left:${(a / 24 * 100).toFixed(2)}%;width:${((b - a) / 24 * 100).toFixed(2)}%;--d:${(li * 0.35 + si * 0.12).toFixed(2)}s`}></span>
+                <span class={`seg seg-${li}`} data-lane={li} data-a={a} data-b={b} style={`left:${(a / 24 * 100).toFixed(2)}%;width:${((b - a) / 24 * 100).toFixed(2)}%;--d:${(li * 0.35 + si * 0.12).toFixed(2)}s`}></span>
               ))}
             </div>
           </div>
         ))}
-        <div class="needle-rail"><span class="needle"></span></div>
+        <div class="needle-rail"><div class="trail"></div><span class="needle"></span></div>
       </div>
       <div class="tacho-hours"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+      <p class="tacho-status mono"><span class="dot"></span><span class="status-text">{chart.now}</span></p>
       <p class="tacho-note mono">{chart.note}</p>
     </div>
     <div class="hero-content">
@@ -159,18 +160,33 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
       window.onscroll();
     }
 
-    // Aguja con la hora real
-    const needle = document.querySelector('.needle');
-    if (needle) {
-      const place = () => {
+    // Gráfico de tacógrafo en vivo: aguja, rastro, tramos recorridos y estado actual
+    const tac = document.querySelector('.tacho');
+    if (tac) {
+      const labels = JSON.parse(tac.dataset.labels);
+      const segs = [...tac.querySelectorAll('.seg')];
+      const trail = tac.querySelector('.trail');
+      const needle = tac.querySelector('.needle');
+      const text = tac.querySelector('.status-text');
+      const tick = () => {
         const d = new Date();
-        const pct = ((d.getHours() * 60 + d.getMinutes()) / 1440) * 100;
-        needle.style.animation = 'none';
+        const h = d.getHours() + d.getMinutes() / 60 + d.getSeconds() / 3600;
+        const pct = (h / 24) * 100;
         needle.style.left = pct + '%';
-        needle.style.opacity = '1';
+        trail.style.width = pct + '%';
+        let active = null;
+        for (const sg of segs) {
+          const a = Number(sg.dataset.a), b = Number(sg.dataset.b);
+          sg.classList.toggle('passed', b <= h);
+          const on = a <= h && h < b;
+          sg.classList.toggle('current', on);
+          if (on) active = Number(sg.dataset.lane);
+        }
+        text.textContent = `${tac.dataset.now} ${active === null ? '' : labels[active]}`;
       };
-      place();
-      setInterval(place, 30000);
+      tick();
+      if (window.__tachoTimer) clearInterval(window.__tachoTimer);
+      window.__tachoTimer = setInterval(tick, 1000);
     }
 
     // Contadores de cifras al entrar en pantalla

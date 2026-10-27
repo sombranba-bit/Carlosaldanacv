@@ -155,6 +155,7 @@ export const ext = {
 };
 
 export const chart = {
+  now: 'Now:',
   labels: ['Rest', 'Driving', 'Other work', 'Availability'],
   note: 'Illustrative example · the needle shows the current time',
   lanes: [
