@@ -156,7 +156,7 @@ export const ext = {
 
 export const chart = {
   labels: ['Rest', 'Driving', 'Other work', 'Availability'],
-  note: 'Illustrative example of one day',
+  note: 'Illustrative example · the needle shows the current time',
   lanes: [
     [[0, 6], [9.5, 10], [13.5, 15], [19, 24]],
     [[6, 9.5], [10, 13.5], [15, 19]],
@@ -164,3 +164,9 @@ export const chart = {
     [[14, 15]],
   ],
 };
+
+export const stats = [
+    { to: 500, prefix: '+', suffix: '', label: 'vehicles in the fleet' },
+    { to: 600, prefix: '+', suffix: '', label: 'drivers' },
+    { to: 40, prefix: '−', suffix: ' %', label: 'fewer repeat serious infringements' },
+  ];

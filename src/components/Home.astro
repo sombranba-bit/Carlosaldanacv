@@ -5,7 +5,7 @@ import * as en from '../data/cv.en';
 
 interface Props { lang: 'es' | 'en'; }
 const { lang } = Astro.props;
-const { profile, projects, experience, education, certs, skills, about, ui, ext, chart } = lang === 'en' ? en : es;
+const { profile, projects, experience, education, certs, skills, about, ui, ext, chart, stats } = lang === 'en' ? en : es;
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
 ---
@@ -41,6 +41,15 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
       </div>
     </div>
     <div class="scroll-indicator" aria-hidden="true"><span>Scroll</span><div class="line-v"></div></div>
+  </section>
+
+  <section class="stats" aria-label={ui.workTitle}>
+    {stats.map((st) => (
+      <div class="stat reveal">
+        <span class="stat-num" data-to={st.to} data-prefix={st.prefix} data-suffix={st.suffix}>{st.prefix}{st.to}{st.suffix}</span>
+        <span class="stat-label">{st.label}</span>
+      </div>
+    ))}
   </section>
 
   <section class="section" id="acerca">
@@ -80,6 +89,8 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
       <span class="section-no">02</span>
       <h2 class="gradient">{ui.experience}</h2>
     </div>
+    <div class="tl-wrap">
+    <div class="rail"><div class="rail-fill"></div><span class="truck" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="2" y="7" width="12" height="9" rx="1"/><path d="M14 10h4l3 3v3h-7"/><circle cx="6" cy="18" r="1.8" fill="#0b0b0b"/><circle cx="17" cy="18" r="1.8" fill="#0b0b0b"/></svg></span></div>
     <ol class="tl-list">
       {experience.map((j) => (
         <li class="job">
@@ -90,6 +101,7 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
         </li>
       ))}
     </ol>
+    </div>
   </section>
 
   <section class="section" id="formacion">
@@ -125,3 +137,63 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
     </ul>
   </section>
 </Base>
+
+<script>
+  function init() {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Camión que avanza por la línea de experiencia y enciende cada empresa
+    const list = document.querySelector('.tl-list');
+    const fill = document.querySelector('.rail-fill');
+    const truck = document.querySelector('.truck');
+    const jobs = [...document.querySelectorAll('.job')];
+    if (list && fill && truck) {
+      window.onscroll = () => {
+        const r = list.getBoundingClientRect();
+        const line = innerHeight * 0.6;
+        const p = Math.min(1, Math.max(0, (line - r.top) / r.height));
+        fill.style.transform = `scaleY(${p})`;
+        truck.style.top = `${p * 100}%`;
+        jobs.forEach((j) => j.classList.toggle('lit', j.getBoundingClientRect().top < line));
+      };
+      window.onscroll();
+    }
+
+    // Aguja con la hora real
+    const needle = document.querySelector('.needle');
+    if (needle) {
+      const place = () => {
+        const d = new Date();
+        const pct = ((d.getHours() * 60 + d.getMinutes()) / 1440) * 100;
+        needle.style.animation = 'none';
+        needle.style.left = pct + '%';
+        needle.style.opacity = '1';
+      };
+      place();
+      setInterval(place, 30000);
+    }
+
+    // Contadores de cifras al entrar en pantalla
+    const nums = [...document.querySelectorAll('.stat-num')];
+    const run = (el) => {
+      const to = Number(el.dataset.to);
+      if (reduce) return;
+      el.textContent = el.dataset.prefix + '0' + el.dataset.suffix;
+      const t0 = performance.now();
+      const step = (t) => {
+        const k = Math.min(1, (t - t0) / 1600);
+        const e = 1 - Math.pow(1 - k, 3);
+        el.textContent = el.dataset.prefix + Math.round(to * e) + el.dataset.suffix;
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) { run(e.target); io.unobserve(e.target); }
+      }
+    }, { threshold: 0.5 });
+    nums.forEach((n) => io.observe(n));
+  }
+  document.addEventListener('astro:page-load', init);
+</script>

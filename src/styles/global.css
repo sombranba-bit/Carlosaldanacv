@@ -142,7 +142,8 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 .tl-list.in::before { transform: scaleY(1); }
 .job { position: relative; padding-bottom: 48px; opacity: 0; transform: translateX(-12px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
 .job.in { opacity: 1; transform: none; }
-.job::before { content: ''; position: absolute; left: -27px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent-glow); }
+.job::before { content: ''; position: absolute; left: -27px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--line-strong); transition: background .5s var(--ease), box-shadow .5s var(--ease); }
+.job.lit::before { background: var(--accent); box-shadow: 0 0 12px var(--accent-glow); }
 .period { font: 13px var(--font-mono); color: var(--muted); }
 .company { color: var(--muted); }
 .job ul { margin-top: 12px; color: #bdbdbd; font-size: 15px; }
@@ -183,6 +184,23 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal, .job, .tl-list::before { opacity: 1; transform: none; transition: none; }
-  .line-v, .seg, .needle { animation: none; }
+  .line-v, .seg { animation: none; }
   .needle { display: none; }
 }
+
+/* Camión sobre la línea de experiencia */
+.tl-wrap { position: relative; }
+.tl-list::before { display: none; }
+.rail { position: absolute; left: 6px; top: 0; bottom: 0; width: 1px; background: var(--line); }
+.rail-fill { position: absolute; inset: 0; background: var(--accent); transform-origin: top; transform: scaleY(0); box-shadow: 0 0 10px var(--accent-glow); }
+.truck { position: absolute; left: -10px; top: 0; transform: translateY(-50%); color: var(--accent); background: var(--bg); line-height: 0; padding: 2px 0; }
+
+/* Franja de cifras */
+.stats { max-width: 1320px; margin: 0 auto; padding: 4rem 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stat { display: flex; flex-direction: column; gap: .5rem; }
+.stat-num { font-size: clamp(2.6rem, 6vw, 4.4rem); font-weight: 600; letter-spacing: -.04em; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.stat-label { font: .72rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+@media (max-width: 860px) { .stats { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2.2rem; } }
+
+/* Aguja con la hora real: sin animación de barrido */
+.needle { animation: none; }
