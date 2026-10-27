@@ -79,14 +79,14 @@ export const experience = [
 ];
 
 export const education = [
-  { title: 'Higher Technician in Transport and Logistics', place: 'Centro San Valero, Zaragoza', period: '2021 – 2023' },
+  { title: 'Higher Vocational Diploma in Transport and Logistics', place: 'Centro San Valero, Zaragoza', period: '2021 – 2023' },
   { title: 'Degree in Labour Relations and Human Resources', place: 'University of Zaragoza', period: '2017 – 2020' },
   { title: 'Degree in Business Administration and Management', place: 'University of Zaragoza', period: '2015 – 2016' },
   { title: 'High School Diploma in Social Sciences and Humanities', place: 'IES Miguel de Molinos', period: '2013 – 2015' },
 ];
 
 export const certs = [
-  { title: 'Certificate of Professional Competence for Road Transport of Goods', place: 'Government of Aragon · 2026' },
+  { title: 'Certificate of Professional Competence (CPC) for Road Freight Transport', place: 'Government of Aragon · 2026' },
   { title: 'Professional English for Transport and Logistics (90h)', place: 'Izquierdo Formación' },
   { title: 'English level C1', place: 'Cambridge English Certificate' },
 ];
@@ -104,9 +104,9 @@ export const skills = [
 
 export const about = [
   'Tachograph manager for a fleet of 500+ vehicles and 600+ drivers. I oversee compliance with driving and rest times (Regulation (EC) 561/2006): downloads, infringement analysis, penalty management and transport inspections. I have achieved a sustained reduction in repeat serious and very serious infringements.',
-  'I work with data: I design my own control dashboards in Power BI and automate reports and driver notices, with the support of generative AI. I master advanced Excel and the a3ERP and SAP ERPs.',
-  'At Transporte Cooperativo Aragonés I managed tachographs, tolls and motorway invoicing, the member portfolio and professional diesel, and trained drivers on regulations.',
-  'Higher Technician in Transport and Logistics, holder of the Certificate of Professional Competence for Road Transport of Goods, with English C1 (Cambridge).',
+  'I work with data: I design my own control dashboards in Power BI and automate reports and driver notices, with the support of generative AI. I have advanced Excel skills and work with the a3ERP and SAP ERPs.',
+  'At Transporte Cooperativo Aragonés I managed tachographs, tolls and motorway invoicing, the member portfolio and professional diesel fuel refunds, and trained drivers on regulations.',
+  'Higher Vocational Diploma in Transport and Logistics, holder of the Certificate of Professional Competence (CPC) for Road Freight Transport, with English C1 (Cambridge).',
 ];
 
 export const ui = {
