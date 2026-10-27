@@ -80,8 +80,9 @@ const p = root + d.ui.prefix;
       function intro() {
         const el = document.querySelector('.intro');
         if (!el) return;
+        const key = 'intro-ok-' + document.documentElement.lang;
         let seen = false;
-        try { seen = sessionStorage.getItem('intro-ok') === '1'; sessionStorage.setItem('intro-ok', '1'); } catch (e) {}
+        try { seen = sessionStorage.getItem(key) === '1'; sessionStorage.setItem(key, '1'); } catch (e) {}
         if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) el.remove();
       }
       document.addEventListener('astro:page-load', intro);
