@@ -156,10 +156,11 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 .job.in { opacity: 1; transform: none; }
 .job::before { content: ''; position: absolute; left: -26px; top: 10px; width: 9px; height: 9px; border-radius: 50%; background: var(--line-strong); transition: background .5s var(--ease), box-shadow .5s var(--ease); }
 .job.lit::before { background: var(--accent); box-shadow: 0 0 12px var(--accent-glow); }
-.period { font: 13px var(--font-mono); color: var(--muted); }
-.company { color: var(--muted); }
-.job ul { margin-top: 12px; color: #bdbdbd; font-size: 15px; }
-.job li { padding-left: 16px; position: relative; margin-bottom: 6px; }
+.period { font: 13px var(--font-mono); color: var(--muted); margin-bottom: 8px; }
+.company { color: var(--muted); margin-top: 6px; }
+.job h3 { margin: 4px 0 0; }
+.job ul { margin-top: 18px; color: #bdbdbd; font-size: 15px; }
+.job li { padding-left: 16px; position: relative; margin-bottom: 10px; }
 .job li::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
 
 /* Formación */
