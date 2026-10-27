@@ -76,7 +76,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 .line { display: block; }
 .line-dev { background: var(--gradient-heading); -webkit-text-fill-color: transparent; -webkit-background-clip: text; background-clip: text; margin-bottom: -.14em; padding-bottom: .14em; }
 .line-accent { font-family: var(--font-serif); letter-spacing: -.01em; color: var(--muted); font-style: italic; font-weight: 400; }
-.hero-sub { color: var(--muted); max-width: 560px; margin: 0 0 3rem; font-size: clamp(1rem, 1.6vw, 1.2rem); line-height: 1.7; }
+.hero-sub { color: var(--muted); max-width: 680px; margin: 0 0 3rem; font-size: clamp(1rem, 1.6vw, 1.2rem); line-height: 1.7; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
 .btn { font: .78rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; display: inline-flex; align-items: center; gap: .55rem; padding: .75rem 1.4rem; border-radius: 9999px; transition: background-color .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease-spring), box-shadow .3s var(--ease); }
 .btn-primary { background: var(--fg); color: var(--bg); }
