@@ -257,3 +257,11 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 .zoom-frame { position: relative; overflow: hidden; max-width: 1100px; margin: 0 auto; aspect-ratio: 21 / 9; border-radius: 14px; border: 1px solid var(--line); background: #141414; }
 .zoom-img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; filter: brightness(.7) contrast(1.12) saturate(.7); transform: scale(1.25); will-change: transform; }
 .zoom-frame::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 90% at 50% 45%, #0000 40%, #000c), linear-gradient(to bottom, #0b0b0b99, #0000 30%, #0000 70%, #0b0b0bcc); }
+
+/* Aguja de tacógrafo en las cifras (Home.astro) */
+.gauge { width: 84px; height: 84px; overflow: visible; }
+.gauge-needle { transform: rotate(-135deg); transform-box: view-box; transform-origin: 50px 50px; transition: transform 1.6s var(--ease); }
+/* Brillo ámbar que sigue al cursor en tarjetas de proyectos */
+.project-card { position: relative; }
+.project-card::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .4s; background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), #ffb00024, #0000 70%); }
+.project-card:hover::before { opacity: 1; }
