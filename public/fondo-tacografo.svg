@@ -13,4 +13,13 @@
   <g font-family="JetBrains Mono, monospace" font-size="11" fill="#ffffff" fill-opacity=".22" text-anchor="middle">
     <text x="360" y="44">00</text><text x="676" y="364">06</text><text x="360" y="690">12</text><text x="44" y="364">18</text>
   </g>
+  <g fill="#00e5a0" fill-opacity=".75">
+    <g>
+      <animateMotion dur="16s" repeatCount="indefinite" rotate="auto" path="M60 520 C160 420 220 600 330 480 S520 200 660 260"/>
+      <rect x="-12" y="-6" width="12" height="9" rx="1"/>
+      <path d="M1 -6 h5 l4 4 v5 h-9 z"/>
+      <circle cx="-7" cy="5" r="1.9" fill="#0b0b0b"/>
+      <circle cx="3" cy="5" r="1.9" fill="#0b0b0b"/>
+    </g>
+  </g>
 </svg>

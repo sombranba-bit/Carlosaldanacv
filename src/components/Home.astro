@@ -37,8 +37,8 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
       </h1>
       <p class="hero-sub">{profile.tagline}. {ui.lead}</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href={`${root}${ui.prefix}/proyectos`}>{ui.projects}</a>
-        <a class="btn btn-ghost" href={root + "/cv.pdf"} download>{ui.cv}</a>
+        <a class="btn btn-primary magnetic" href={`${root}${ui.prefix}/proyectos`}>{ui.projects}</a>
+        <a class="btn btn-ghost magnetic" href={root + "/cv.pdf"} download>{ui.cv}</a>
       </div>
     </div>
     <div class="scroll-indicator" aria-hidden="true"><span>Scroll</span><div class="line-v"></div></div>
@@ -81,7 +81,7 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
       ))}
     </div>
     <div class="view-all-wrap reveal">
-      <a class="view-all" href={`${root}${ui.prefix}/proyectos`}>{ui.allProjects} ({projects.length}) <span class="arrow">→</span></a>
+      <a class="view-all magnetic" href={`${root}${ui.prefix}/proyectos`}>{ui.allProjects} ({projects.length}) <span class="arrow">→</span></a>
     </div>
   </section>
 
