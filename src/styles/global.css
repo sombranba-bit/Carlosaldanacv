@@ -33,7 +33,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 /* Fondo: rejilla, resplandor */
 .background { position: fixed; inset: 0; z-index: -1; background: var(--bg); overflow: hidden; pointer-events: none; }
 .glow { position: absolute; top: -30vh; left: 50%; transform: translateX(-50%); width: 90vw; height: 70vh; filter: blur(40px); background: radial-gradient(#ffb0000d, #ffffff05 45%, #0000 70%); }
-.grid { position: absolute; inset: 0; background-repeat: no-repeat; background-position: 50% 0; background-size: min(720px, 110vw) auto; -webkit-mask-image: radial-gradient(at 50% 0, #000 0%, #0000 75%); mask-image: radial-gradient(at 50% 0, #000 0%, #0000 75%); }
+.grid { position: absolute; inset: 0; background-repeat: no-repeat; background-position: 50% 50%; background-size: min(720px, 110vw) auto; -webkit-mask-image: radial-gradient(at 50% 50%, #000 0%, #0000 75%); mask-image: radial-gradient(at 50% 50%, #000 0%, #0000 75%); }
 
 /* Cabecera */
 .nav { position: fixed; top: 0; inset-inline: 0; z-index: 100; height: var(--header-h); background: #0b0b0bb8; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
