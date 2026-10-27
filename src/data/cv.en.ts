@@ -44,7 +44,7 @@ export const experience = [
     company: 'Transportes Ocón',
     bullets: [
       'Full tachograph management for a fleet of 500+ vehicles and 600+ drivers: downloads, data analysis and compliance tracking.',
-      'Supervision of driving and rest times (Regulation (EC) 561/2006), reducing repeat serious and very serious infringements by 40%.',
+      'Supervision of driving and rest times (Regulation (EC) 561/2006), with a sustained reduction in repeat serious and very serious infringements.',
       'Design of control dashboards and in-house tools to track infringements and downloads, plus individual notices to drivers.',
       'Management of transport penalties and coordination of transport inspections.',
     ],
@@ -103,7 +103,7 @@ export const skills = [
 ];
 
 export const about = [
-  'Tachograph manager for a fleet of 500+ vehicles and 600+ drivers. I oversee compliance with driving and rest times (Regulation (EC) 561/2006): downloads, infringement analysis, penalty management and transport inspections. I have reduced repeat serious and very serious infringements by 40%.',
+  'Tachograph manager for a fleet of 500+ vehicles and 600+ drivers. I oversee compliance with driving and rest times (Regulation (EC) 561/2006): downloads, infringement analysis, penalty management and transport inspections. I have achieved a sustained reduction in repeat serious and very serious infringements.',
   'I work with data: I design my own control dashboards in Power BI and automate reports and driver notices, with the support of generative AI. I master advanced Excel and the a3ERP and SAP ERPs.',
   'At Transporte Cooperativo Aragonés I managed tachographs, tolls and motorway invoicing, the member portfolio and professional diesel, and trained drivers on regulations.',
   'Higher Technician in Transport and Logistics, holder of the Certificate of Professional Competence for Road Transport of Goods, with English C1 (Cambridge).',
@@ -168,5 +168,4 @@ export const chart = {
 export const stats = [
     { to: 500, prefix: '+', suffix: '', label: 'vehicles in the fleet' },
     { to: 600, prefix: '+', suffix: '', label: 'drivers' },
-    { to: 40, prefix: '−', suffix: ' %', label: 'fewer repeat serious infringements' },
   ];

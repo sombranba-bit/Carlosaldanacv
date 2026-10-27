@@ -44,7 +44,7 @@ export const experience = [
     company: 'Transportes Ocón',
     bullets: [
       'Gestión integral de tacógrafos en una flota de +500 vehículos y +600 conductores: descargas, análisis de datos y seguimiento del cumplimiento.',
-      'Supervisión de tiempos de conducción y descanso (Reglamento (CE) 561/2006), con una reducción del 40% en la reincidencia de infracciones graves y muy graves.',
+      'Supervisión de tiempos de conducción y descanso (Reglamento (CE) 561/2006), con una reducción sostenida de la reincidencia en infracciones graves y muy graves.',
       'Diseño de paneles de control y herramientas propias para el seguimiento de infracciones y de descargas.',
       'Gestión de sanciones de transporte y coordinación de inspecciones.',
     ],
@@ -103,7 +103,7 @@ export const skills = [
 ];
 
 export const about = [
-  'Responsable de tacógrafos en una flota de +500 vehículos y +600 conductores. Me encargo del cumplimiento de los tiempos de conducción y descanso (Reglamento (CE) 561/2006): control de descargas, análisis de infracciones, gestión de sanciones y atención de inspecciones de Transporte. He reducido un 40% la reincidencia de infracciones graves y muy graves.',
+  'Responsable de tacógrafos en una flota de +500 vehículos y +600 conductores. Me encargo del cumplimiento de los tiempos de conducción y descanso (Reglamento (CE) 561/2006): control de descargas, análisis de infracciones, gestión de sanciones y atención de inspecciones de Transporte. He reducido de forma sostenida la reincidencia de infracciones graves y muy graves.',
   'Trabajo con datos: diseño paneles de control propios en Power BI y automatizo informes y avisos a conductores, con apoyo de IA generativa. Domino Excel avanzado y los ERP a3ERP y SAP.',
   'En Transporte Cooperativo Aragonés gestioné tacógrafos, telepeajes y facturación de autopistas, cartera de asociados y gasóleo profesional, y formé a conductores en normativa.',
   'Técnico Superior en Transporte y Logística, titular del Certificado de Competencia Profesional de Transporte de Mercancías por Carretera, con inglés C1 (Cambridge).',
@@ -169,5 +169,4 @@ export const chart = {
 export const stats = [
     { to: 500, prefix: '+', suffix: '', label: 'vehículos en la flota' },
     { to: 600, prefix: '+', suffix: '', label: 'conductores' },
-    { to: 40, prefix: '−', suffix: ' %', label: 'menos reincidencia en infracciones graves' },
   ];
