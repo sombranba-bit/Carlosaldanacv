@@ -1,7 +1,7 @@
 export const profile = {
   name: 'Carlos Aldana Guillén',
   title: 'Responsable de Tacógrafos',
-  tagline: 'Cumplimiento normativo · Gestión de flotas · Power BI y automatización',
+  tagline: 'Cumplimiento normativo · Gestión de flotas · Power BI, automatización e IA',
   location: 'Zaragoza, Aragón, España',
   phone: '653 860 798',
   phoneHref: '+34653860798',

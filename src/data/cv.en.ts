@@ -1,7 +1,7 @@
 export const profile = {
   name: 'Carlos Aldana Guillén',
   title: 'Tachograph Compliance Manager',
-  tagline: 'Regulatory compliance · Fleet management · Power BI and process automation',
+  tagline: 'Regulatory compliance · Fleet management · Power BI, process automation and AI',
   location: 'Zaragoza, Aragon, Spain',
   phone: '653 860 798',
   phoneHref: '+34653860798',
