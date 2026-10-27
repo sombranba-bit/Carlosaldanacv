@@ -85,7 +85,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 .btn-ghost:hover { color: var(--fg); border-color: var(--accent); transform: translateY(-1px); }
 
 /* Gráfico de tacógrafo (24 h) en vivo */
-.tacho { position: absolute; right: 0; top: 62%; transform: translateY(-50%); width: min(560px, 40vw); pointer-events: none; user-select: none; -webkit-mask-image: linear-gradient(90deg, #0000 0%, #000 28%); mask-image: linear-gradient(90deg, #0000 0%, #000 28%); }
+.tacho { position: absolute; right: 0; bottom: 0; width: min(460px, 34vw); pointer-events: none; user-select: none; -webkit-mask-image: linear-gradient(90deg, #0000 0%, #000 28%); mask-image: linear-gradient(90deg, #0000 0%, #000 28%); }
 .tacho-plot { position: relative; display: grid; gap: 18px; }
 .lane { display: grid; grid-template-columns: 130px 1fr; align-items: center; gap: 14px; }
 .lane-label { font: 12px var(--font-mono); color: var(--muted); letter-spacing: .03em; }
