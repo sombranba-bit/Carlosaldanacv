@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Demo · Infringements panel</title>
+<title>Demo · Infringement panel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;600&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -17,7 +17,7 @@
   aside .brand b{color:var(--amber)}
   .back{display:inline-block;color:var(--mid);text-decoration:none;font:13px JetBrains Mono,monospace;margin:0 22px 18px}
   .back:hover{color:var(--amber)}
-  aside button{display:flex;width:100%;text-align:left;background:none;border:0;color:var(--mid);padding:11px 22px;font:14px Inter,sans-serif;cursor:pointer;border-left:3px solid transparent}
+  aside button{display:flex;width:100%;text-align:left;background:none;border:0;color:var(--mid);padding:9px 22px;font:14px Inter,sans-serif;cursor:pointer;border-left:3px solid transparent}
   aside button.on{color:var(--amber);border-left-color:var(--amber);background:#2b2e3366}
   main{padding:28px 32px}
   .tag{display:inline-block;font:11px JetBrains Mono,monospace;color:var(--amber);border:1px solid var(--amber);border-radius:4px;padding:3px 8px;letter-spacing:.08em}
@@ -31,12 +31,17 @@
   .kpi em.ok{color:var(--green)}
   .panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:22px}
   .panel h2{font:600 18px Oswald,sans-serif;margin:0 0 12px;text-transform:uppercase;letter-spacing:.04em}
-  input{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--hi);border-radius:5px;padding:9px 12px;font:14px Inter,sans-serif;margin-bottom:12px}
+  .panel p{color:var(--mid);margin:0 0 12px}
+  input,select{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--hi);border-radius:5px;padding:9px 12px;font:14px Inter,sans-serif;margin-bottom:12px}
+  select{width:auto;min-width:220px;margin-right:10px}
   table{width:100%;border-collapse:collapse;font-size:14px}
   th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
   th{font:11px JetBrains Mono,monospace;color:var(--low);text-transform:uppercase;letter-spacing:.08em}
-  td.num{font-family:JetBrains Mono,monospace;text-align:right}
+  td.num,th.num{font-family:JetBrains Mono,monospace;text-align:right}
   .bad{color:var(--red)} .good{color:var(--green)}
+  .bar{height:8px;background:#2b2e33;border-radius:4px;overflow:hidden;min-width:120px}
+  .bar i{display:block;height:100%;border-radius:4px}
+  .drop{border:1px dashed #4a4d54;border-radius:8px;padding:22px;text-align:center;color:var(--mid);margin-bottom:14px}
   .note{font:12px JetBrains Mono,monospace;color:var(--low);margin-top:18px}
   .view{display:none} .view.on{display:block}
   canvas{max-height:320px}
@@ -48,68 +53,165 @@
   <div class="brand">Panel <b>demo</b></div>
   <a class="back" href="/en/proyectos/panel-infracciones/" target="_top">← Back to the tool</a>
   <button class="on" data-v="inicio">Overview</button>
-  <button data-v="tendencias">Trends</button>
+  <button data-v="gestion">Data management</button>
+  <button data-v="resumen">Summary</button>
+  <button data-v="tendencias">Trends and evolution</button>
+  <button data-v="riesgo">Risk</button>
   <button data-v="reincidencia">Repeat offences</button>
+  <button data-v="detalle">Infringement detail</button>
   <button data-v="conductores">Driver list</button>
+  <button data-v="analisis">Driver analysis</button>
+  <button data-v="control">Delegation control and notices</button>
+  <button data-v="avisos">Notices to drivers</button>
 </aside>
 <main>
-  <span class="tag">FICTIONAL DATA · DEMO</span>
+  <span class="tag">FICTITIOUS DATA · DEMO</span>
   <section class="view on" id="v-inicio">
     <h1>Infringement control</h1>
-    <p class="sub">Summary of the demo fleet. All names and figures are invented.</p>
+    <p class="sub">Overview of the demonstration fleet. All names and figures are invented.</p>
     <div class="kpis" id="kpis"></div>
     <div class="panel"><h2>Infringements per month</h2><canvas id="chartMes"></canvas></div>
   </section>
+  <section class="view" id="v-gestion">
+    <h1>Data management</h1>
+    <p class="sub">Upload infringement listings as CSV and check they are valid before using them.</p>
+    <div class="panel"><div class="drop">Drag the CSV listing here (demo: upload disabled)</div><table id="tFiles"></table></div>
+  </section>
+  <section class="view" id="v-resumen">
+    <h1>Summary</h1>
+    <p class="sub">A quick read of the period against the previous one.</p>
+    <div class="kpis" id="resumenKpis"></div>
+    <div class="panel"><p id="resumenTxt"></p></div>
+  </section>
   <section class="view" id="v-tendencias">
-    <h1>Trends</h1>
-    <p class="sub">Monthly evolution by infringement type.</p>
-    <div class="panel"><h2>Evolution</h2><canvas id="chartTipos"></canvas></div>
+    <h1>Trends and evolution</h1>
+    <p class="sub">Monthly evolution by type of activity.</p>
+    <div class="panel"><h2>Infringements and amount per month</h2><canvas id="chartTipos2"></canvas></div>
+    <div class="panel"><h2>Year-on-year comparison</h2><canvas id="chartAnual"></canvas></div>
+  </section>
+  <section class="view" id="v-riesgo">
+    <h1>Risk</h1>
+    <p class="sub">IRI index by delegation on a 0–5 scale. Above 3 is considered serious.</p>
+    <div class="panel"><h2>IRI by delegation</h2><table id="tRiesgo"></table></div>
   </section>
   <section class="view" id="v-reincidencia">
     <h1>Repeat offences</h1>
     <p class="sub">Drivers who repeat serious or very serious infringements.</p>
     <div class="panel"><h2>Drivers with repeat offences</h2><table id="tReinc"></table></div>
   </section>
+  <section class="view" id="v-detalle">
+    <h1>Infringement detail</h1>
+    <p class="sub">Each infringement with date, type and amount. Filter by type.</p>
+    <div class="panel"><select id="fTipo"></select><table id="tDet"></table></div>
+  </section>
   <section class="view" id="v-conductores">
     <h1>Driver list</h1>
     <p class="sub">Search for a driver by name.</p>
     <div class="panel"><input id="buscar" placeholder="Search driver…"><table id="tCond"></table></div>
   </section>
-  <p class="note">Interface demo. Contains no real data.</p>
+  <section class="view" id="v-analisis">
+    <h1>Driver analysis</h1>
+    <p class="sub">A driver’s infringements by month and severity.</p>
+    <div class="panel"><select id="selCond"></select><canvas id="chartAnal"></canvas></div>
+  </section>
+  <section class="view" id="v-control">
+    <h1>Delegation control and notices</h1>
+    <p class="sub">Notices sent to each delegation and still awaiting a reply.</p>
+    <div class="panel"><table id="tCtrl"></table></div>
+  </section>
+  <section class="view" id="v-avisos">
+    <h1>Notices to drivers</h1>
+    <p class="sub">Log of notices sent to drivers, with date and status.</p>
+    <div class="panel"><table id="tAvisos"></table></div>
+  </section>
+  <p class="note">Interface demonstration. Contains no real data.</p>
 </main>
 <script>
-// Datos ficticios con semilla fija
+
+const RESUMEN = (t, d, n) => `September closed with ${t} infringements. The delegation with most incidents is ${d} (${n} infringements). Two delegations have an IRI above 3 and should be reviewed before the month closes.`;
+const T = {"dels": ["Zaragoza", "Madrid", "Barcelona", "Valencia"], "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], "names": ["Laura Martín", "Javier Ruiz", "Marta Sanz", "Pablo Gil", "Lucía Vega", "Diego Ortiz", "Elena Castro", "Sergio Pardo", "Ana Lozano", "Raúl Medina", "Clara Soto", "Iván Prieto", "Nuria Ibáñez", "Óscar Romero", "Paula Delgado", "Adrián Molina"], "lines": ["Rest", "Driving", "Downloads"], "types": ["Rest", "Speed", "Tachograph", "Driver card"], "sev": ["Minor", "Serious", "Very serious"], "files": [["listing_infringements_2026-07.csv", 4812, "Validated"], ["listing_infringements_2026-08.csv", 5120, "Validated"], ["listing_infringements_2026-09.csv", 4973, "Validated"], ["downloads_2026-09.csv", 1310, "Check header"]], "dates": ["Oct 5", "Oct 9", "Oct 14", "Oct 21"], "th": {"file": "File", "rows": "Records", "status": "Status", "del": "Delegation", "bar": "Level", "alert": "Alert", "driver": "Driver", "serious": "Serious", "total": "Total", "date": "Date", "type": "Type", "sev": "Severity", "amount": "Amount", "inf": "Infringements", "sent": "Sent", "pending": "Pending", "last": "Last upload", "status2": "Status"}, "st": {"ok": "Validated", "alert": "Above 3", "list": ["Sent", "Read", "Pending"]}, "all": "All types", "dec": ".", "locale": "en-GB", "k": {"inf": "Infringements", "infSub": "+4.2% vs previous year", "cond": "Drivers", "active": "active", "imp": "Amount", "est": "estimated", "reinc": "Repeat offences", "reincSub": "with 3+ serious", "topDel": "Delegation with most infringements"}, "resumen": null};
 let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-const nombres = ['Laura Martín','Javier Ruiz','Marta Sanz','Pablo Gil','Lucía Vega','Diego Ortiz','Elena Castro','Sergio Pardo','Ana Lozano','Raúl Medina','Clara Soto','Iván Prieto','Nuria Ibáñez','Óscar Romero','Paula Delgado','Adrián Molina'];
-const delegaciones = ['Zaragoza','Madrid','Barcelona','Valencia'];
-const meses = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const conductores = nombres.map((n, i) => ({ n, d: delegaciones[i % 4], inf: Math.floor(rnd()*12), grave: Math.floor(rnd()*5), imp: Math.floor(rnd()*900)*10 }));
-const mes = meses.map(() => Math.floor(80 + rnd()*60));
-const tipos = { 'Rest': meses.map(()=>Math.floor(20+rnd()*30)), 'Driving': meses.map(()=>Math.floor(30+rnd()*40)), 'Downloads': meses.map(()=>Math.floor(5+rnd()*15)) };
+const dels = T.dels, meses = T.months;
+const conductores = T.names.map((n, i) => ({ n, d: dels[i % 4], inf: Math.floor(rnd() * 12), grave: Math.floor(rnd() * 5), imp: Math.floor(rnd() * 900) * 10,
+  sv: meses.map(() => [Math.floor(rnd() * 4), Math.floor(rnd() * 3), Math.floor(rnd() * 2)]) }));
+const mes = meses.map(() => Math.floor(80 + rnd() * 60));
+const lineas = { [T.lines[0]]: meses.map(() => Math.floor(20 + rnd() * 30)), [T.lines[1]]: meses.map(() => Math.floor(30 + rnd() * 40)), [T.lines[2]]: meses.map(() => Math.floor(5 + rnd() * 15)) };
+const total = mes.reduce((a, b) => a + b, 0);
+const fmt = (x) => x.toLocaleString(T.locale);
+const esc = (t) => String(t).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+const dat = (k) => T.dat[k];
 
-const total = mes.reduce((a,b)=>a+b,0);
-const kp = [['Infringements', total, '+4.2% vs previous year', false], ['Drivers', conductores.length, 'active', true], ['Amount', (total*120).toLocaleString('en-GB')+' €', 'estimated', false], ['Repeat offences', conductores.filter(c=>c.grave>=3).length, 'with 3+ serious', false]];
-document.getElementById('kpis').innerHTML = kp.map(([a,b,c,ok]) => `<div class="kpi"><small>${a}</small><strong>${b}</strong><em class="${ok?'ok':''}">${c}</em></div>`).join('');
+// Inicio
+const kp = [[T.k.inf, total, T.k.infSub, false], [T.k.cond, conductores.length, T.k.active, true], [T.k.imp, fmt(total * 120) + ' €', T.k.est, false], [T.k.reinc, conductores.filter(c => c.grave >= 3).length, T.k.reincSub, false]];
+document.getElementById('kpis').innerHTML = kp.map(([a, b, c, ok]) => `<div class="kpi"><small>${a}</small><strong>${b}</strong><em class="${ok ? 'ok' : ''}">${c}</em></div>`).join('');
 
-const css = getComputedStyle(document.documentElement);
 Chart.defaults.color = '#b7b9bd'; Chart.defaults.borderColor = '#2b2e33'; Chart.defaults.font.family = 'JetBrains Mono';
-new Chart(document.getElementById('chartMes'), { type:'bar', data:{ labels:meses, datasets:[{ label:'Infringements', data:mes, backgroundColor:'#f2a93b' }] }, options:{ plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}} } });
-new Chart(document.getElementById('chartTipos'), { type:'line', data:{ labels:meses, datasets:Object.entries(tipos).map(([k,v],i)=>({ label:k, data:v, borderColor:['#f2a93b','#5aa9e6','#3dd68c'][i], backgroundColor:'transparent', tension:.3 })) }, options:{ scales:{y:{beginAtZero:true}} } });
+new Chart(document.getElementById('chartMes'), { type: 'bar', data: { labels: meses, datasets: [{ label: T.k.inf, data: mes, backgroundColor: '#f2a93b' }] }, options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } } });
+new Chart(document.getElementById('chartTipos'), { type: 'line', data: { labels: meses, datasets: Object.entries(lineas).map(([k, v], i) => ({ label: k, data: v, borderColor: ['#f2a93b', '#5aa9e6', '#3dd68c'][i], backgroundColor: 'transparent', tension: .3 })) }, options: { scales: { y: { beginAtZero: true } } } });
 
-const reinc = conductores.filter(c=>c.grave>=2).sort((a,b)=>b.grave-a.grave);
-document.getElementById('tReinc').innerHTML = '<tr><th>Driver</th><th>Delegation</th><th class="num">Serious</th><th class="num">Total</th></tr>' + reinc.map(c=>`<tr><td>${c.n}</td><td>${c.d}</td><td class="num bad">${c.grave}</td><td class="num">${c.inf}</td></tr>`).join('');
+// Gestión de datos
+document.getElementById('tFiles').innerHTML = '<tr><th>' + T.th.file + '</th><th class="num">' + T.th.rows + '</th><th>' + T.th.status + '</th></tr>' +
+  T.files.map(([f, r, s]) => `<tr><td>${esc(f)}</td><td class="num">${fmt(r)}</td><td class="${s === T.st.ok ? 'good' : 'bad'}">${s}</td></tr>`).join('');
 
-const renderCond = (q='') => {
-  const rows = conductores.filter(c=>c.n.toLowerCase().includes(q.toLowerCase()));
-  document.getElementById('tCond').innerHTML = '<tr><th>Driver</th><th>Delegation</th><th class="num">Infringements</th><th class="num">Amount</th></tr>' + rows.map(c=>`<tr><td>${c.n}</td><td>${c.d}</td><td class="num">${c.inf}</td><td class="num">${c.imp.toLocaleString('en-GB')} €</td></tr>`).join('');
+// Resumen
+const topDel = dels.map((d) => [d, conductores.filter(c => c.d === d).reduce((a, c) => a + c.inf, 0)]).sort((a, b) => b[1] - a[1])[0];
+document.getElementById('resumenTxt').textContent = RESUMEN(fmt(total), topDel[0], topDel[1]);
+document.getElementById('resumenKpis').innerHTML = [[T.k.inf, fmt(total)], [T.k.topDel, topDel[0]], [T.k.reinc, conductores.filter(c => c.grave >= 3).length]].map(([a, b]) => `<div class="kpi"><small>${a}</small><strong>${b}</strong></div>`).join('');
+
+// Tendencias
+const anual = [2024, 2025, 2026].map((y) => meses.map((m, i) => (y === 2026 && i > 8) ? null : Math.floor(2000 + rnd() * 2400)));
+new Chart(document.getElementById('chartAnual'), { type: 'line', data: { labels: meses, datasets: [2024, 2025, 2026].map((y, k) => ({ label: String(y), data: anual[k], borderColor: ['#8a8d93', '#5aa9e6', '#f2a93b'][k], backgroundColor: 'transparent', tension: .35 })) }, options: { scales: { y: { beginAtZero: true } } } });
+new Chart(document.getElementById('chartTipos2'), { type: 'bar', data: { labels: meses, datasets: [{ label: T.k.inf, data: mes, backgroundColor: '#b07a2a' }, { type: 'line', label: T.th.amount + ' (€)', data: mes.map(v => v * 120), borderColor: '#e85a5e', backgroundColor: 'transparent', yAxisID: 'y1', tension: .3 }] }, options: { scales: { y: { beginAtZero: true }, y1: { position: 'right', beginAtZero: true, grid: { display: false } } } } });
+
+// Riesgo (IRI 0–5, alerta por encima de 3)
+const iri = { [dels[0]]: 2.4, [dels[1]]: 3.2, [dels[2]]: 1.8, [dels[3]]: 2.9 };
+document.getElementById('tRiesgo').innerHTML = '<tr><th>' + T.th.del + '</th><th class="num">IRI</th><th>' + T.th.bar + '</th><th>' + T.th.alert + '</th></tr>' +
+  dels.map((d) => { const v = iri[d]; const alto = v > 3; return `<tr><td>${d}</td><td class="num ${alto ? 'bad' : ''}">${v.toFixed(1).replace('.', T.dec)}</td><td><div class="bar"><i style="width:${v / 5 * 100}%;background:${alto ? '#e85a5e' : '#f2a93b'}"></i></div></td><td class="${alto ? 'bad' : 'good'}">${alto ? T.st.alert : T.st.ok}</td></tr>`; }).join('');
+
+// Reincidencia
+const reinc = conductores.filter(c => c.grave >= 2).sort((a, b) => b.grave - a.grave);
+document.getElementById('tReinc').innerHTML = '<tr><th>' + T.th.driver + '</th><th>' + T.th.del + '</th><th class="num">' + T.th.serious + '</th><th class="num">' + T.th.total + '</th></tr>' + reinc.map(c => `<tr><td>${c.n}</td><td>${c.d}</td><td class="num bad">${c.grave}</td><td class="num">${c.inf}</td></tr>`).join('');
+
+// Detalle de infracciones (filtrable por tipo)
+const detalle = Array.from({ length: 14 }, (_, i) => ({ f: `${String(1 + i * 2).padStart(2, '0')}/09`, n: conductores[i % 16].n, t: T.types[i % T.types.length], g: T.sev[(i * 7) % 3], imp: [200, 400, 600, 1200][i % 4] }));
+const renderDet = () => {
+  const q = document.getElementById('fTipo').value;
+  const rows = detalle.filter(r => !q || r.t === q);
+  document.getElementById('tDet').innerHTML = '<tr><th>' + T.th.date + '</th><th>' + T.th.driver + '</th><th>' + T.th.type + '</th><th>' + T.th.sev + '</th><th class="num">' + T.th.amount + '</th></tr>' +
+    rows.map(r => `<tr><td>${r.f}</td><td>${r.n}</td><td>${r.t}</td><td>${r.g}</td><td class="num">${fmt(r.imp)} €</td></tr>`).join('');
+};
+document.getElementById('fTipo').innerHTML = '<option value="">' + T.all + '</option>' + T.types.map(t => `<option>${t}</option>`).join('');
+document.getElementById('fTipo').addEventListener('change', renderDet);
+renderDet();
+
+// Listado conductores
+const renderCond = (q = '') => {
+  const rows = conductores.filter(c => c.n.toLowerCase().includes(q.toLowerCase()));
+  document.getElementById('tCond').innerHTML = '<tr><th>' + T.th.driver + '</th><th>' + T.th.del + '</th><th class="num">' + T.th.inf + '</th><th class="num">' + T.th.amount + '</th></tr>' + rows.map(c => `<tr><td>${c.n}</td><td>${c.d}</td><td class="num">${c.inf}</td><td class="num">${fmt(c.imp)} €</td></tr>`).join('');
 };
 renderCond();
 document.getElementById('buscar').addEventListener('input', e => renderCond(e.target.value));
 
+// Análisis conductor (apilado por gravedad)
+const sel = document.getElementById('selCond');
+sel.innerHTML = conductores.map((c, i) => `<option value="${i}">${c.n}</option>`).join('');
+const sevChart = new Chart(document.getElementById('chartAnal'), { type: 'bar', data: { labels: meses, datasets: T.sev.map((s, k) => ({ label: s, data: [], backgroundColor: ['#f2a93b', '#e85a5e', '#8a2c2f'][k] })) }, options: { scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } } } });
+const showAnal = () => { const c = conductores[sel.value]; sevChart.data.datasets.forEach((ds, k) => { ds.data = c.sv.map(v => v[k]); }); sevChart.update(); };
+sel.addEventListener('change', showAnal); showAnal();
+
+// Control y avisos a delegaciones
+document.getElementById('tCtrl').innerHTML = '<tr><th>' + T.th.del + '</th><th class="num">' + T.th.sent + '</th><th class="num">' + T.th.pending + '</th><th>' + T.th.last + '</th></tr>' +
+  dels.map((d, i) => `<tr><td>${d}</td><td class="num">${12 + i * 3}</td><td class="num ${i === 1 ? 'bad' : ''}">${i === 1 ? 4 : i}</td><td>${T.dates[i]}</td></tr>`).join('');
+
+// Avisos hechos a conductores
+document.getElementById('tAvisos').innerHTML = '<tr><th>' + T.th.date + '</th><th>' + T.th.driver + '</th><th>' + T.th.type + '</th><th>' + T.th.status + '</th></tr>' +
+  Array.from({ length: 8 }, (_, i) => ({ f: `${String(3 + i * 3).padStart(2, '0')}/10`, n: conductores[(i * 5) % 16].n, t: T.types[i % T.types.length], s: T.st.list[i % 3] })).map(r => `<tr><td>${r.f}</td><td>${r.n}</td><td>${r.t}</td><td class="${r.s === T.st.list[2] ? 'bad' : (r.s === T.st.list[0] ? 'good' : '')}">${r.s}</td></tr>`).join('');
+
 document.querySelectorAll('aside button').forEach(b => b.addEventListener('click', () => {
-  document.querySelectorAll('aside button').forEach(x=>x.classList.toggle('on', x===b));
-  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on', v.id === 'v-' + b.dataset.v));
+  document.querySelectorAll('aside button').forEach(x => x.classList.toggle('on', x === b));
+  document.querySelectorAll('.view').forEach(v => v.classList.toggle('on', v.id === 'v-' + b.dataset.v));
 }));
+
 </script>
 </body>
 </html>
