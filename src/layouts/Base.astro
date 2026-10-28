@@ -83,7 +83,7 @@ const p = root + d.ui.prefix;
         const key = 'intro-ok-' + document.documentElement.lang;
         let seen = false;
         try { seen = sessionStorage.getItem(key) === '1'; sessionStorage.setItem(key, '1'); } catch (e) {}
-        if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) el.remove();
+        if (seen || location.pathname.includes('/proyectos/') || matchMedia('(prefers-reduced-motion: reduce)').matches) el.remove();
       }
       document.addEventListener('astro:page-load', intro);
 
