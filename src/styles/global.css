@@ -589,3 +589,7 @@ a.project-card { color: inherit; text-decoration: none; }
 
 /* Herramientas sin demo: solo lista de puntos, a ancho completo */
 .tl-grid-solo { grid-template-columns: 1fr; max-width: 46rem; }
+
+/* Resumen breve en herramientas sin demo de panel */
+.detail-summary { margin: 2.2rem 0 0; }
+.detail-summary p:last-child { margin: .6rem 0 0; color: #e4e4e2; font-size: 1.05rem; line-height: 1.6; }

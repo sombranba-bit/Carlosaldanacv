@@ -18,6 +18,7 @@ export const detail = {
       body: 'Cruza las descargas de tacógrafo de VDO y de Webfleet, por conductor y por vehículo, para comprobar si coinciden las últimas fechas. Así se detectan las descargas pendientes o las diferencias entre fuentes antes de que se conviertan en incumplimiento.',
       note: 'Las descargas remotas de Webfleet se transfieren a VDO, por eso el cruce usa las dos fuentes y el plazo se recalcula cada día.',
       disclaimer: 'Herramienta interna. Las fechas dependen de los informes que se carguen en cada momento.',
+      summaryLabel: 'Qué hace', summary: 'Pone frente a frente las descargas de VDO y Webfleet y marca los conductores y vehículos cuyas últimas fechas no coinciden.',
       features: [
         { cat: 'VDO y Webfleet', title: 'Las descargas de las dos fuentes en una sola tabla.' },
         { cat: 'Conductores', title: 'Última descarga y plazo legal de 28 días.' },
@@ -32,6 +33,7 @@ export const detail = {
       body: 'Lee los archivos TGD y DDD de la tarjeta y de la unidad del tacógrafo directamente en el navegador. Muestra la hoja de cada día, las horas de conducción y de descanso, y comprueba el cumplimiento del Reglamento (CE) 561/2006.',
       note: 'Todo el análisis se hace en el propio navegador: los archivos no se envían a ningún servidor.',
       disclaimer: 'Herramienta interna en desarrollo. Los resultados de cumplimiento son orientativos y deben contrastarse con la normativa vigente.',
+      summaryLabel: 'Qué hace', summary: 'Abre el archivo del tacógrafo y lo convierte en hoja diaria, límites y hallazgos, sin instalar nada.',
       features: [
         { cat: 'Hoja diaria', title: 'Conducción, trabajo, disponibilidad y descanso en una línea temporal en UTC.' },
         { cat: 'Cambios', title: 'Cada cambio de actividad, con su hora y el estado de la tarjeta.' },
@@ -62,6 +64,7 @@ export const detail = {
       body: 'Cross-checks tachograph downloads from VDO and Webfleet, by driver and by vehicle, to confirm whether the latest dates match. Pending downloads and differences between sources show up before they turn into non-compliance.',
       note: 'Remote Webfleet downloads are transferred to VDO, so the cross-check uses both sources and the deadline is recalculated every day.',
       disclaimer: 'Internal tool. Dates depend on the reports loaded at each moment.',
+      summaryLabel: 'What it does', summary: 'Sets the downloads from VDO and Webfleet side by side and flags the drivers and vehicles whose latest dates do not match.',
       features: [
         { cat: 'VDO and Webfleet', title: 'Downloads from both sources in a single table.' },
         { cat: 'Drivers', title: 'Last download and the 28-day legal deadline.' },
@@ -76,6 +79,7 @@ export const detail = {
       body: 'Reads TGD and DDD files from the driver card and the vehicle unit directly in the browser. It shows the daily sheet, driving and rest hours, and checks compliance with Regulation (EC) 561/2006.',
       note: 'All the analysis runs in the browser itself: the files are never sent to a server.',
       disclaimer: 'Internal tool in development. Compliance results are indicative and should be checked against the regulations in force.',
+      summaryLabel: 'What it does', summary: 'Opens the tachograph file and turns it into a daily sheet, limits and findings, with nothing to install.',
       features: [
         { cat: 'Daily sheet', title: 'Driving, work, availability and rest on a timeline in UTC.' },
         { cat: 'Changes', title: 'Every activity change, with its time and the card status.' },
