@@ -1,0 +1,26 @@
+export const detail = {
+  es: [
+    { slug: 'panel-infracciones', year: '2026', eyebrow: 'Control de flota · Panel web', tagline: 'Del dato de infracción a la decisión.',
+      body: 'Panel que reúne las infracciones de conducción y descanso y el cumplimiento de las descargas de tacógrafo. Incluye indicadores, comparativas entre periodos y un resumen por conductor, para revisar la situación de la flota sin abrir cada listado.' },
+    { slug: 'cruce-descargas', year: '2026', eyebrow: 'Cumplimiento · Descargas', tagline: 'Que las fechas cuadren en las dos fuentes.',
+      body: 'Cruza las descargas de tacógrafo de VDO y de Webfleet, por conductor y por vehículo, para comprobar si coinciden las últimas fechas. Así se detectan las descargas pendientes o las diferencias entre fuentes antes de que se conviertan en incumplimiento.' },
+    { slug: 'seguimiento-descargas', year: '2026', eyebrow: 'Seguimiento · Conductores', tagline: 'Cada conductor, con su última descarga a la vista.',
+      body: 'Controla la fecha de la última descarga de cada conductor y prepara avisos individuales para quien esté fuera de plazo. Todo en una sola vista, sin buscar fila a fila en las hojas de cálculo.' },
+    { slug: 'avisos-individualizados', year: '2026', eyebrow: 'Comunicación · Conductores', tagline: 'Un aviso para cada conductor, con su caso.',
+      body: 'A partir de un informe periódico de infracciones, prepara un aviso individual para cada conductor. Ahorra el trabajo manual de redactar y separar los casos, y mantiene el mismo formato para todos.' },
+    { slug: 'cambios-flota', year: '2026', eyebrow: 'Flota · Control semanal', tagline: 'Lo que cambia en la flota, cada semana.',
+      body: 'Compara las exportaciones del backoffice de una semana con la anterior y muestra las altas y bajas de conductores y los cambios de zona de vehículos. Cualquier cambio se ve sin revisar los dos archivos a mano.' },
+  ],
+  en: [
+    { slug: 'panel-infracciones', year: '2026', eyebrow: 'Fleet control · Web dashboard', tagline: 'From infringement data to decisions.',
+      body: 'A dashboard that brings together driving and rest-time infringements and tachograph download compliance. It includes indicators, period comparisons and a per-driver summary, so the fleet status can be reviewed without opening every listing.' },
+    { slug: 'cruce-descargas', year: '2026', eyebrow: 'Compliance · Downloads', tagline: 'Making sure the dates match across both sources.',
+      body: 'Cross-checks tachograph downloads from VDO and Webfleet, by driver and by vehicle, to confirm whether the latest dates match. Pending downloads and differences between sources show up before they turn into non-compliance.' },
+    { slug: 'seguimiento-descargas', year: '2026', eyebrow: 'Tracking · Drivers', tagline: 'Every driver’s last download, in view.',
+      body: 'Tracks the date of each driver’s last download and prepares individual notices for anyone out of time. Everything in one view, without searching spreadsheet rows one by one.' },
+    { slug: 'avisos-individualizados', year: '2026', eyebrow: 'Communication · Drivers', tagline: 'One notice per driver, with their own case.',
+      body: 'From a periodic infringement report, it prepares an individual notice for each driver. It saves the manual work of writing and separating cases, and keeps the same format for everyone.' },
+    { slug: 'cambios-flota', year: '2026', eyebrow: 'Fleet · Weekly control', tagline: 'What changes in the fleet, every week.',
+      body: 'Compares this week’s backoffice exports with the previous week and shows driver additions and removals and vehicle zone changes. Any change shows up without checking both files by hand.' },
+  ],
+};

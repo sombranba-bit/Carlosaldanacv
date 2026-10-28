@@ -279,3 +279,17 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 .project-card .tech li:nth-child(1) { color: #8fb4ff; background: #1d2a44; border-color: #2a3c63; }
 .project-card .tech li:nth-child(2) { color: #ffb36b; background: #3a2415; border-color: #5a3a22; }
 .project-card .tech li:nth-child(n+3) { color: #5fe3b0; background: #12302a; border-color: #1f4d42; }
+
+/* Página de detalle de herramienta y enlaces de tarjetas */
+a.project-card { color: inherit; text-decoration: none; }
+.card-year { display: block; font: .72rem var(--font-mono); letter-spacing: .14em; color: var(--muted); margin-bottom: .6rem; }
+.detail { max-width: 880px; margin: 0 auto; padding: 170px 1.5rem 6rem; }
+.detail-back { font-size: .95rem; color: var(--muted); }
+.detail-eyebrow { font: .72rem var(--font-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin: 2.5rem 0 1.5rem; }
+.detail-head { display: flex; align-items: center; gap: 1.75rem; }
+.detail-icon { width: 96px; height: 96px; flex: none; }
+.detail-head h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 600; letter-spacing: -.03em; line-height: 1; }
+.detail-tagline { font-family: var(--font-serif); font-style: italic; color: var(--muted); font-size: 1.35rem; margin-top: .6rem; }
+.detail-body { color: #bdbdbd; font-size: 1.1rem; line-height: 1.75; max-width: 680px; margin: 2.5rem 0 2rem; }
+.detail-tags { margin-top: 0; padding-top: 0; }
+.detail-year { font: .62rem var(--font-mono); letter-spacing: .06em; color: #ffb36b; background: #3a2415; border: 1px solid #5a3a22; border-radius: 6px; padding: .3rem .6rem; }

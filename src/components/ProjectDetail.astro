@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import * as es from '../data/cv';
+import * as en from '../data/cv.en';
+import { detail } from '../data/projects-detail';
+import { appIcons } from '../data/icons';
+
+interface Props { lang: 'es' | 'en'; i: number; }
+const { lang, i } = Astro.props;
+const d = lang === 'en' ? en : es;
+const p = d.projects[i];
+const info = detail[lang][i];
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const base = root + d.ui.prefix;
+const back = lang === 'en' ? '← All projects' : '← Todos los proyectos';
+---
+<Base title={`${p.name} · ${d.profile.name}`} active="proyectos" lang={lang}>
+  <section class="section detail">
+    <a class="detail-back" href={`${base}/proyectos`}>{back}</a>
+    <p class="detail-eyebrow">{info.eyebrow}</p>
+    <div class="detail-head">
+      <span class="app-icon detail-icon" data-tone={i} set:html={appIcons[i]} />
+      <div>
+        <h1>{p.name}</h1>
+        <p class="detail-tagline">{info.tagline}</p>
+      </div>
+    </div>
+    <p class="detail-body">{info.body}</p>
+    <ul class="tech detail-tags"><li class="detail-year">{info.year}</li>{p.tags.map((t) => <li>{t}</li>)}</ul>
+  </section>
+</Base>

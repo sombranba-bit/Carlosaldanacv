@@ -1,0 +1,10 @@
+---
+import ProjectDetail from '../../components/ProjectDetail.astro';
+import { detail } from '../../data/projects-detail';
+
+export function getStaticPaths() {
+  return detail.es.map((d, i) => ({ params: { slug: d.slug }, props: { i } }));
+}
+const { i } = Astro.props;
+---
+<ProjectDetail lang="es" i={i} />
