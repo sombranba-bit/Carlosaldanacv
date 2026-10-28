@@ -25,16 +25,6 @@ export const projects = [
     desc: 'Control de la última descarga de cada conductor, con avisos individualizados.',
     tags: ['HTML', 'Excel'],
   },
-  {
-    name: 'Avisos individualizados',
-    desc: 'Herramienta que genera un aviso por conductor a partir de un informe periódico de infracciones.',
-    tags: ['HTML', 'JavaScript'],
-  },
-  {
-    name: 'Cambios semanales de flota',
-    desc: 'Detección de altas, bajas y cambios de zona de vehículos comparando exportaciones del backoffice.',
-    tags: ['HTML', 'Excel'],
-  },
 ];
 
 export const experience = [

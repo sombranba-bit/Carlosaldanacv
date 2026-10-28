@@ -25,16 +25,6 @@ export const projects = [
     desc: 'Monitoring of each driver’s last download, with individual notices.',
     tags: ['HTML', 'Excel'],
   },
-  {
-    name: 'Individual driver notices',
-    desc: 'Tool that generates one notice per driver from a periodic infringement report.',
-    tags: ['HTML', 'JavaScript'],
-  },
-  {
-    name: 'Weekly fleet changes',
-    desc: 'Detection of weekly additions, removals and vehicle zone changes by comparing backoffice exports.',
-    tags: ['HTML', 'Excel'],
-  },
 ];
 
 export const experience = [
