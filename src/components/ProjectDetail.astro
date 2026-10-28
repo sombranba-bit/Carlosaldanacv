@@ -37,6 +37,7 @@ const back = lang === 'en' ? '← All projects' : '← Todos los proyectos';
         <li><span class="feat-no">{String(n + 1).padStart(2, '0')}</span><span class="feat-cat">{f.cat}</span><span class="feat-title">{f.title}</span></li>
       ))}
     </ol>
+    <p class="detail-disclaimer">{info.disclaimer}</p>
     {info.shots.length > 0 && (
       <div class="detail-shots">
         {info.shots.map((src) => <img src={root + src} alt="" loading="lazy" />)}
