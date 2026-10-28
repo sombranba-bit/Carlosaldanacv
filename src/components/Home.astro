@@ -81,7 +81,7 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
     <div class="grid-cards">
       {projects.slice(0, 3).map((p, i) => (
         <a class="project-card reveal" href={`${root}${ui.prefix}/proyectos/${detail[lang][i].slug}`} style={`--d:${i * 0.1}s`}>
-          <div class="thumb"><span class="app-icon" data-tone={i} set:html={appIcons[i]} /></div>
+          <div class="thumb"><span class="app-icon is-pro" data-tone={i} set:html={appIcons[i]} /></div>
           <div class="card-body">
             <span class="card-year">{detail[lang][i].year}</span>
             <h3>{p.name}</h3>

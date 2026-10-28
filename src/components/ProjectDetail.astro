@@ -35,7 +35,7 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
       <div class="detail-text">
         <p class="detail-eyebrow">{info.eyebrow}</p>
         <div class="detail-head">
-          <span class="app-icon detail-icon" data-tone={i} set:html={appIcons[i]} />
+          <span class="app-icon is-pro detail-icon" data-tone={i} set:html={appIcons[i]} />
           <div>
             <h1>{p.name}</h1>
             <p class="detail-tagline">{info.tagline}</p>
@@ -58,7 +58,7 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
           </div>
         ) : (
           <div class="device device-icon">
-            <span class="app-icon" data-tone={i} set:html={appIcons[i]} />
+            <span class="app-icon is-pro" data-tone={i} set:html={appIcons[i]} />
           </div>
         )}
       </aside>
