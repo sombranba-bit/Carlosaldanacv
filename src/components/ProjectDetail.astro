@@ -33,7 +33,7 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
   <section class="section detail" style={`--tone:${tone}`}>
     <div class="detail-art" aria-hidden="true"></div>
     <a class="detail-back" href={`${base}/proyectos`}>{back}</a>
-    <div class="detail-split">
+    <div class={info.stage === false ? "detail-split solo" : "detail-split"}>
       <div class="detail-text">
         <p class="detail-eyebrow">{info.eyebrow}</p>
         <div class="detail-head">
@@ -53,24 +53,26 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
         {info.app && <p class="detail-live"><a class="btn btn-primary magnetic app-open" style={`background:${tone};color:#0b0b0b`} href={root + info.app} target="_blank" rel="noopener">{info.appLabel}</a></p>}
         <p class="detail-disclaimer">{info.disclaimer}</p>
       </div>
-      <aside class="detail-stage">
-        {info.demo ? (
-          <div class="device">
-            <div class="device-bar"><span></span><span></span><span></span></div>
-            <iframe class="device-screen" src={root + info.demo} title={p.name} loading="lazy"></iframe>
-          </div>
-        ) : (
-          <div class="device device-icon">
-            <span class="app-icon is-pro" data-tone={i} set:html={appIcons[i]} />
-          </div>
-        )}
-        {!dashboard && info.summary && (
-          <section class="detail-summary">
-            <p class="detail-eyebrow">{info.summaryLabel}</p>
-            <p>{info.summary}</p>
-          </section>
-        )}
-      </aside>
+      {info.stage !== false && (
+        <aside class="detail-stage">
+          {info.demo ? (
+            <div class="device">
+              <div class="device-bar"><span></span><span></span><span></span></div>
+              <iframe class="device-screen" src={root + info.demo} title={p.name} loading="lazy"></iframe>
+            </div>
+          ) : (
+            <div class="device device-icon">
+              <span class="app-icon is-pro" data-tone={i} set:html={appIcons[i]} />
+            </div>
+          )}
+          {!dashboard && info.summary && (
+            <section class="detail-summary">
+              <p class="detail-eyebrow">{info.summaryLabel}</p>
+              <p>{info.summary}</p>
+            </section>
+          )}
+        </aside>
+      )}
     </div>
 
     {dashboard && <div class="tl-lanes" aria-hidden="true">
