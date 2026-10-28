@@ -139,6 +139,10 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
     const truck = document.querySelector('.tl-truck');
     const copy = document.querySelector('.tl-copy');
     const lanesEl = document.querySelector('.lanes');
+    const phoneEl = document.querySelector('.tl-sticky .phone');
+    const fitPhone = () => { if (phoneEl) phoneEl.style.zoom = Math.min(1, document.querySelector('.tl-stage').clientWidth / 560); };
+    fitPhone();
+    addEventListener('resize', fitPhone);
     if (!chapters.length || !sticky || !copy) return;
     const update = () => {
       const mid = innerHeight * 0.5;

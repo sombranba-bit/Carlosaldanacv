@@ -12,6 +12,7 @@
   --header-h: 72px;
   --ease: cubic-bezier(.22, 1, .36, 1);
   --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  --ease-out-soft: cubic-bezier(.22, 1, .36, 1);
   --gradient-heading: linear-gradient(to right, #fff, #9a9a98);
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -526,10 +527,11 @@ a.project-card { color: inherit; text-decoration: none; }
 .zone.is-active .mock-search { animation: mk-fade .6s both; }
 
 /* Marco de portátil para las pantallas de la línea de tiempo (sustituye al móvil) */
-.phone { width: min(560px, 100%); aspect-ratio: 16 / 10; padding: 2.2% 2.2% 2%; border-radius: 14px 14px 6px 6px; }
+.phone { width: 560px; aspect-ratio: 16 / 10; padding: 2.2% 2.2% 2%; border-radius: 14px 14px 6px 6px; }
 .phone::after { content: ''; position: absolute; left: -8%; right: -8%; bottom: -16px; height: 14px; border-radius: 0 0 16px 16px; background: linear-gradient(#2e2e33, #17171a); box-shadow: 0 12px 24px -10px #000; }
 .phone-island { display: none; }
-.phone-screen { border-radius: 6px; padding: 9% 3.5% 4%; }
+.phone-screen { border-radius: 6px; padding: 4% 3.5% 4%; }
+.phone .zone { top: 19%; bottom: 6%; }
 
 /* Tendencias: mini datos y leyenda */
 .mock-stats { display: flex; gap: 8px; margin-bottom: 10px; }
@@ -542,8 +544,6 @@ a.project-card { color: inherit; text-decoration: none; }
 .mock-legend2 i { width: 14px; height: 2px; background: var(--tone); }
 .mock-legend2 i.dash { background: none; border-top: 2px dotted #ffffff80; height: 0; }
 
-/* Ninguna pantalla se sale de su zona */
-.zone { overflow: hidden; }
 
 /* Indicador de riesgo: tamaño contenido y arco que se rellena al entrar */
 .mock-gauge { display: flex; flex-direction: column; align-items: center; margin: 2px 0 0; }
@@ -554,3 +554,8 @@ a.project-card { color: inherit; text-decoration: none; }
 .zone.is-active .gauge-num { animation: mk-fade .8s 1.4s both; }
 
 .mock-table .th { padding: 5px 2px; }
+
+/* Ajustes de alto en pantallas de portátil */
+.mock-gauge svg { width: 40%; }
+.mock-legend p { margin: 0 0 7px; }
+.mock-deleg p { margin: 0 0 12px; }
