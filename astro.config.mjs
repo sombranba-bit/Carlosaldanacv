@@ -1,5 +1,5 @@
 export default {
-  site: 'https://sombranba-bit.github.io',
-  base: '/Carlosaldanacv/',
+  site: 'https://carlosaldanacv.com',
+  base: '/',
   output: 'static',
 };
