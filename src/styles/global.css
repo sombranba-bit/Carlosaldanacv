@@ -522,3 +522,9 @@ a.project-card { color: inherit; text-decoration: none; }
 .mock-notes em { font: 8.5px var(--font-mono); font-style: normal; background: none !important; }
 .zone.is-active .mock-legend p, .zone.is-active .mock-compare > div, .zone.is-active .mock-notes p { animation: mk-rise .6s var(--ease) both; animation-delay: var(--d); }
 .zone.is-active .mock-search { animation: mk-fade .6s both; }
+
+/* Marco de portátil para las pantallas de la línea de tiempo (sustituye al móvil) */
+.phone { width: min(560px, 100%); aspect-ratio: 16 / 10; padding: 2.2% 2.2% 2%; border-radius: 14px 14px 6px 6px; }
+.phone::after { content: ''; position: absolute; left: -8%; right: -8%; bottom: -16px; height: 14px; border-radius: 0 0 16px 16px; background: linear-gradient(#2e2e33, #17171a); box-shadow: 0 12px 24px -10px #000; }
+.phone-island { display: none; }
+.phone-screen { border-radius: 6px; padding: 9% 3.5% 4%; }
