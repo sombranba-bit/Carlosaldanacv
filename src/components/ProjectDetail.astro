@@ -118,8 +118,14 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
       </div>}
     </div>}
     {info.shots.length > 0 && (
-      <div class="detail-shots">
-        {info.shots.map((src) => <img src={root + src} alt="" loading="lazy" />)}
+      <div class="shots">
+        <div class="shots-track">
+          {info.shots.map((src) => <img src={root + src} alt="" loading="lazy" />)}
+        </div>
+        <div class="shots-nav">
+          <button type="button" class="shots-prev" aria-label="Anterior">‹</button>
+          <button type="button" class="shots-next" aria-label="Siguiente">›</button>
+        </div>
       </div>
     )}
 
@@ -196,5 +202,13 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
     }, { threshold: 0.2 });
     io.observe(dev);
   }
-  document.addEventListener('astro:page-load', () => { timeline(); fx(); });
+  function shots() {
+    document.querySelectorAll('.shots').forEach((box) => {
+      const track = box.querySelector('.shots-track');
+      const step = () => track.clientWidth * 0.8;
+      box.querySelector('.shots-prev').onclick = () => track.scrollBy({ left: -step(), behavior: 'smooth' });
+      box.querySelector('.shots-next').onclick = () => track.scrollBy({ left: step(), behavior: 'smooth' });
+    });
+  }
+  document.addEventListener('astro:page-load', () => { timeline(); fx(); shots(); });
 </script>
