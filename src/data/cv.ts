@@ -21,7 +21,7 @@ export const projects = [
     tags: ['HTML', 'JavaScript'],
   },
   {
-    name: 'TachoTruck',
+    name: 'TachoRead',
     desc: 'Lector de archivos de tacógrafo TGD y DDD en el navegador: hoja diaria, cumplimiento del Reglamento 561/2006 y exportación a CSV.',
     tags: ['HTML', 'JavaScript'],
   },
