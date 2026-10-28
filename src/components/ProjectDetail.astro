@@ -55,17 +55,35 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
       </aside>
     </div>
 
-    <ol class="detail-timeline">
-      <span class="tl-truck" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="2" y="7" width="12" height="9" rx="1"/><path d="M14 10h4l3 3v3h-7"/><circle cx="6" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg></span>
-      {info.features.map((f, n) => (
-        <li>
-          <span class="stop" aria-hidden="true"></span>
-          <span class="feat-no">{String(n + 1).padStart(2, '0')}</span>
-          <span class="feat-cat">{f.cat}</span>
-          <p class="feat-title">{f.title}</p>
-        </li>
-      ))}
-    </ol>
+    <div class="tl-grid">
+      <div class="tl-copy">
+        <div class="tl-rail" aria-hidden="true"><div class="tl-rail-fill"></div><span class="tl-truck"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="2" y="7" width="12" height="9" rx="1"/><path d="M14 10h4l3 3v3h-7"/><circle cx="6" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg></span></div>
+        <ol class="tl-chapters">
+          {info.features.map((f, n) => (
+            <li class="tl-chapter" data-zone={n % 4} data-cat={f.cat}>
+              <span class="tl-stop" aria-hidden="true"></span>
+              <span class="tl-num">{String(n + 1).padStart(2, '0')}</span>
+              <h3>{f.cat}</h3>
+              <p>{f.title}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="tl-stage">
+        <div class="tl-sticky" data-zone="0">
+          <div class="phone">
+            <div class="phone-island"></div>
+            <div class="phone-screen">
+              <div class="mock-bar"><span></span><span></span><span></span></div>
+              <div class="zone z0"><span class="zone-label"></span><div class="mock-kpis"><i></i><i></i><i></i></div></div>
+              <div class="zone z1"><span class="zone-label"></span><div class="mock-bars"><b style="--h:55%"></b><b style="--h:80%"></b><b style="--h:40%"></b><b style="--h:70%"></b><b style="--h:92%"></b><b style="--h:60%"></b></div></div>
+              <div class="zone z2"><span class="zone-label"></span><div class="mock-rows"><p><i></i>Ejemplo 01</p><p><i class="r"></i>Ejemplo 02</p><p><i class="a"></i>Ejemplo 03</p><p><i></i>Ejemplo 04</p></div></div>
+              <div class="zone z3"><span class="zone-label"></span><div class="mock-chips"><i></i><i></i><i></i></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     {info.shots.length > 0 && (
       <div class="detail-shots">
         {info.shots.map((src) => <img src={root + src} alt="" loading="lazy" />)}
@@ -90,29 +108,43 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
 
 <script>
   function timeline() {
-    const items = [...document.querySelectorAll('.detail-timeline li')];
-    if (!items.length) return;
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) if (e.isIntersecting) e.target.classList.add('is-reached');
-    }, { rootMargin: '0px 0px -40% 0px' });
-    items.forEach((el) => io.observe(el));
+    const chapters = [...document.querySelectorAll('.tl-chapter')];
+    const sticky = document.querySelector('.tl-sticky');
+    const fill = document.querySelector('.tl-rail-fill');
+    const truck = document.querySelector('.tl-truck');
+    const copy = document.querySelector('.tl-copy');
+    if (!chapters.length || !sticky || !copy) return;
+    const update = () => {
+      const mid = innerHeight * 0.5;
+      let active = 0;
+      chapters.forEach((c, n) => {
+        const r = c.getBoundingClientRect();
+        if (r.top < mid) active = n;
+        c.classList.toggle('is-reached', r.top < mid);
+      });
+      const c = chapters[active];
+      chapters.forEach((x, n) => x.classList.toggle('is-active', n === active));
+      sticky.dataset.zone = c.dataset.zone;
+      sticky.querySelectorAll('.zone').forEach((z) => {
+        const on = z.classList.contains('z' + c.dataset.zone);
+        z.classList.toggle('is-active', on);
+        z.querySelector('.zone-label').textContent = on ? c.dataset.cat : '';
+      });
+      const r = copy.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, (mid - r.top) / r.height));
+      if (fill) fill.style.transform = `scaleY(${p})`;
+      if (truck) truck.style.top = `${p * 100}%`;
+    };
+    addEventListener('scroll', update, { passive: true });
+    update();
   }
   function fx() {
     const dev = document.querySelector('.device');
-    const tl = document.querySelector('.detail-timeline');
+    if (!dev) return;
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     }, { threshold: 0.2 });
-    if (dev) io.observe(dev);
-    if (tl) {
-      const onScroll = () => {
-        const r = tl.getBoundingClientRect();
-        const p = Math.min(1, Math.max(0, (innerHeight * 0.6 - r.top) / r.height));
-        tl.style.setProperty('--p', String(p));
-      };
-      addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    }
+    io.observe(dev);
   }
   document.addEventListener('astro:page-load', () => { timeline(); fx(); });
 </script>
