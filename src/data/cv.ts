@@ -21,9 +21,9 @@ export const projects = [
     tags: ['HTML', 'JavaScript'],
   },
   {
-    name: 'Seguimiento de descargas',
-    desc: 'Control de la última descarga de cada conductor, con avisos individualizados.',
-    tags: ['HTML', 'Excel'],
+    name: 'Lector de archivos TGD',
+    desc: 'Lector de archivos de tacógrafo TGD y DDD en el navegador: hoja diaria, cumplimiento del Reglamento 561/2006 y exportación a CSV.',
+    tags: ['HTML', 'JavaScript'],
   },
 ];
 

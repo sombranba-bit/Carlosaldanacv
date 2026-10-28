@@ -21,9 +21,9 @@ export const projects = [
     tags: ['HTML', 'JavaScript'],
   },
   {
-    name: 'Download tracking',
-    desc: 'Monitoring of each driver’s last download, with individual notices.',
-    tags: ['HTML', 'Excel'],
+    name: 'TGD tachograph file reader',
+    desc: 'Browser-based reader for TGD and DDD tachograph files: daily sheet, Regulation 561/2006 compliance and CSV export.',
+    tags: ['HTML', 'JavaScript'],
   },
 ];
 
