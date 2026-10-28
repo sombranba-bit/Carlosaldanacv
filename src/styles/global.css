@@ -348,3 +348,25 @@ a.project-card { color: inherit; text-decoration: none; }
   .device { transform: none; }
   .device-screen { height: 460px; }
 }
+
+/* Ajuste final de la página de detalle: ancho amplio, columnas equilibradas, marco plano */
+.detail { max-width: 1200px; padding: 170px 2rem 6rem; }
+.detail-back { display: inline-block; margin-bottom: .5rem; }
+.detail-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(2.5rem, 5vw, 5rem); align-items: start; }
+.detail-text { max-width: 560px; }
+.detail-eyebrow { margin-top: 1rem; }
+.detail-head { align-items: center; }
+.detail-head h1 { font-size: clamp(2.2rem, 4.2vw, 3.4rem); }
+.detail-body { font-size: 1.1rem; margin-top: 2rem; }
+.detail-stage { position: sticky; top: 120px; }
+.device { transform: none; border-radius: 16px; box-shadow: 0 30px 60px -28px #000d, 0 0 0 1px #ffffff0f; }
+.device-screen { height: 620px; }
+.detail-timeline { margin-top: 6rem; }
+.detail-timeline li { max-width: 760px; }
+.detail-contact { margin-top: 7rem; }
+@media (max-width: 860px) {
+  .detail { padding: 150px 1.25rem 4rem; }
+  .detail-split { grid-template-columns: 1fr; }
+  .detail-stage { position: static; }
+  .device-screen { height: 480px; }
+}
