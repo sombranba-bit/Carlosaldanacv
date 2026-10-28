@@ -542,3 +542,11 @@ a.project-card { color: inherit; text-decoration: none; }
 
 /* Ninguna pantalla se sale de su zona */
 .zone { overflow: hidden; }
+
+/* Indicador de riesgo: tamaño contenido y arco que se rellena al entrar */
+.mock-gauge { display: flex; flex-direction: column; align-items: center; margin: 2px 0 0; }
+.mock-gauge svg { width: 68%; height: auto; display: block; overflow: visible; }
+.gauge-num { position: static; margin-top: -22px; }
+.zone.is-active .gauge-val { animation: mk-gauge 1.8s var(--ease-out-soft) .2s forwards; }
+@keyframes mk-gauge { to { stroke-dashoffset: 0; } }
+.zone.is-active .gauge-num { animation: mk-fade .8s 1.4s both; }
