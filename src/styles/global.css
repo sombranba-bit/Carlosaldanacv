@@ -295,7 +295,7 @@ a.project-card { color: inherit; text-decoration: none; }
 .detail-year { font: .62rem var(--font-mono); letter-spacing: .06em; color: #ffb36b; background: #3a2415; border: 1px solid #5a3a22; border-radius: 6px; padding: .3rem .6rem; }
 .detail { position: relative; }
 .detail > * { position: relative; }
-.detail-art { position: absolute; right: -22vw; top: 2vh; width: min(980px, 120vw); aspect-ratio: 1; border-radius: 50%; pointer-events: none; background: radial-gradient(closest-side, #0000 74%, color-mix(in srgb, var(--tone) 35%, #0000) 75%, #0000 78%, #0000 88%, color-mix(in srgb, var(--tone) 22%, #0000) 89%, #0000 90%), radial-gradient(closest-side, color-mix(in srgb, var(--tone) 14%, #0000), #0000 70%); }
+.detail-art { position: fixed; top: 50%; right: -28vw; transform: translateY(-50%); width: min(140vh, 130vw); aspect-ratio: 1; border-radius: 50%; pointer-events: none; z-index: 0; background: radial-gradient(closest-side, #0000 74%, color-mix(in srgb, var(--tone) 35%, #0000) 75%, #0000 78%, #0000 88%, color-mix(in srgb, var(--tone) 22%, #0000) 89%, #0000 90%), radial-gradient(closest-side, color-mix(in srgb, var(--tone) 14%, #0000), #0000 70%); }
 .detail-body { font-size: 1.2rem; line-height: 1.75; color: #cfcfcd; }
 .detail-note { margin-top: 2.5rem; max-width: 640px; padding-left: 1.25rem; border-left: 1px solid var(--tone); color: var(--muted); font-size: .98rem; line-height: 1.65; }
 .detail-features { list-style: none; margin-top: 3.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; padding: 0; }
