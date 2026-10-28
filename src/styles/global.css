@@ -528,3 +528,14 @@ a.project-card { color: inherit; text-decoration: none; }
 .phone::after { content: ''; position: absolute; left: -8%; right: -8%; bottom: -16px; height: 14px; border-radius: 0 0 16px 16px; background: linear-gradient(#2e2e33, #17171a); box-shadow: 0 12px 24px -10px #000; }
 .phone-island { display: none; }
 .phone-screen { border-radius: 6px; padding: 9% 3.5% 4%; }
+
+/* Tendencias: mini datos y leyenda */
+.mock-stats { display: flex; gap: 8px; margin-bottom: 10px; }
+.mock-stats div { flex: 1; background: #ffffff0d; border-radius: 8px; padding: 8px 9px; }
+.mock-stats b { display: block; font: 600 14px var(--font-mono); color: #f4f4f2; }
+.mock-stats b.ok { color: #3dd68c; }
+.mock-stats small { font-size: 8px; color: #8d8d8b; }
+.mock-legend2 { display: flex; gap: 14px; margin-top: 8px; font: 8.5px var(--font-mono); color: #a3a3a0; }
+.mock-legend2 span { display: flex; align-items: center; gap: 6px; }
+.mock-legend2 i { width: 14px; height: 2px; background: var(--tone); }
+.mock-legend2 i.dash { background: none; border-top: 2px dotted #ffffff80; height: 0; }
