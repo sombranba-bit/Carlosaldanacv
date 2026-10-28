@@ -10,44 +10,91 @@ const { lang, i } = Astro.props;
 const d = lang === 'en' ? en : es;
 const p = d.projects[i];
 const info = detail[lang][i];
+const tones = ['#ffb000', '#5fe3b0', '#8fb4ff'];
+const tone = tones[i];
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const base = root + d.ui.prefix;
-const tones = ['#ffb000', '#5fe3b0', '#8fb4ff', '#ff8a3d', '#5fe3b0'];
-const tone = tones[i];
-const ctaText = lang === 'en' ? 'Got a fleet problem to solve?' : '¿Tienes un problema de flota que resolver?';
-const ctaLink = lang === 'en' ? 'Let’s talk' : 'Hablemos';
 const back = lang === 'en' ? '← All projects' : '← Todos los proyectos';
+const contactLabel = lang === 'en' ? 'Contact' : 'Contacto';
+const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva';
 ---
 <Base title={`${p.name} · ${d.profile.name}`} active="proyectos" lang={lang}>
   <section class="section detail" style={`--tone:${tone}`}>
     <div class="detail-art" aria-hidden="true"></div>
     <a class="detail-back" href={`${base}/proyectos`}>{back}</a>
-    <p class="detail-eyebrow">{info.eyebrow}</p>
-    <div class="detail-head">
-      <span class="app-icon detail-icon" data-tone={i} set:html={appIcons[i]} />
-      <div>
-        <h1>{p.name}</h1>
-        <p class="detail-tagline">{info.tagline}</p>
+    <div class="detail-split">
+      <div class="detail-text">
+        <p class="detail-eyebrow">{info.eyebrow}</p>
+        <div class="detail-head">
+          <span class="app-icon detail-icon" data-tone={i} set:html={appIcons[i]} />
+          <div>
+            <h1>{p.name}</h1>
+            <p class="detail-tagline">{info.tagline}</p>
+          </div>
+        </div>
+        <p class="detail-body">{info.body}</p>
+        <p class="detail-note">{info.note}</p>
+        <ul class="detail-chips">
+          <li class="chip chip-year">{info.year}</li>
+          {p.tags.map((t) => <li class="chip">{t}</li>)}
+        </ul>
+        {info.demo && <p class="detail-live"><a class="detail-live-link" href={root + info.demo}>{live} <span aria-hidden="true">→</span></a></p>}
+        <p class="detail-disclaimer">{info.disclaimer}</p>
       </div>
+      <aside class="detail-stage">
+        {info.demo ? (
+          <div class="device">
+            <div class="device-bar"><span></span><span></span><span></span></div>
+            <iframe class="device-screen" src={root + info.demo} title={p.name} loading="lazy"></iframe>
+          </div>
+        ) : (
+          <div class="device device-icon">
+            <span class="app-icon" data-tone={i} set:html={appIcons[i]} />
+          </div>
+        )}
+      </aside>
     </div>
-    <p class="detail-body">{info.body}</p>
-    <p class="detail-note">{info.note}</p>
-    <ol class="detail-features">
+
+    <ol class="detail-timeline">
       {info.features.map((f, n) => (
-        <li><span class="feat-no">{String(n + 1).padStart(2, '0')}</span><span class="feat-cat">{f.cat}</span><span class="feat-title">{f.title}</span></li>
+        <li>
+          <span class="stop" aria-hidden="true"></span>
+          <span class="feat-no">{String(n + 1).padStart(2, '0')}</span>
+          <span class="feat-cat">{f.cat}</span>
+          <p class="feat-title">{f.title}</p>
+        </li>
       ))}
     </ol>
-    <p class="detail-disclaimer">{info.disclaimer}</p>
     {info.shots.length > 0 && (
       <div class="detail-shots">
         {info.shots.map((src) => <img src={root + src} alt="" loading="lazy" />)}
       </div>
     )}
-    <ul class="tech detail-tags"><li class="detail-year">{info.year}</li>{p.tags.map((t) => <li>{t}</li>)}</ul>
-    {info.demo && <p><a class="btn btn-primary" href={root + info.demo}>{lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'}</a></p>}
-    <div class="detail-cta">
-      <p>{ctaText}</p>
-      <a class="btn btn-primary" href={`mailto:${d.profile.email}`}>{ctaLink}</a>
+
+    <div class="detail-contact">
+      <p class="eyebrow">{contactLabel}</p>
+      <a class="cta-block" href={`mailto:${d.profile.email}`}>
+        <span class="cta-line cta-sans">{d.ext.contactA}</span>
+        <span class="cta-line cta-serif">{d.ext.contactB}</span>
+      </a>
+      <ul class="socials">
+        <li><a class="social-link" href={`mailto:${d.profile.email}`}><span class="social-text" data-text={d.profile.email}>{d.profile.email}</span></a></li>
+        <li><a class="social-link" href={`tel:${d.profile.phoneHref}`}><span class="social-text" data-text={d.profile.phone}>{d.profile.phone}</span></a></li>
+        <li><a class="social-link" href={d.profile.linkedin} target="_blank" rel="noopener"><span class="social-text" data-text="LinkedIn">LinkedIn</span><span class="social-arrow">↗</span></a></li>
+        <li><a class="social-link" href={root + "/cv.pdf"} download><span class="social-text" data-text={d.ui.cv}>{d.ui.cv}</span><span class="social-arrow">↓</span></a></li>
+      </ul>
     </div>
   </section>
 </Base>
+
+<script>
+  function timeline() {
+    const items = [...document.querySelectorAll('.detail-timeline li')];
+    if (!items.length) return;
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) e.target.classList.add('is-reached');
+    }, { rootMargin: '0px 0px -40% 0px' });
+    items.forEach((el) => io.observe(el));
+  }
+  document.addEventListener('astro:page-load', timeline);
+</script>
