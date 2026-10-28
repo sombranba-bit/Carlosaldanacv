@@ -539,3 +539,6 @@ a.project-card { color: inherit; text-decoration: none; }
 .mock-legend2 span { display: flex; align-items: center; gap: 6px; }
 .mock-legend2 i { width: 14px; height: 2px; background: var(--tone); }
 .mock-legend2 i.dash { background: none; border-top: 2px dotted #ffffff80; height: 0; }
+
+/* Ninguna pantalla se sale de su zona */
+.zone { overflow: hidden; }
