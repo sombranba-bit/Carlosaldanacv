@@ -118,7 +118,7 @@ export const ui = {
   projects: 'View projects', cv: 'Download CV',
   lead: 'I work on three pillars: prevention, training and awareness. I keep a fleet of 500+ vehicles compliant, train and coach its drivers end to end, and turn tachograph data into decisions that cut repeat infringements.',
   aboutTitle: 'About',
-  workTitle: 'Selected work',
+  workTitle: 'Tools I built',
   workSub: 'Tools I have built for the fleet’s day-to-day work.',
   allProjects: 'See all projects',
   experience: 'Experience',

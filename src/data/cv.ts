@@ -118,7 +118,7 @@ export const ui = {
   projects: 'Ver proyectos', cv: 'Descargar CV',
   lead: 'Trabajo sobre tres pilares: prevención, formación y concienciación. Mantengo una flota de +500 vehículos en regla, formo y acompaño a sus conductores de forma integral, y convierto los datos de tacógrafo en decisiones que reducen las infracciones.',
   aboutTitle: 'Acerca de',
-  workTitle: 'Trabajo seleccionado',
+  workTitle: 'Herramientas creadas',
   workSub: 'Herramientas que he construido para el día a día de la flota.',
   allProjects: 'Ver todos los proyectos',
   experience: 'Experiencia',
