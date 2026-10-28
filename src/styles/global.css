@@ -618,3 +618,9 @@ a.project-card { color: inherit; text-decoration: none; }
 .device-carousel .shots-track img { flex: 0 0 100%; width: 100%; height: 100%; box-sizing: border-box; padding: 26px 0; object-fit: contain; border-radius: 0; background: transparent; border: 0; scroll-snap-align: center; }
 .device-carousel .shots-nav { background: #161616; border-top: 1px solid var(--line); padding: 10px 12px; gap: 10px; }
 .device-carousel .shots-nav button { width: 34px; height: 34px; font-size: 1rem; }
+
+/* Las capturas son la propia tarjeta: sin marco extra alrededor */
+.device-carousel { background: none; border: 0; border-radius: 0; box-shadow: none; overflow: visible; }
+.device-carousel .shots-track { height: auto; max-width: 420px; margin: 0 auto; background: none; align-items: flex-start; }
+.device-carousel .shots-track img { flex: 0 0 100%; width: 100%; height: auto; padding: 0; object-fit: initial; border-radius: 16px; box-shadow: 0 30px 60px -30px #000d; background: none; }
+.device-carousel .shots-nav { background: none; border: 0; justify-content: center; padding: 16px 0 0; }
