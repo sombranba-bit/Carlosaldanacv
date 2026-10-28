@@ -50,6 +50,7 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
           {p.tags.map((t) => <li class="chip">{t}</li>)}
         </ul>
         {info.demo && <p class="detail-live"><a class="detail-live-link" href={root + info.demo}>{live} <span aria-hidden="true">→</span></a></p>}
+        {info.app && <p class="detail-live"><a class="detail-live-link" href={root + info.app} target="_blank" rel="noopener">{info.appLabel} <span aria-hidden="true">↗</span></a></p>}
         <p class="detail-disclaimer">{info.disclaimer}</p>
       </div>
       <aside class="detail-stage">
@@ -57,6 +58,16 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
           <div class="device">
             <div class="device-bar"><span></span><span></span><span></span></div>
             <iframe class="device-screen" src={root + info.demo} title={p.name} loading="lazy"></iframe>
+          </div>
+        ) : info.shots.length > 0 ? (
+          <div class="shots device-carousel">
+            <div class="shots-track">
+              {info.shots.map((src) => <img src={root + src} alt="" loading="lazy" />)}
+            </div>
+            <div class="shots-nav">
+              <button type="button" class="shots-prev" aria-label="Anterior">‹</button>
+              <button type="button" class="shots-next" aria-label="Siguiente">›</button>
+            </div>
           </div>
         ) : (
           <div class="device device-icon">
@@ -117,17 +128,6 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
         </div>
       </div>}
     </div>}
-    {info.shots.length > 0 && (
-      <div class="shots">
-        <div class="shots-track">
-          {info.shots.map((src) => <img src={root + src} alt="" loading="lazy" />)}
-        </div>
-        <div class="shots-nav">
-          <button type="button" class="shots-prev" aria-label="Anterior">‹</button>
-          <button type="button" class="shots-next" aria-label="Siguiente">›</button>
-        </div>
-      </div>
-    )}
 
     <div class="detail-contact">
       <p class="eyebrow">{contactLabel}</p>

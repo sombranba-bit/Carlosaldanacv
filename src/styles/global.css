@@ -602,3 +602,12 @@ a.project-card { color: inherit; text-decoration: none; }
 .shots-nav { display: flex; justify-content: flex-end; gap: .6rem; margin-top: 1rem; }
 .shots-nav button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--ink, #f4f4f2); font-size: 1.3rem; line-height: 1; cursor: pointer; }
 .shots-nav button:hover { border-color: var(--tone); color: var(--tone); }
+
+/* Carrusel de diapositivas en la tarjeta (sin demo embebida) */
+.device-carousel { position: relative; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #101113; box-shadow: 0 40px 80px -30px #000c; }
+.device-carousel .shots-track { height: min(560px, 70vh); display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.device-carousel .shots-track::-webkit-scrollbar { display: none; }
+.device-carousel .shots-track img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: contain; scroll-snap-align: center; border: 0; border-radius: 0; background: #101113; }
+.device-carousel .shots-nav { display: flex; justify-content: center; gap: 10px; padding: 12px; border-top: 1px solid var(--line); }
+.device-carousel .shots-nav button { width: 36px; height: 36px; font-size: 1.1rem; background: transparent; border: 1px solid #ffffff26; color: #f4f4f2; border-radius: 50%; cursor: pointer; }
+.device-carousel .shots-nav button:hover { border-color: var(--tone, #ffb000); color: var(--tone, #ffb000); }
