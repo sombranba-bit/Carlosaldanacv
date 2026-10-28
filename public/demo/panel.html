@@ -14,6 +14,8 @@
   aside{background:var(--panel);border-right:1px solid var(--line);padding:22px 0}
   aside .brand{font:600 20px Oswald,sans-serif;padding:0 22px 22px}
   aside .brand b{color:var(--amber)}
+  .back{display:inline-block;color:var(--mid);text-decoration:none;font:13px JetBrains Mono,monospace;margin:0 22px 18px}
+  .back:hover{color:var(--amber)}
   aside button{display:flex;width:100%;text-align:left;background:none;border:0;color:var(--mid);padding:11px 22px;font:14px Inter,sans-serif;cursor:pointer;border-left:3px solid transparent}
   aside button.on{color:var(--amber);border-left-color:var(--amber);background:#2b2e3366}
   main{padding:28px 32px}
@@ -43,6 +45,7 @@
 <body>
 <aside>
   <div class="brand">Panel <b>demo</b></div>
+  <a class="back" href="/proyectos/panel-infracciones/">← Volver a la herramienta</a>
   <button class="on" data-v="inicio">Inicio</button>
   <button data-v="tendencias">Tendencias</button>
   <button data-v="reincidencia">Reincidencia</button>

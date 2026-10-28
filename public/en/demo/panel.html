@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo · Infringements panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;600&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{--bg:#101113;--panel:#1d1f23;--line:#2b2e33;--hi:#f2f1ed;--mid:#b7b9bd;--low:#888a90;--amber:#f2a93b;--red:#e85a5e;--green:#3dd68c;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--hi);font:15px/1.5 Inter,system-ui,sans-serif;display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+  aside{background:var(--panel);border-right:1px solid var(--line);padding:22px 0}
+  aside .brand{font:600 20px Oswald,sans-serif;padding:0 22px 22px}
+  aside .brand b{color:var(--amber)}
+  .back{display:inline-block;color:var(--mid);text-decoration:none;font:13px JetBrains Mono,monospace;margin:0 22px 18px}
+  .back:hover{color:var(--amber)}
+  aside button{display:flex;width:100%;text-align:left;background:none;border:0;color:var(--mid);padding:11px 22px;font:14px Inter,sans-serif;cursor:pointer;border-left:3px solid transparent}
+  aside button.on{color:var(--amber);border-left-color:var(--amber);background:#2b2e3366}
+  main{padding:28px 32px}
+  .tag{display:inline-block;font:11px JetBrains Mono,monospace;color:var(--amber);border:1px solid var(--amber);border-radius:4px;padding:3px 8px;letter-spacing:.08em}
+  h1{font:52px Archivo Black,sans-serif;margin:14px 0 6px;letter-spacing:-.01em;text-transform:uppercase}
+  .sub{color:var(--mid);margin:0 0 24px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:22px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px}
+  .kpi small{font:11px JetBrains Mono,monospace;color:var(--low);letter-spacing:.08em;text-transform:uppercase}
+  .kpi strong{display:block;font:600 34px Oswald,sans-serif;margin-top:6px}
+  .kpi em{font:12px JetBrains Mono,monospace;font-style:normal;color:var(--red)}
+  .kpi em.ok{color:var(--green)}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:22px}
+  .panel h2{font:600 18px Oswald,sans-serif;margin:0 0 12px;text-transform:uppercase;letter-spacing:.04em}
+  input{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--hi);border-radius:5px;padding:9px 12px;font:14px Inter,sans-serif;margin-bottom:12px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+  th{font:11px JetBrains Mono,monospace;color:var(--low);text-transform:uppercase;letter-spacing:.08em}
+  td.num{font-family:JetBrains Mono,monospace;text-align:right}
+  .bad{color:var(--red)} .good{color:var(--green)}
+  .note{font:12px JetBrains Mono,monospace;color:var(--low);margin-top:18px}
+  .view{display:none} .view.on{display:block}
+  canvas{max-height:320px}
+  @media (max-width:800px){body{grid-template-columns:1fr} aside{display:flex;overflow-x:auto;padding:12px} aside .brand{display:none} aside button{width:auto;white-space:nowrap;border-left:0;border-bottom:3px solid transparent} aside button.on{border-bottom-color:var(--amber)} h1{font-size:36px}}
+</style>
+</head>
+<body>
+<aside>
+  <div class="brand">Panel <b>demo</b></div>
+  <a class="back" href="/en/proyectos/panel-infracciones/">← Back to the tool</a>
+  <button class="on" data-v="inicio">Overview</button>
+  <button data-v="tendencias">Trends</button>
+  <button data-v="reincidencia">Repeat offences</button>
+  <button data-v="conductores">Driver list</button>
+</aside>
+<main>
+  <span class="tag">FICTIONAL DATA · DEMO</span>
+  <section class="view on" id="v-inicio">
+    <h1>Infringement control</h1>
+    <p class="sub">Summary of the demo fleet. All names and figures are invented.</p>
+    <div class="kpis" id="kpis"></div>
+    <div class="panel"><h2>Infringements per month</h2><canvas id="chartMes"></canvas></div>
+  </section>
+  <section class="view" id="v-tendencias">
+    <h1>Trends</h1>
+    <p class="sub">Monthly evolution by infringement type.</p>
+    <div class="panel"><h2>Evolution</h2><canvas id="chartTipos"></canvas></div>
+  </section>
+  <section class="view" id="v-reincidencia">
+    <h1>Repeat offences</h1>
+    <p class="sub">Drivers who repeat serious or very serious infringements.</p>
+    <div class="panel"><h2>Drivers with repeat offences</h2><table id="tReinc"></table></div>
+  </section>
+  <section class="view" id="v-conductores">
+    <h1>Driver list</h1>
+    <p class="sub">Search for a driver by name.</p>
+    <div class="panel"><input id="buscar" placeholder="Search driver…"><table id="tCond"></table></div>
+  </section>
+  <p class="note">Interface demo. Contains no real data.</p>
+</main>
+<script>
+// Datos ficticios con semilla fija
+let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const nombres = ['Laura Martín','Javier Ruiz','Marta Sanz','Pablo Gil','Lucía Vega','Diego Ortiz','Elena Castro','Sergio Pardo','Ana Lozano','Raúl Medina','Clara Soto','Iván Prieto','Nuria Ibáñez','Óscar Romero','Paula Delgado','Adrián Molina'];
+const delegaciones = ['Zaragoza','Madrid','Barcelona','Valencia'];
+const meses = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const conductores = nombres.map((n, i) => ({ n, d: delegaciones[i % 4], inf: Math.floor(rnd()*12), grave: Math.floor(rnd()*5), imp: Math.floor(rnd()*900)*10 }));
+const mes = meses.map(() => Math.floor(80 + rnd()*60));
+const tipos = { 'Rest': meses.map(()=>Math.floor(20+rnd()*30)), 'Driving': meses.map(()=>Math.floor(30+rnd()*40)), 'Downloads': meses.map(()=>Math.floor(5+rnd()*15)) };
+
+const total = mes.reduce((a,b)=>a+b,0);
+const kp = [['Infringements', total, '+4.2% vs previous year', false], ['Drivers', conductores.length, 'active', true], ['Amount', (total*120).toLocaleString('en-GB')+' €', 'estimated', false], ['Repeat offences', conductores.filter(c=>c.grave>=3).length, 'with 3+ serious', false]];
+document.getElementById('kpis').innerHTML = kp.map(([a,b,c,ok]) => `<div class="kpi"><small>${a}</small><strong>${b}</strong><em class="${ok?'ok':''}">${c}</em></div>`).join('');
+
+const css = getComputedStyle(document.documentElement);
+Chart.defaults.color = '#b7b9bd'; Chart.defaults.borderColor = '#2b2e33'; Chart.defaults.font.family = 'JetBrains Mono';
+new Chart(document.getElementById('chartMes'), { type:'bar', data:{ labels:meses, datasets:[{ label:'Infringements', data:mes, backgroundColor:'#f2a93b' }] }, options:{ plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}} } });
+new Chart(document.getElementById('chartTipos'), { type:'line', data:{ labels:meses, datasets:Object.entries(tipos).map(([k,v],i)=>({ label:k, data:v, borderColor:['#f2a93b','#5aa9e6','#3dd68c'][i], backgroundColor:'transparent', tension:.3 })) }, options:{ scales:{y:{beginAtZero:true}} } });
+
+const reinc = conductores.filter(c=>c.grave>=2).sort((a,b)=>b.grave-a.grave);
+document.getElementById('tReinc').innerHTML = '<tr><th>Driver</th><th>Delegation</th><th class="num">Serious</th><th class="num">Total</th></tr>' + reinc.map(c=>`<tr><td>${c.n}</td><td>${c.d}</td><td class="num bad">${c.grave}</td><td class="num">${c.inf}</td></tr>`).join('');
+
+const renderCond = (q='') => {
+  const rows = conductores.filter(c=>c.n.toLowerCase().includes(q.toLowerCase()));
+  document.getElementById('tCond').innerHTML = '<tr><th>Driver</th><th>Delegation</th><th class="num">Infringements</th><th class="num">Amount</th></tr>' + rows.map(c=>`<tr><td>${c.n}</td><td>${c.d}</td><td class="num">${c.inf}</td><td class="num">${c.imp.toLocaleString('en-GB')} €</td></tr>`).join('');
+};
+renderCond();
+document.getElementById('buscar').addEventListener('input', e => renderCond(e.target.value));
+
+document.querySelectorAll('aside button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('aside button').forEach(x=>x.classList.toggle('on', x===b));
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on', v.id === 'v-' + b.dataset.v));
+}));
+</script>
+</body>
+</html>

@@ -44,7 +44,7 @@ export const detail = {
       ], shots: [] },
   ],
   en: [
-    { slug: 'panel-infracciones', year: '2026', demo: '/demo/panel.html', eyebrow: 'Fleet control · Web dashboard', tagline: 'From infringement data to decisions.',
+    { slug: 'panel-infracciones', year: '2026', demo: '/en/demo/panel.html', eyebrow: 'Fleet control · Web dashboard', tagline: 'From infringement data to decisions.',
       body: 'A control dashboard that brings together driving and rest-time infringements and tachograph download compliance across the whole fleet. It analyses trends and monthly evolution, measures each driver’s repeat infringements and flags risks before they turn into penalties. It includes compliance indicators, period comparisons, an individual analysis per driver and a log of the notices sent to each delegation, so the fleet status can be reviewed without opening every listing.',
       note: 'Every view uses the same figures: anything you see in an indicator can be checked in the infringement detail.',
       disclaimer: 'Internal tool for fleet control. The demo figures are fictional.',
