@@ -66,6 +66,7 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
             </div>
             <div class="shots-nav">
               <button type="button" class="shots-prev" aria-label="Anterior">‹</button>
+              <div class="shots-dots"></div>
               <button type="button" class="shots-next" aria-label="Siguiente">›</button>
             </div>
           </div>
@@ -205,9 +206,33 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
   function shots() {
     document.querySelectorAll('.shots').forEach((box) => {
       const track = box.querySelector('.shots-track');
-      const step = () => track.clientWidth * 0.8;
-      box.querySelector('.shots-prev').onclick = () => track.scrollBy({ left: -step(), behavior: 'smooth' });
-      box.querySelector('.shots-next').onclick = () => track.scrollBy({ left: step(), behavior: 'smooth' });
+      const slides = [...track.querySelectorAll('img')];
+      const dotsEl = box.querySelector('.shots-dots');
+      const dots = slides.map((_, n) => {
+        const d = document.createElement('button');
+        d.type = 'button';
+        d.setAttribute('aria-label', 'Diapositiva ' + (n + 1));
+        d.onclick = () => go(n);
+        dotsEl.append(d);
+        return d;
+      });
+      const width = () => track.clientWidth;
+      const current = () => Math.round(track.scrollLeft / width());
+      const go = (n) => {
+        const i = ((n % slides.length) + slides.length) % slides.length;
+        track.scrollTo({ left: i * width(), behavior: 'smooth' });
+      };
+      const mark = () => dots.forEach((d, n) => d.classList.toggle('on', n === current()));
+      let timer = null;
+      const start = () => { stop(); if (!matchMedia('(prefers-reduced-motion: reduce)').matches) timer = setInterval(() => go(current() + 1), 5000); };
+      const stop = () => clearInterval(timer);
+      box.querySelector('.shots-prev').onclick = () => { go(current() - 1); start(); };
+      box.querySelector('.shots-next').onclick = () => { go(current() + 1); start(); };
+      track.addEventListener('scroll', mark, { passive: true });
+      box.addEventListener('pointerenter', stop);
+      box.addEventListener('pointerleave', start);
+      mark();
+      start();
     });
   }
   document.addEventListener('astro:page-load', () => { timeline(); fx(); shots(); });
