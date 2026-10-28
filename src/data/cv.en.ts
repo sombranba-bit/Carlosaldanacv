@@ -16,7 +16,7 @@ export const projects = [
     tags: ['HTML', 'JavaScript', 'Excel'],
   },
   {
-    name: 'VDO · Webfleet download cross-check',
+    name: 'TachoCross',
     desc: 'Comparison of tachograph downloads by driver and by vehicle to check whether the latest dates match.',
     tags: ['HTML', 'JavaScript'],
   },
