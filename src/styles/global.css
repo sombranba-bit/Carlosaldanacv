@@ -575,3 +575,4 @@ a.project-card { color: inherit; text-decoration: none; }
 .mock-donut svg { width: 52px; height: 52px; }
 .mock-compare > div { padding: 6px 0; }
 .mock-donut { margin-top: 6px; }
+.mock-table .th span:last-child { text-align: right; }
