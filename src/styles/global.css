@@ -478,9 +478,10 @@ a.project-card { color: inherit; text-decoration: none; }
 .zone.is-active .mock-bars i { transform-origin: bottom; animation: mk-grow .9s var(--ease) both; animation-delay: var(--d); }
 .zone.is-active .mock-rows p, .zone.is-active .mock-deleg p { animation: mk-rise .6s var(--ease) both; animation-delay: var(--d); }
 .zone.is-active .mock-deleg i { transform-origin: left; animation: mk-growx 1s var(--ease) both; animation-delay: var(--d); }
-.zone .spk-line, .zone .spk-dash { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.zone .spk-line { stroke-dasharray: 1 1; stroke-dashoffset: 1; }
 .zone.is-active .spk-line { animation: mk-draw 1.8s var(--ease-out-soft) forwards; }
-.zone.is-active .spk-dash { animation: mk-draw 2.2s var(--ease-out-soft) .35s forwards; }
+.zone .spk-dash { opacity: 0; }
+.zone.is-active .spk-dash { animation: mk-fade 1s 1.2s forwards; }
 .zone .spk-area { opacity: 0; }
 .zone.is-active .spk-area { animation: mk-fade 1.2s .9s forwards; }
 .zone.is-active .mock-axis span { animation: mk-fade .6s 1.4s both; }
