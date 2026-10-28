@@ -12,10 +12,13 @@ const p = d.projects[i];
 const info = detail[lang][i];
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const base = root + d.ui.prefix;
+const tones = ['#ffb000', '#5fe3b0', '#8fb4ff', '#ff8a3d', '#5fe3b0'];
+const tone = tones[i];
 const back = lang === 'en' ? '← All projects' : '← Todos los proyectos';
 ---
 <Base title={`${p.name} · ${d.profile.name}`} active="proyectos" lang={lang}>
-  <section class="section detail">
+  <section class="section detail" style={`--tone:${tone}`}>
+    <div class="detail-art" aria-hidden="true"></div>
     <a class="detail-back" href={`${base}/proyectos`}>{back}</a>
     <p class="detail-eyebrow">{info.eyebrow}</p>
     <div class="detail-head">
@@ -26,6 +29,7 @@ const back = lang === 'en' ? '← All projects' : '← Todos los proyectos';
       </div>
     </div>
     <p class="detail-body">{info.body}</p>
+    <p class="detail-note">{info.note}</p>
     <ul class="tech detail-tags"><li class="detail-year">{info.year}</li>{p.tags.map((t) => <li>{t}</li>)}</ul>
   </section>
 </Base>
