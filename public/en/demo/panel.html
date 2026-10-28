@@ -10,6 +10,7 @@
 <style>
   :root{--bg:#101113;--panel:#1d1f23;--line:#2b2e33;--hi:#f2f1ed;--mid:#b7b9bd;--low:#888a90;--amber:#f2a93b;--red:#e85a5e;--green:#3dd68c;}
   *{box-sizing:border-box}
+  html{scrollbar-width:none} ::-webkit-scrollbar{display:none}
   body{margin:0;background:var(--bg);color:var(--hi);font:15px/1.5 Inter,system-ui,sans-serif;display:grid;grid-template-columns:230px 1fr;min-height:100vh}
   aside{background:var(--panel);border-right:1px solid var(--line);padding:22px 0}
   aside .brand{font:600 20px Oswald,sans-serif;padding:0 22px 22px}
@@ -39,7 +40,7 @@
   .note{font:12px JetBrains Mono,monospace;color:var(--low);margin-top:18px}
   .view{display:none} .view.on{display:block}
   canvas{max-height:320px}
-  @media (max-width:800px){body{grid-template-columns:1fr} aside{display:flex;flex-wrap:wrap;align-items:center;gap:2px 0;padding:10px 12px} aside .brand{display:none} aside .back{margin:0 12px 0 10px} aside button{width:auto;padding:8px 10px;font-size:13px;white-space:nowrap;border-left:0;border-bottom:3px solid transparent} aside button.on{border-bottom-color:var(--amber)} h1{font-size:36px}}
+  @media (max-width:800px){body{grid-template-columns:1fr} aside{display:flex;flex-wrap:wrap;align-items:stretch;padding:8px 6px 0} aside .brand{display:none} aside .back{flex-basis:100%;margin:6px 14px 10px} aside button{flex:1 1 auto;justify-content:center;width:auto;padding:9px 6px;font-size:12.5px;white-space:nowrap;border-left:0;border-bottom:3px solid transparent} aside button.on{border-bottom-color:var(--amber)} h1{font-size:36px}}
 </style>
 </head>
 <body>
