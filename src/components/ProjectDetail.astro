@@ -49,7 +49,7 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
           <li class="chip chip-year">{info.year}</li>
           {p.tags.map((t) => <li class="chip">{t}</li>)}
         </ul>
-        {info.demo && <p class="detail-live"><a class="detail-live-link" href={root + info.demo}>{live} <span aria-hidden="true">→</span></a></p>}
+        {info.demo && <p class="detail-live"><a class="btn btn-primary magnetic" href={root + info.demo}>{live} <span aria-hidden="true">→</span></a></p>}
         {info.app && <p class="detail-live"><a class="btn btn-primary magnetic" href={root + info.app} target="_blank" rel="noopener">{info.appLabel} <span aria-hidden="true">↗</span></a></p>}
         <p class="detail-disclaimer">{info.disclaimer}</p>
       </div>
