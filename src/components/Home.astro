@@ -20,6 +20,7 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
         <span class="line line-accent">{ext.heroLine2}</span>
       </h1>
       <p class="hero-sub">{profile.tagline}. {ui.lead}</p>
+      <p class="hero-badge"><span aria-hidden="true">✓</span> {profile.badge}</p>
       <div class="hero-actions">
         <a class="btn btn-primary magnetic" href={`${root}${ui.prefix}/proyectos`}>{ui.projects}</a>
         <a class="btn btn-ghost magnetic" href={root + "/cv.pdf"} download>{ui.cv}</a>

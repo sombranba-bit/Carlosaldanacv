@@ -1,4 +1,5 @@
 export const profile = {
+  badge: 'Certificate of Professional Competence (CPC) for Road Freight Transport',
   name: 'Carlos Aldana Guillén',
   title: 'Tachograph Compliance Manager',
   tagline: 'Regulatory compliance · Fleet management · Power BI, process automation and AI',

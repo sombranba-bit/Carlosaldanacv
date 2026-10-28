@@ -1,4 +1,5 @@
 export const profile = {
+  badge: 'Certificado de Competencia Profesional para el Transporte de Mercancías por Carretera',
   name: 'Carlos Aldana Guillén',
   title: 'Responsable de Tacógrafos',
   tagline: 'Cumplimiento normativo · Gestión de flotas · Power BI, automatización e IA',
