@@ -424,8 +424,6 @@ a.project-card { color: inherit; text-decoration: none; }
 .mock-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; height: 100%; }
 .mock-kpis i { border-radius: 6px; background: #ffffff0d; }
 .mock-kpis i:first-child { background: color-mix(in srgb, var(--tone) 35%, transparent); }
-.mock-bars { display: flex; align-items: flex-end; gap: 6px; height: 100%; }
-.mock-bars b { flex: 1; height: var(--h); border-radius: 3px 3px 0 0; background: color-mix(in srgb, var(--tone) 55%, transparent); }
 .mock-rows p { margin: 0 0 8px; font-size: 10px; color: #b7b9bd; display: flex; align-items: center; gap: 7px; }
 .mock-rows i { width: 7px; height: 7px; border-radius: 50%; background: var(--tone); }
 .mock-rows i.r { background: #e85a5e; }
@@ -438,3 +436,5 @@ a.project-card { color: inherit; text-decoration: none; }
   .tl-sticky { position: relative; top: 0; height: auto; padding: 1rem 0 2rem; }
   .tl-chapter { min-height: 0; padding: 2rem 0; }
 }
+.mock-spark { width: 100%; height: 100%; display: block; overflow: visible; filter: drop-shadow(0 0 6px color-mix(in srgb, var(--tone) 50%, transparent)); }
+.z1 { padding: 14px 12px 8px; }
