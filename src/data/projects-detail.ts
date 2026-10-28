@@ -1,6 +1,6 @@
 export const detail = {
   es: [
-    { slug: 'panel-infracciones', year: '2026', eyebrow: 'Control de flota · Panel web', tagline: 'Del dato de infracción a la decisión.',
+    { slug: 'panel-infracciones', year: '2026', demo: '/demo/panel.html', eyebrow: 'Control de flota · Panel web', tagline: 'Del dato de infracción a la decisión.',
       body: 'Panel de control que reúne las infracciones de conducción y descanso y el cumplimiento de las descargas de tacógrafo de toda la flota. Analiza tendencias y evolución mes a mes, mide la reincidencia de cada conductor y señala los riesgos antes de que se conviertan en sanciones. Incluye indicadores de compliance, comparativas entre periodos, un análisis individual por conductor y un control de los avisos enviados a cada delegación, para revisar la situación de la flota sin abrir cada listado.',
       note: 'Todas las vistas usan las mismas cifras: lo que ves en un indicador se puede comprobar en el detalle de infracciones.',
       features: [
@@ -29,7 +29,7 @@ export const detail = {
       ], shots: [] },
   ],
   en: [
-    { slug: 'panel-infracciones', year: '2026', eyebrow: 'Fleet control · Web dashboard', tagline: 'From infringement data to decisions.',
+    { slug: 'panel-infracciones', year: '2026', demo: '/demo/panel.html', eyebrow: 'Fleet control · Web dashboard', tagline: 'From infringement data to decisions.',
       body: 'A control dashboard that brings together driving and rest-time infringements and tachograph download compliance across the whole fleet. It analyses trends and monthly evolution, measures each driver’s repeat infringements and flags risks before they turn into penalties. It includes compliance indicators, period comparisons, an individual analysis per driver and a log of the notices sent to each delegation, so the fleet status can be reviewed without opening every listing.',
       note: 'Every view uses the same figures: anything you see in an indicator can be checked in the infringement detail.',
       features: [

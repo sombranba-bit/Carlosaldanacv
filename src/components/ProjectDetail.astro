@@ -43,6 +43,7 @@ const back = lang === 'en' ? '← All projects' : '← Todos los proyectos';
       </div>
     )}
     <ul class="tech detail-tags"><li class="detail-year">{info.year}</li>{p.tags.map((t) => <li>{t}</li>)}</ul>
+    {info.demo && <p><a class="btn btn-primary" href={root + info.demo}>{lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'}</a></p>}
     <div class="detail-cta">
       <p>{ctaText}</p>
       <a class="btn btn-primary" href={`mailto:${d.profile.email}`}>{ctaLink}</a>
