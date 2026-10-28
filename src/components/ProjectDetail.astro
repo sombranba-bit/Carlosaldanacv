@@ -96,5 +96,22 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
     }, { rootMargin: '0px 0px -40% 0px' });
     items.forEach((el) => io.observe(el));
   }
-  document.addEventListener('astro:page-load', timeline);
+  function fx() {
+    const dev = document.querySelector('.device');
+    const tl = document.querySelector('.detail-timeline');
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }, { threshold: 0.2 });
+    if (dev) io.observe(dev);
+    if (tl) {
+      const onScroll = () => {
+        const r = tl.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, (innerHeight * 0.6 - r.top) / r.height));
+        tl.style.setProperty('--p', String(p));
+      };
+      addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+  }
+  document.addEventListener('astro:page-load', () => { timeline(); fx(); });
 </script>

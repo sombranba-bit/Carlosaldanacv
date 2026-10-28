@@ -370,3 +370,15 @@ a.project-card { color: inherit; text-decoration: none; }
   .detail-stage { position: static; }
   .device-screen { height: 480px; }
 }
+
+/* Efectos de la página de detalle: entrada del marco, línea que se llena con el scroll, arte que aparece */
+.device { opacity: 0; transform: translateY(40px) scale(.98); transition: opacity .9s var(--ease-out-soft), transform 1s var(--ease-out-soft); }
+.device.in { opacity: 1; transform: none; }
+.detail-timeline { --p: 0; }
+.detail-timeline::before { content: ''; position: absolute; left: -1px; top: 0; bottom: 0; width: 1px; background: var(--tone); transform: scaleY(var(--p)); transform-origin: top; box-shadow: 0 0 12px var(--tone); }
+.detail-art { animation: detail-art-in 1.6s var(--ease-out-soft) both; }
+@keyframes detail-art-in { from { opacity: 0; } to { opacity: 1; } }
+.detail-contact .cta-line { transition: transform .5s var(--ease-out-soft), color .5s var(--ease-out-soft); }
+.detail-contact .cta-block:hover .cta-line { transform: translateX(8px); }
+.detail-contact .cta-block:hover .cta-serif { color: var(--fg); }
+@media (prefers-reduced-motion: reduce) { .device, .detail-art { animation: none; transition: none; opacity: 1; transform: none; } }
