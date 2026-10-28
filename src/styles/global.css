@@ -573,3 +573,5 @@ a.project-card { color: inherit; text-decoration: none; }
 .mock-compare > div { padding: 8px 0; }
 .mock-donut { margin-top: 10px; }
 .mock-donut svg { width: 52px; height: 52px; }
+.mock-compare > div { padding: 6px 0; }
+.mock-donut { margin-top: 6px; }
