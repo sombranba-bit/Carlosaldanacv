@@ -11,7 +11,7 @@ export const profile = {
 
 export const projects = [
   {
-    name: 'Infringement dashboard',
+    name: 'TachoHub',
     desc: 'Tracking of driving and rest-time infringements and tachograph download compliance, with indicators, comparisons and a summary per driver.',
     tags: ['HTML', 'JavaScript', 'Excel'],
   },

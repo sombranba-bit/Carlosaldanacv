@@ -11,7 +11,7 @@ export const profile = {
 
 export const projects = [
   {
-    name: 'Panel de infracciones',
+    name: 'TachoHub',
     desc: 'Seguimiento de infracciones de conducción y descanso y del cumplimiento de descargas de tacógrafo, con indicadores, comparativas y resumen por conductor.',
     tags: ['HTML', 'JavaScript', 'Excel'],
   },
