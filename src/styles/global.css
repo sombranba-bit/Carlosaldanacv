@@ -271,3 +271,11 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 .app-icon[data-tone="0"] { background: linear-gradient(150deg, #ffc233, #ff8a00); color: #0b0b0b; }
 .app-icon svg { width: 52px; height: 52px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .project-card:hover .app-icon { transform: translateY(-4px) scale(1.04); }
+
+/* Tarjetas de herramientas con el estilo de "Mis aplicaciones" */
+.project-card .thumb { height: 190px; background: radial-gradient(60% 80% at 50% 50%, #ffffff10, transparent 70%), #141414; }
+.project-card .app-icon { width: 88px; height: 88px; border-radius: 20px; }
+.project-card .tech li { font: .62rem var(--font-mono); letter-spacing: .06em; text-transform: uppercase; border-radius: 6px; padding: .3rem .6rem; border: 1px solid #ffffff1f; color: #cfcfcd; background: #ffffff08; }
+.project-card .tech li:nth-child(1) { color: #8fb4ff; background: #1d2a44; border-color: #2a3c63; }
+.project-card .tech li:nth-child(2) { color: #ffb36b; background: #3a2415; border-color: #5a3a22; }
+.project-card .tech li:nth-child(n+3) { color: #5fe3b0; background: #12302a; border-color: #1f4d42; }
