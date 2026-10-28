@@ -382,3 +382,8 @@ a.project-card { color: inherit; text-decoration: none; }
 .detail-contact .cta-block:hover .cta-line { transform: translateX(8px); }
 .detail-contact .cta-block:hover .cta-serif { color: var(--fg); }
 @media (prefers-reduced-motion: reduce) { .device, .detail-art { animation: none; transition: none; opacity: 1; transform: none; } }
+
+/* Camión que recorre la línea de funciones según el scroll (como en la página de la app) */
+.detail-timeline .tl-truck { position: absolute; left: -2rem; top: calc(var(--p) * 100%); transform: translate(-50%, -50%); color: var(--tone); z-index: 2; filter: drop-shadow(0 0 8px color-mix(in srgb, var(--tone) 60%, transparent)); pointer-events: none; }
+.detail-timeline .tl-truck svg { display: block; }
+.detail-timeline::before { z-index: 1; }
