@@ -10,6 +10,8 @@ const { lang, i } = Astro.props;
 const d = lang === 'en' ? en : es;
 const p = d.projects[i];
 const info = detail[lang][i];
+// Solo la herramienta con demo lleva la línea de recorrido con pantallas de panel; el resto muestra sus puntos en texto
+const dashboard = !!info.demo;
 const tones = ['#ffb000', '#5fe3b0', '#8fb4ff'];
 const tone = tones[i];
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -64,7 +66,7 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
       </aside>
     </div>
 
-    <div class="tl-lanes" aria-hidden="true">
+    {dashboard && <div class="tl-lanes" aria-hidden="true">
       {laneNames.map((name, k) => (
         <div class="tl-lane" data-dir={k % 2 ? 'rev' : 'fwd'}>
           <span class="tl-lane-label">{name}</span>
@@ -75,8 +77,8 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
           </div>
         </div>
       ))}
-    </div>
-    <div class="tl-grid">
+    </div>}
+    <div class={dashboard ? 'tl-grid' : 'tl-grid tl-grid-solo'}>
       <div class="tl-copy">
         <div class="tl-rail" aria-hidden="true"><div class="tl-rail-fill"></div><span class="tl-truck"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="2" y="7" width="12" height="9" rx="1"/><path d="M14 10h4l3 3v3h-7"/><circle cx="6" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg></span></div>
         <ol class="tl-chapters">
@@ -90,7 +92,7 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
           ))}
         </ol>
       </div>
-      <div class="tl-stage">
+      {dashboard && <div class="tl-stage">
         <div class="tl-sticky" data-zone="0">
           <div class="phone">
             <div class="phone-island"></div>
@@ -107,7 +109,7 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
             </div>
           </div>
         </div>
-      </div>
+      </div>}
     </div>
     {info.shots.length > 0 && (
       <div class="detail-shots">
@@ -140,7 +142,7 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
     const copy = document.querySelector('.tl-copy');
     const lanesEl = document.querySelector('.tl-lanes');
     const phoneEl = document.querySelector('.tl-sticky .phone');
-    const fitPhone = () => { if (phoneEl) phoneEl.style.zoom = Math.min(1, document.querySelector('.tl-stage').clientWidth / 560); };
+    const fitPhone = () => { if (phoneEl) phoneEl.style.zoom = Math.min(1, (document.querySelector('.tl-stage')?.clientWidth ?? 0) / 560); };
     fitPhone();
     addEventListener('resize', fitPhone);
     if (!chapters.length || !sticky || !copy) return;
