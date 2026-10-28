@@ -579,3 +579,5 @@ a.project-card { color: inherit; text-decoration: none; }
 
 /* IRI en escala 0–5: arco proporcional al valor (2,4) */
 .gauge-val { stroke-dasharray: .48 2; stroke-dashoffset: .48; }
+
+.brand-avatar { transition: opacity .2s linear; }

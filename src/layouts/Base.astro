@@ -103,5 +103,18 @@ const p = root + d.ui.prefix;
       window.addEventListener('scroll', onScroll, { passive: true });
       document.addEventListener('astro:page-load', onScroll);
     </script>
-  </body>
+  <script>
+  // La foto de la cabecera se desvanece al bajar; el resto de la barra no cambia
+  const fadeAvatar = () => {
+    const el = document.querySelector('.brand-avatar');
+    if (!el) return;
+    const o = Math.max(0, 1 - scrollY / 220);
+    el.style.opacity = String(o);
+    el.style.pointerEvents = o < 0.05 ? 'none' : '';
+  };
+  addEventListener('scroll', fadeAvatar, { passive: true });
+  document.addEventListener('astro:page-load', fadeAvatar);
+  fadeAvatar();
+</script>
+</body>
 </html>
