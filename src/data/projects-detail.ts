@@ -33,7 +33,6 @@ export const detail = {
       body: 'Lee los archivos TGD y DDD de la tarjeta y de la unidad del tacógrafo directamente en el navegador. Muestra la hoja de cada día, las horas de conducción y de descanso, y comprueba el cumplimiento del Reglamento (CE) 561/2006.',
       note: 'Todo el análisis se hace en el propio navegador: los archivos no se envían a ningún servidor.',
       disclaimer: 'Herramienta interna en desarrollo. Los resultados de cumplimiento son orientativos y deben contrastarse con la normativa vigente.',
-      summaryLabel: 'Qué hace', summary: 'Abre el archivo del tacógrafo y lo convierte en hoja diaria, límites y hallazgos, sin instalar nada.',
       features: [
         { cat: 'Hoja diaria', title: 'Conducción, trabajo, disponibilidad y descanso en una línea temporal en UTC.' },
         { cat: 'Cambios', title: 'Cada cambio de actividad, con su hora y el estado de la tarjeta.' },
@@ -79,7 +78,6 @@ export const detail = {
       body: 'Reads TGD and DDD files from the driver card and the vehicle unit directly in the browser. It shows the daily sheet, driving and rest hours, and checks compliance with Regulation (EC) 561/2006.',
       note: 'All the analysis runs in the browser itself: the files are never sent to a server.',
       disclaimer: 'Internal tool in development. Compliance results are indicative and should be checked against the regulations in force.',
-      summaryLabel: 'What it does', summary: 'Opens the tachograph file and turns it into a daily sheet, limits and findings, with nothing to install.',
       features: [
         { cat: 'Daily sheet', title: 'Driving, work, availability and rest on a timeline in UTC.' },
         { cat: 'Changes', title: 'Every activity change, with its time and the card status.' },

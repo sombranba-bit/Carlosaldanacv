@@ -59,17 +59,6 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
             <div class="device-bar"><span></span><span></span><span></span></div>
             <iframe class="device-screen" src={root + info.demo} title={p.name} loading="lazy"></iframe>
           </div>
-        ) : info.shots.length > 0 ? (
-          <div class="shots device-carousel">
-            <div class="shots-track">
-              {info.shots.map((src) => <img src={root + src} alt="" loading="lazy" />)}
-            </div>
-            <div class="shots-nav">
-              <button type="button" class="shots-prev" aria-label="Anterior">‹</button>
-              <div class="shots-dots"></div>
-              <button type="button" class="shots-next" aria-label="Siguiente">›</button>
-            </div>
-          </div>
         ) : (
           <div class="device device-icon">
             <span class="app-icon is-pro" data-tone={i} set:html={appIcons[i]} />
@@ -129,6 +118,12 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
         </div>
       </div>}
     </div>}
+
+    {info.shots.length > 0 && (
+      <div class="detail-shots">
+        {info.shots.map((src) => <img src={root + src} alt="" loading="lazy" />)}
+      </div>
+    )}
 
     <div class="detail-contact">
       <p class="eyebrow">{contactLabel}</p>
