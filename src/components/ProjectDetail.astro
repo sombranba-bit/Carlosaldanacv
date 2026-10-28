@@ -16,8 +16,8 @@ const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const base = root + d.ui.prefix;
 const back = lang === 'en' ? '← All projects' : '← Todos los proyectos';
 const contactLabel = lang === 'en' ? 'Contact' : 'Contacto';
-const laneNames = lang === 'en' ? ['Rigid truck', 'Curtain-sider', 'Tanker', 'Double-trailer'] : ['Camión rígido', 'Camión de lona', 'Camión cisterna', 'Duotrailer'];
-const laneKeys = ['rigid', 'lona', 'cisterna', 'duo'] as const;
+const laneNames = lang === 'en' ? ['Rigid truck', 'Curtain-sider', 'Tipper', 'Crane truck', 'Tanker'] : ['Camión rígido', 'Camión de lona', 'Volquete', 'Camión con grúa', 'Camión cisterna'];
+const laneKeys = ['rigid', 'lona', 'volquete', 'grua', 'cisterna'] as const;
 const trs_es = [['03 oct','M. Sánchez','Descanso','400 €'],['05 oct','R. Gil','Velocidad','200 €'],['09 oct','A. Ortega','Tacógrafo','1.200 €'],['14 oct','L. Navarro','Descanso','400 €']];
 const trs_en = [['Oct 3','M. Sánchez','Rest','400 €'],['Oct 5','R. Gil','Speed','200 €'],['Oct 9','A. Ortega','Tachograph','1,200 €'],['Oct 14','L. Navarro','Rest','400 €']];
 const mk = lang === 'en'
