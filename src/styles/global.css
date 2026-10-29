@@ -748,3 +748,8 @@ a.project-card { color: inherit; text-decoration: none; }
 
 /* Respuesta al pulsar: todos los botones y enlaces-botón se hunden un poco */
 .cta:active, .btn:active, .view-all:active, .lang:active, .copy-btn:active, .menu-btn:active { transform: scale(0.97); }
+
+/* Sin marco cuando la herramienta solo tiene su icono: el icono va suelto en la columna */
+.device.device-icon { background: none; border: 0; box-shadow: none; transform: none; height: auto; min-height: 320px; }
+.device.device-icon .app-icon { width: 160px; height: 160px; border-radius: 38px; }
+.device.device-icon .app-icon svg { width: 96px; height: 96px; }
