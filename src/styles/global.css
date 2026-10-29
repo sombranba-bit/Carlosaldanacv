@@ -320,7 +320,7 @@ a.project-card { color: inherit; text-decoration: none; }
 .detail-body { color: var(--fg-soft); font-size: 1.1rem; line-height: 1.75; max-width: 680px; margin: 2.5rem 0 2rem; }
 .detail-tags { margin-top: 0; padding-top: 0; }
 .detail-year { font: .62rem var(--font-mono); letter-spacing: .06em; color: #ffb36b; background: #3a2415; border: 1px solid #5a3a22; border-radius: 6px; padding: .3rem .6rem; }
-.detail { position: relative; }
+.detail { position: relative; overflow-x: clip; }
 .detail > * { position: relative; }
 .detail-art { position: fixed; top: 50%; right: -28vw; transform: translateY(-50%); width: min(140vh, 130vw); aspect-ratio: 1; border-radius: 50%; pointer-events: none; z-index: 0; background: radial-gradient(closest-side, #0000 74%, color-mix(in srgb, var(--tone) 35%, #0000) 75%, #0000 78%, #0000 88%, color-mix(in srgb, var(--tone) 22%, #0000) 89%, #0000 90%), radial-gradient(closest-side, color-mix(in srgb, var(--tone) 14%, #0000), #0000 70%); }
 .detail-body { font-size: 1.2rem; line-height: 1.75; color: var(--fg-soft); }
@@ -417,7 +417,7 @@ a.project-card { color: inherit; text-decoration: none; }
 
 /* Clon de la sección de recorrido: columna de capítulos con raíl y camión, pantalla de móvil fija con zonas que se amplían */
 .tl-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(2rem, 5vw, 5rem); margin-top: 6rem; }
-.tl-copy { position: relative; padding-left: 3rem; }
+.tl-copy { position: relative; padding-left: 3rem; min-width: 0; }
 .tl-rail { position: absolute; top: 0; bottom: 0; left: 0; width: 30px; pointer-events: none; }
 .tl-rail::before { content: ''; position: absolute; top: 0; bottom: 0; left: 14px; width: 1px; background: var(--line-strong); }
 .tl-rail-fill { position: absolute; top: 0; bottom: 0; left: 14px; width: 1px; background: var(--tone); box-shadow: 0 0 10px var(--tone); transform: scaleY(0); transform-origin: top; }
@@ -445,7 +445,7 @@ a.project-card { color: inherit; text-decoration: none; }
 .zone.is-active { opacity: 1; visibility: visible; transform: none; z-index: 4; border-color: var(--tone); box-shadow: 0 0 0 1px color-mix(in srgb, var(--tone) 60%, transparent), 0 18px 40px -12px color-mix(in srgb, var(--tone) 35%, transparent); }
 .zone.is-active .zone-label { opacity: 1; }
 @media (max-width: 860px) {
-  .tl-grid { grid-template-columns: 1fr; }
+  .tl-grid { grid-template-columns: minmax(0, 1fr); }
   .tl-sticky { position: relative; top: 0; height: auto; padding: 1rem 0 2rem; }
   .tl-chapter { min-height: 0; padding: 2rem 0; }
 }
