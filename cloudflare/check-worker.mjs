@@ -13,7 +13,7 @@ try {
   assert.equal(res.headers.get('x-frame-options'), 'SAMEORIGIN');
   assert.equal(res.headers.get('content-security-policy'), "frame-ancestors 'self'");
   assert.equal(res.headers.get('x-content-type-options'), 'nosniff');
-  assert.ok(res.headers.get('strict-transport-security'));
+  assert.equal(res.headers.get('strict-transport-security'), 'max-age=300', 'HSTS');
 
   globalThis.fetch = async () => new Response('nope', { status: 404 });
   const miss = await worker.fetch(new Request('https://carlosaldanacv.com/no-existe'));

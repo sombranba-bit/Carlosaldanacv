@@ -5,7 +5,7 @@ const HEADERS = {
   'X-Frame-Options': 'SAMEORIGIN',                     // para navegadores antiguos
   'X-Content-Type-Options': 'nosniff',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
-  'Strict-Transport-Security': 'max-age=31536000',
+  'Strict-Transport-Security': 'max-age=300', // 5 min al empezar; subir a 31536000 cuando todo funcione
 };
 
 export default {
