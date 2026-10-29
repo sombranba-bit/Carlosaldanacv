@@ -24,7 +24,6 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
         <a class="btn btn-primary magnetic" href={`${root}${ui.prefix}/proyectos`}>{ui.projects}</a>
         <a class="btn btn-ghost magnetic" href={root + "/cv.pdf"} download>{ui.cv}</a>
       </div>
-      <p class="hero-badge"><span aria-hidden="true">✓</span> {profile.badge}</p>
       <div class="tacho" aria-hidden="true" data-labels={JSON.stringify(chart.labels)} data-now={chart.now}>
       <div class="tacho-plot">
         {chart.lanes.map((segs, li) => (
@@ -76,7 +75,6 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
 
   <section class="section" id="trabajo">
     <div class="section-head reveal">
-      <span class="section-no">01</span>
       <div>
         <h2 class="gradient">{ui.workTitle}</h2>
         <p class="section-sub">{ui.workSub}</p>
@@ -102,7 +100,6 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
 
   <section class="section" id="experiencia">
     <div class="section-head reveal">
-      <span class="section-no">02</span>
       <h2 class="gradient">{ui.experience}</h2>
     </div>
     <div class="exp-layout">
@@ -135,7 +132,6 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
 
   <section class="section" id="formacion">
     <div class="section-head reveal">
-      <span class="section-no">03</span>
       <h2 class="gradient">{ui.eduTitle}</h2>
     </div>
     <div class="two reveal">
