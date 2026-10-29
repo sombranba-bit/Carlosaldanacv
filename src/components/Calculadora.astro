@@ -11,15 +11,15 @@ const locale = lang === 'en' ? 'en-GB' : 'es-ES';
 ---
 <Base title={`${u.calcTitle} · ${d.profile.name}`} active="" lang={lang} description={u.calcLead}>
   <section class="section calc">
-    <p class="eyebrow">{u.calcTitle}</p>
     <h1 class="calc-title">{u.calcTitle}</h1>
     <p class="calc-lead">{u.calcLead}</p>
 
     <form class="calc-form" id="calc-form" novalidate>
       <label class="calc-field">
         <span>{u.calcDate}</span>
-        <input type="date" id="calc-date" required />
+        <input type="date" id="calc-date" required aria-describedby="calc-help" />
       </label>
+      <p class="calc-help" id="calc-help">{u.calcHelp}</p>
       <p class="calc-error" id="calc-error" role="alert" hidden>{u.calcInvalid}</p>
     </form>
 

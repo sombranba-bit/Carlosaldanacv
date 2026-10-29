@@ -122,6 +122,7 @@ export const ui = {
   calcLeft: 'days left',
   calcOver: 'Deadline passed {n} days ago',
   calcInvalid: 'Enter a valid date.',
+  calcHelp: 'Enter the date of your last download. If you have downloaded several times, use the most recent one.',
   switchHref: '/',
   nav1: 'Work', nav2: 'Experience', nav3: 'Education', nav4: 'Contact',
   projects: 'View projects', cv: 'Download CV',

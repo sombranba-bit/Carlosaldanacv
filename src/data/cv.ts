@@ -122,6 +122,7 @@ export const ui = {
   calcLeft: 'días restantes',
   calcOver: 'Plazo vencido hace {n} días',
   calcInvalid: 'Introduce una fecha válida.',
+  calcHelp: 'Pon la fecha de tu última descarga. Si has descargado varias veces, usa la más reciente.',
   switchHref: '/en/',
   nav1: 'Trabajo', nav2: 'Experiencia', nav3: 'Formación', nav4: 'Contacto',
   projects: 'Ver proyectos', cv: 'Descargar CV',
