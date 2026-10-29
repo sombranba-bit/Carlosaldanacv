@@ -786,7 +786,7 @@ svg{display:block;width:100%;height:auto}
   function vehicleId(bytes) {
     const txt = Array.from(bytes.subarray(0, 8192), c => (c >= 32 && c < 127 ? String.fromCharCode(c) : ' ')).join('');
     const vin = (txt.match(/[A-HJ-NPR-Z0-9]{17}/) || [null])[0];
-    const m = txt.match(/\d{4} ?[B-DF-HJ-NP-TV-Z]{3}/);   // sometimes with a space: 0861 LLK
+    const m = txt.match(/\d{4} ?[B-DF-HJ-NP-TV-Z]{3}/);   // sometimes with a space: 0000 BCD
     // time after the plate: +13 in 1st generation, +18 in 2nd (in between, block header 03 00 04 00 01)
     const gen2 = bytes[0] === 0x76 && (bytes[1] === 0x21 || bytes[1] === 0x31);
     const t = m && m.index + 22 <= bytes.length ? timeReal(bytes, m.index + (gen2 ? 18 : 13)) : null;
