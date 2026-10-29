@@ -46,10 +46,9 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 .nav-list { display: flex; gap: 2.5rem; align-items: center; }
 .nav-link { display: inline-flex; align-items: baseline; gap: .5rem; padding: .5rem 0; font-size: 1.05rem; font-weight: 600; color: #d6d6d4; }
 .nav-index { font: 12px var(--font-mono); color: var(--accent); opacity: .85; transition: color .3s var(--ease), opacity .3s var(--ease); }
-.nav-text { display: inline-block; position: relative; overflow: hidden; }
-.nav-text::after { content: attr(data-text); position: absolute; top: 100%; left: 0; color: var(--fg); }
-.nav-text, .nav-text::after { transition: transform .4s var(--ease); }
-.nav-link:hover .nav-text { transform: translateY(-100%); }
+.nav-text { display: inline-block; position: relative; }
+.nav-text::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease); }
+.nav-link:hover .nav-text::after, .nav-link.active .nav-text::after { transform: scaleX(1); }
 .nav-link:hover .nav-index, .nav-link.active .nav-index { color: var(--accent); opacity: 1; }
 .nav-link.active .nav-text { color: var(--fg); }
 .nav-link:hover { color: var(--fg); }
