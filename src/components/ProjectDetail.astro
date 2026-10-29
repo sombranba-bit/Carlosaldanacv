@@ -12,8 +12,7 @@ const p = d.projects[i];
 const info = detail[lang][i];
 // Solo la herramienta con demo lleva la línea de recorrido con pantallas de panel; el resto muestra sus puntos en texto
 const dashboard = info.slug === 'panel-infracciones';
-const tones = ['#ffb000', '#5fe3b0', '#8fb4ff'];
-const tone = tones[i];
+const tone = info.tone;
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const base = root + d.ui.prefix;
 const back = lang === 'en' ? '← All projects' : '← Todos los proyectos';
