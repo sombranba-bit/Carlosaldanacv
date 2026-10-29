@@ -651,7 +651,7 @@ a.project-card { color: inherit; text-decoration: none; }
 /* Portada de herramientas: la primera tarjeta ocupa el ancho completo */
 @media (min-width: 961px) {
   .grid-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .grid-cards > .project-card:first-child { grid-column: 1 / -1; flex-direction: row; }
+  .grid-cards > .project-card:first-child { grid-column: 1 / -1; flex-direction: row; padding-bottom: 0; }
   .grid-cards > .project-card:first-child .thumb { width: 42%; height: auto; min-height: 260px; border-bottom: 0; border-right: 1px solid var(--line); }
-  .grid-cards > .project-card:first-child .card-body { justify-content: center; padding-top: 2.2rem; }
+  .grid-cards > .project-card:first-child .card-body { justify-content: center; padding: 2.2rem 2rem; }
 }
