@@ -4,11 +4,20 @@ import '../styles/global.css';
 import * as es from '../data/cv';
 import * as en from '../data/cv.en';
 
-interface Props { title: string; active?: string; lang: 'es' | 'en'; }
-const { title, active = '', lang } = Astro.props;
+interface Props { title: string; active?: string; lang: 'es' | 'en'; description?: string; image?: string; jsonld?: Record<string, unknown>; }
+const { title, active = '', lang, description, image, jsonld } = Astro.props;
 const d = lang === 'en' ? en : es;
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const p = root + d.ui.prefix;
+const desc = description ?? `${d.profile.title} · ${d.profile.tagline}`;
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const imgUrl = new URL(image ?? root + '/avatar.jpg', Astro.site).href;
+const person = {
+  '@context': 'https://schema.org', '@type': 'Person', name: d.profile.name, jobTitle: d.profile.title,
+  url: new URL(root + '/', Astro.site).href, image: new URL(root + '/avatar.jpg', Astro.site).href,
+  address: { '@type': 'PostalAddress', addressLocality: 'Zaragoza', addressRegion: 'Aragón', addressCountry: 'ES' },
+  sameAs: [d.profile.linkedin],
+};
 ---
 <!doctype html>
 <html lang={lang}>
@@ -16,14 +25,34 @@ const p = root + d.ui.prefix;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0b0b0b" />
-    <meta name="description" content={`${d.profile.title} · ${d.profile.tagline}`} />
+    <meta name="description" content={desc} />
     <title>{title}</title>
+    <link rel="canonical" href={pageUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={d.profile.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={imgUrl} />
+    <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'es_ES'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={desc} />
+    <meta name="twitter:image" content={imgUrl} />
     <link rel="icon" href={root + "/avatar.jpg"} />
     <link rel="alternate" hreflang="es" href={root + "/"} />
     <link rel="alternate" hreflang="en" href={root + "/en/"} />
+    <link rel="alternate" hreflang="x-default" href={root + "/"} />
+    <script is:inline>
+      // Tema guardado antes de pintar, para evitar parpadeo
+      try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
+    {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
     <ClientRouter />
   </head>
   <body>
+    <a class="skip-link" href="#main">{d.ui.skip}</a>
     <div class="intro" aria-hidden="true">
       <div class="intro-box">
       <svg viewBox="0 0 200 200">
@@ -54,6 +83,7 @@ const p = root + d.ui.prefix;
         </nav>
         <div class="nav-actions">
           <a href={root + d.ui.switchHref} class="lang">{d.ui.switchLabel}</a>
+          <button type="button" class="theme-btn" aria-label={d.ui.theme} title={d.ui.theme}><span aria-hidden="true">◐</span></button>
           <a href={`${p}/#contacto`} class="cta magnetic">{d.ui.contact}</a>
         </div>
       </div>
@@ -76,8 +106,24 @@ const p = root + d.ui.prefix;
         });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
       }
+      // Cambio manual de tema (claro/oscuro), recordado en este navegador
+      function themeToggle() {
+        const btn = document.querySelector('.theme-btn');
+        if (!btn || btn.dataset.bound) return;
+        btn.dataset.bound = '1';
+        btn.addEventListener('click', () => {
+          const root = document.documentElement;
+          const dark = (root.dataset.theme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')) === 'dark';
+          root.dataset.theme = dark ? 'light' : 'dark';
+          try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+        });
+      }
+      document.addEventListener('astro:page-load', themeToggle);
+      themeToggle();
     </script>
-    <slot />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
     
     <footer class="bottom-bar">
       <span class="mono">© {new Date().getFullYear()} {d.profile.name}</span>

@@ -35,7 +35,7 @@ const photos = {
   'lector-tgd': { src: '/img/lkw-tachograph-aufgeklappt-bj-1958.jpg', alt: lang === 'en' ? 'Analogue tachograph from 1958 with its cover open' : 'Tacógrafo analógico de 1958 con la tapa abierta', credit: lang === 'en' ? 'Photo: “LKW-Tachograph aufgeklappt Bj.1958” by selbst, public domain, via Wikimedia Commons.' : 'Foto: “LKW-Tachograph aufgeklappt Bj.1958” de selbst, dominio público, vía Wikimedia Commons.' },
 }[info.slug];
 ---
-<Base title={`${p.name} · ${d.profile.name}`} active="proyectos" lang={lang}>
+<Base title={`${p.name} · ${d.profile.name}`} active="proyectos" lang={lang} description={info.tagline ? `${p.name}. ${info.tagline}` : undefined} image={info.shot ?? photos?.src} jsonld={{ '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: p.name, description: info.body, applicationCategory: 'BusinessApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, author: { '@type': 'Person', name: d.profile.name } }}>
   <section class="section detail" style={`--tone:${tone}`}>
     <div class="detail-art" aria-hidden="true"></div>
     <a class="detail-back" href={`${base}/proyectos`}>{back}</a>

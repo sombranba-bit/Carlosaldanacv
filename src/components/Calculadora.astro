@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import * as es from '../data/cv';
+import * as en from '../data/cv.en';
+
+interface Props { lang: 'es' | 'en'; }
+const { lang } = Astro.props;
+const d = lang === 'en' ? en : es;
+const u = d.ui;
+const locale = lang === 'en' ? 'en-GB' : 'es-ES';
+---
+<Base title={`${u.calcTitle} · ${d.profile.name}`} active="" lang={lang} description={u.calcLead}>
+  <section class="section calc">
+    <p class="eyebrow">{u.calcTitle}</p>
+    <h1 class="calc-title">{u.calcTitle}</h1>
+    <p class="calc-lead">{u.calcLead}</p>
+
+    <form class="calc-form" id="calc-form" novalidate>
+      <label class="calc-field">
+        <span>{u.calcDate}</span>
+        <input type="date" id="calc-date" required />
+      </label>
+      <p class="calc-error" id="calc-error" role="alert" hidden>{u.calcInvalid}</p>
+    </form>
+
+    <div class="calc-results" id="calc-results" hidden>
+      <article class="calc-card">
+        <h2>{u.calcCard}</h2>
+        <p class="calc-due"><span>{u.calcDue}</span> <b data-out="card-due">—</b></p>
+        <p class="calc-left" data-out="card-left">—</p>
+      </article>
+      <article class="calc-card">
+        <h2>{u.calcVehicle}</h2>
+        <p class="calc-due"><span>{u.calcDue}</span> <b data-out="veh-due">—</b></p>
+        <p class="calc-left" data-out="veh-left">—</p>
+      </article>
+    </div>
+  </section>
+
+  <script define:vars={{ locale, leftTxt: u.calcLeft, overTxt: u.calcOver }}>
+    // Todo el cálculo en UTC para que la zona horaria del visitante no mueva las fechas
+    const DAY = 864e5;
+    const form = document.getElementById('calc-form');
+    const input = document.getElementById('calc-date');
+    const err = document.getElementById('calc-error');
+    const res = document.getElementById('calc-results');
+    const fmt = (t) => new Date(t).toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+    const today = () => { const n = new Date(); return Date.UTC(n.getFullYear(), n.getMonth(), n.getDate()); };
+    const left = (due) => {
+      const days = Math.round((due - today()) / DAY);
+      return days >= 0 ? `${days} ${leftTxt}` : overTxt.replace('{n}', String(-days));
+    };
+    const show = () => {
+      const v = input.value;
+      if (!v) { res.hidden = true; err.hidden = true; return; }
+      const [y, m, dd] = v.split('-').map(Number);
+      const t = Date.UTC(y, m - 1, dd);
+      if (Number.isNaN(t) || new Date(t).getUTCDate() !== dd) { res.hidden = true; err.hidden = false; return; }
+      err.hidden = true;
+      const card = t + 28 * DAY, veh = t + 90 * DAY;
+      const set = (k, val) => { document.querySelector(`[data-out="${k}"]`).textContent = val; };
+      set('card-due', fmt(card)); set('card-left', left(card));
+      set('veh-due', fmt(veh)); set('veh-left', left(veh));
+      res.hidden = false;
+    };
+    input.addEventListener('input', show);
+    form.addEventListener('submit', (e) => { e.preventDefault(); show(); });
+  </script>
+</Base>

@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import * as es from '../data/cv';
+const d = es;
+---
+<Base title={`${d.ui.notFound} · ${d.profile.name}`} lang="es" description={d.ui.notFoundText}>
+  <section class="section calc">
+    <p class="eyebrow">404</p>
+    <h1 class="calc-title">{d.ui.notFound}</h1>
+    <p class="calc-lead">{d.ui.notFoundText}</p>
+    <p><a class="btn btn-primary" href="/">{d.ui.backHome}</a></p>
+  </section>
+</Base>
