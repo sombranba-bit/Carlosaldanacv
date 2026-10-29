@@ -2,7 +2,7 @@ export const profile = {
   badge: 'Certificado de Competencia Profesional para el Transporte de Mercancías por Carretera',
   name: 'Carlos Aldana Guillén',
   title: 'Responsable de Tacógrafos',
-  tagline: 'Cumplimiento normativo · Gestión de flotas · Power BI, automatización e IA',
+  tagline: 'Ayudo a flotas de transporte a cumplir la normativa de tacógrafos',
   location: 'Zaragoza, Aragón, España',
   phone: '653 860 798',
   phoneHref: '+34653860798',

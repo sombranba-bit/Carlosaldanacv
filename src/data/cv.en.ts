@@ -2,7 +2,7 @@ export const profile = {
   badge: 'Certificate of Professional Competence (CPC) for Road Freight Transport',
   name: 'Carlos Aldana Guillén',
   title: 'Tachograph Compliance Manager',
-  tagline: 'Regulatory compliance · Fleet management · Power BI, process automation and AI',
+  tagline: 'I help transport fleets stay compliant with tachograph rules',
   location: 'Zaragoza, Aragon, Spain',
   phone: '653 860 798',
   phoneHref: '+34653860798',

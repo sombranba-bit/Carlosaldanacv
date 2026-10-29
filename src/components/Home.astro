@@ -19,11 +19,11 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
         <span class="line line-accent">{ext.heroLine2}</span>
       </h1>
       <p class="hero-sub">{profile.tagline}. {ui.lead}</p>
-      <p class="hero-badge"><span aria-hidden="true">✓</span> {profile.badge}</p>
       <div class="hero-actions">
         <a class="btn btn-primary magnetic" href={`${root}${ui.prefix}/proyectos`}>{ui.projects}</a>
         <a class="btn btn-ghost magnetic" href={root + "/cv.pdf"} download>{ui.cv}</a>
       </div>
+      <p class="hero-badge"><span aria-hidden="true">✓</span> {profile.badge}</p>
       <div class="tacho" aria-hidden="true" data-labels={JSON.stringify(chart.labels)} data-now={chart.now}>
       <div class="tacho-plot">
         {chart.lanes.map((segs, li) => (
@@ -66,7 +66,8 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
   <section class="section" id="acerca">
     <div class="section-head"><h2 class="gradient">{ui.aboutTitle}</h2></div>
     <div class="about">
-      {about.map((t, i) => <p class="reveal" style={`--d:${i * 0.1}s`}>{t}</p>)}
+      <div>{about.map((t, i) => <p class="reveal" style={`--d:${i * 0.1}s`}>{t}</p>)}</div>
+      <figure class="about-photo reveal"><img src={root + "/avatar.jpg"} alt={profile.name} loading="lazy" /></figure>
     </div>
   </section>
 
@@ -138,13 +139,15 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
       <div>
         <h3>{ui.education}</h3>
         <ul>{education.map((e) => <li>{e.title}<small>{e.place} · {e.period}</small></li>)}</ul>
-        <h3 style="margin-top:40px">{ui.certsTitle}</h3>
-        <ul>{certs.map((c) => <li>{c.title}<small>{c.place}</small></li>)}</ul>
       </div>
       <div>
-        <h3>{ui.skillsTitle}</h3>
-        <ul class="tech">{skills.map((s) => <li>{s}</li>)}</ul>
+        <h3>{ui.certsTitle}</h3>
+        <ul>{certs.map((c) => <li>{c.title}<small>{c.place}</small></li>)}</ul>
       </div>
+    </div>
+    <div class="skills reveal">
+      <h3>{ui.skillsTitle}</h3>
+      <ul class="tech">{skills.map((s) => <li>{s}</li>)}</ul>
     </div>
   </section>
 
