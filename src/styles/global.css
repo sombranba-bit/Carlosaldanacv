@@ -1,3 +1,12 @@
+/* Fuentes alojadas aquí (latin, Fontsource/SIL OFL): sin petición a Google */
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/inter-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/inter-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/inter-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/inter-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Playfair Display'; font-style: italic; font-weight: 400; font-display: swap; src: url('/fonts/playfair-display-latin-400-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Playfair Display'; font-style: italic; font-weight: 500; font-display: swap; src: url('/fonts/playfair-display-latin-500-italic.woff2') format('woff2'); }
 
 :root {
   color-scheme: dark;
@@ -52,7 +61,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 
 /* Fondo: rejilla, resplandor */
 .background { position: fixed; inset: 0; z-index: -1; background: var(--bg); overflow: hidden; pointer-events: none; }
-.glow { position: absolute; top: -30vh; left: 50%; transform: translateX(-50%); width: 90vw; height: 70vh; filter: blur(40px); background: radial-gradient(#ffb0000d, color-mix(in srgb, var(--ink) 2%, transparent) 45%, #0000 70%); }
+.glow { position: absolute; top: -30vh; left: 50%; transform: translateX(-50%); width: 90vw; height: 70vh; background: radial-gradient(#ffb0000d, color-mix(in srgb, var(--ink) 2%, transparent) 45%, #0000 70%); }
 .grid { opacity: .6; position: absolute; inset: 0; background-repeat: no-repeat; background-position: 50% 50%; background-size: min(720px, 110vw) auto; -webkit-mask-image: radial-gradient(at 50% 50%, #000 0%, #0000 75%); mask-image: radial-gradient(at 50% 50%, #000 0%, #0000 75%); }
 
 /* Cabecera */

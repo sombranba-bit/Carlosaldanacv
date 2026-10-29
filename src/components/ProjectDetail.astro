@@ -66,7 +66,7 @@ const photos = {
             </div>
           ) : info.shot ? (
             <div class="device device-shot">
-              <img src={root + info.shot} alt="" loading="lazy" />
+              <img src={root + info.shot} alt={lang === 'en' ? `${p.name} screen: download summary by driver and vehicle` : `Pantalla de ${p.name}: resumen de descargas por conductor y vehículo`} loading="lazy" />
             </div>
           ) : (
             <div class="device device-icon">
@@ -136,7 +136,7 @@ const photos = {
     )}
     {info.shots.length > 0 && (
       <div class="detail-shots reveal">
-        {info.shots.map((src) => <img src={root + src} alt="" loading="lazy" />)}
+        {info.shots.map((src, k) => <img src={root + src} alt={lang === 'en' ? `${p.name} screenshot ${k + 1}` : `Captura ${k + 1} de ${p.name}`} loading="lazy" />)}
       </div>
     )}
 

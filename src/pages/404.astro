@@ -1,13 +1,30 @@
 ---
 import Base from '../layouts/Base.astro';
 import * as es from '../data/cv';
+import * as en from '../data/cv.en';
 const d = es;
 ---
-<Base title={`${d.ui.notFound} · ${d.profile.name}`} lang="es" description={d.ui.notFoundText}>
+<Base title={`${es.ui.notFound} · ${es.profile.name}`} lang="es" description={es.ui.notFoundText}>
   <section class="section calc">
-    <p class="eyebrow">404</p>
-    <h1 class="calc-title">{d.ui.notFound}</h1>
-    <p class="calc-lead">{d.ui.notFoundText}</p>
-    <p><a class="btn btn-primary" href="/">{d.ui.backHome}</a></p>
+    <div data-404="es">
+      <p class="eyebrow">404</p>
+      <h1 class="calc-title">{es.ui.notFound}</h1>
+      <p class="calc-lead">{es.ui.notFoundText}</p>
+      <p><a class="btn btn-primary" href="/">{es.ui.backHome}</a></p>
+    </div>
+    <div data-404="en" hidden lang="en">
+      <p class="eyebrow">404</p>
+      <h1 class="calc-title">{en.ui.notFound}</h1>
+      <p class="calc-lead">{en.ui.notFoundText}</p>
+      <p><a class="btn btn-primary" href="/en/">{en.ui.backHome}</a></p>
+    </div>
   </section>
+  <script>
+    // La página 404 es única para todo el sitio: muestra el idioma de la ruta visitada
+    if (location.pathname.startsWith('/en/')) {
+      document.documentElement.lang = 'en';
+      document.querySelector('[data-404="es"]').hidden = true;
+      document.querySelector('[data-404="en"]').hidden = false;
+    }
+  </script>
 </Base>
