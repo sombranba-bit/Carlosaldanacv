@@ -66,7 +66,7 @@ const photos = {
             </div>
           ) : info.shot ? (
             <div class="device device-shot">
-              <img src={root + info.shot} alt={lang === 'en' ? `${p.name} screen: download summary by driver and vehicle` : `Pantalla de ${p.name}: resumen de descargas por conductor y vehículo`} loading="lazy" />
+              <img src={root + info.shot} alt={lang === 'en' ? `${p.name} screen` : `Pantalla de ${p.name}`} loading="lazy" />
             </div>
           ) : (
             <div class="device device-icon">
