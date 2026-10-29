@@ -31,12 +31,12 @@ export const projects = [
 export const experience = [
   {
     period: '05/2025 – Present',
-    role: 'Tachograph Manager',
+    role: 'Tachograph Compliance Manager',
     company: 'Transportes Ocón',
     bullets: [
       'Full tachograph management for a fleet of 500+ vehicles and 600+ drivers: downloads, data analysis and compliance tracking.',
       'Supervision of driving and rest times (Regulation (EC) 561/2006), with a sustained reduction in repeat serious and very serious infringements.',
-      'Design of control dashboards and in-house tools to track infringements and downloads, plus individual notices to drivers.',
+      'Design of control dashboards and in-house tools to track infringements and downloads.',
       'Management of transport penalties and coordination of transport inspections.',
     ],
   },
