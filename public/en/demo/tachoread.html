@@ -136,7 +136,7 @@ main{width:100%;margin:0 auto;padding:28px 36px 72px}
 .feat h3{font:700 16px var(--sans);margin:0 0 6px}
 .feat p{font-size:14px;color:var(--mut);margin:0}
 .privacy{font-size:13px;color:var(--mut);text-align:center;margin:0}
-/* aplicación */
+/* application */
 .ficha{display:grid;grid-template-columns:1.5fr 1fr 1fr;background:var(--card);border:1px solid var(--rule);border-radius:16px;margin-bottom:20px;overflow:hidden;box-shadow:var(--shadow)}
 .ficha > div{padding:16px 22px;border-right:1px solid var(--rule)}
 .ficha > div:last-child{border-right:0}
@@ -262,7 +262,7 @@ svg{display:block;width:100%;height:auto}
 .c-nav{margin-top:10px}
 .c-alert{margin-top:8px;padding:7px 10px}
 
-/* ---- movimiento: tarjeta flotante, transiciones del carrusel, progreso ---- */
+/* ---- motion: floating card, carousel transitions, progress ---- */
 @keyframes levit{0%,100%{transform:translateY(0)}12.5%{transform:translateY(-1.17px)}25%{transform:translateY(-4px)}37.5%{transform:translateY(-6.83px)}50%{transform:translateY(-8px)}62.5%{transform:translateY(-6.83px)}75%{transform:translateY(-4px)}87.5%{transform:translateY(-1.17px)}}
 @keyframes inR{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
 @keyframes inL{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:none}}
@@ -431,15 +431,15 @@ svg{display:block;width:100%;height:auto}
   <p id="err" class="warnbox hide"></p>
 </main>
 <script>
-/* Compliance: Regulation (EC) 561/2006 (DOUE L 102, 11.4.2006), con códigos del Baremo sancionador v7.4 (5-oct-2026).
-   Segmentos: [{start, end, activity}] en ms UTC, ordenados, sin solapes.
-   Pausa: 45 min seguidos, o 15 min y después 30 min (art. 7). Otra forma no cuenta.
-   Daily rest: 11 h; reducido 9–11 h (máx. 3 entre semanales); fraccionado 3 h + 9 h (art. 8).
-   Weekly rest: dos normales, o uno normal y uno reducido (≥24 h) en dos semanas seguidas (art. 8.6).
-   Compensación de reducido: bloque de la diferencia con 45 h + 9 h, antes del fin de la 3.ª semana siguiente (art. 8.6 y 8.7).
-   shortcut: los códigos de baremo son el código base; las bandas por exceso se revisan contra la tabla completa.
-   shortcut: dos descansos seguidos sin cambio en la tarjeta aparecen fundidos; el orden no se puede verificar.
-   shortcut: se usa la duración total del descanso, no la parte dentro de las 24 h (art. 8.2). */
+/* Compliance: Regulation (EC) 561/2006 (OJ L 102, 11.4.2006), with infringement codes from the sanctions table v7.4 (5 Oct 2026).
+   Segments: [{start, end, activity}] in ms UTC, sorted, non-overlapping.
+   Break: 45 min in one go, or 15 min followed by 30 min (art. 7). Any other form does not count.
+   Daily rest: 11 h; reduced 9–11 h (max. 3 between weekly rests); split 3 h + 9 h (art. 8).
+   Weekly rest: two regular, or one regular and one reduced (≥24 h) in two consecutive weeks (art. 8.6).
+   Reduced-rest compensation: block of the difference against 45 h + 9 h, before the end of the 3rd following week (art. 8.6 and 8.7).
+   shortcut: the table codes are the base code; the excess bands are checked against the full table.
+   shortcut: two consecutive rests with no change on the card appear merged; their order cannot be verified.
+   shortcut: the total rest duration is used, not the part within 24 h (art. 8.2). */
 (function (root) {
   'use strict';
   const MIN = 60000, H = 60 * MIN, DAY = 24 * H, WEEK = 7 * DAY;
@@ -470,14 +470,14 @@ svg{display:block;width:100%;height:auto}
     const f = [];
     const add = (type, at, detail, cod, base) => f.push({ type, sev: 'infraccion', at: iso(at), detail, cod: cod || null, base: base || null });
     const gaps = [];
-    for (const s of input) if (s.unrecorded && s.end - s.start >= DAY) {   // tarjeta no insertada: sin registro, cuenta como descanso
+    for (const s of input) if (s.unrecorded && s.end - s.start >= DAY) {   // card not inserted: no record, counts as rest
       gaps.push(s);
       f.push({ type: 'period without records', sev: 'aviso', at: iso(s.start), detail: `${((s.end - s.start) / DAY).toFixed(0)} days with the card not inserted and no activity recorded. Counted as rest.` });
     }
     const segs = fillGaps(input, f, gaps);
     const dataEnd = input.length ? Math.max(...input.map(s => s.end)) : 0;
 
-    // 1. Breaks (art. 7). Pausa válida: ≥45 min, o ≥15 min seguida de ≥30 min.
+    // 1. Breaks (art. 7). Valid break: ≥45 min, or ≥15 min followed by ≥30 min.
     let acc = 0, warned = false, pending15 = false;
     for (const s of segs) {
       const dur = s.end - s.start;
@@ -489,19 +489,19 @@ svg{display:block;width:100%;height:auto}
           warned = true;
         }
       } else if (s.activity === 'work' || s.activity === 'availability') {
-        pending15 = false;   // trabajo u otra actividad entre medias: la pausa de 15 deja de contar
+        pending15 = false;   // work or another activity in between: the 15-min break no longer counts
       } else if (s.activity === 'rest/break') {
         if (dur >= 45 * MIN || (dur >= 30 * MIN && pending15)) { acc = 0; warned = false; pending15 = false; }
         else if (dur >= 15 * MIN) pending15 = true;
       }
     }
 
-    // 2. Rests ≥ 9 h: separan los periodos diarios de conducción
+    // 2. Rests ≥ 9 h: separate the daily driving periods
     const rests = segs.filter(s => s.activity === 'rest/break' && s.end - s.start >= 9 * H)
       .map(s => ({ start: s.start, end: s.end, h: (s.end - s.start) / H, kind: kindOf((s.end - s.start) / H) }));
     const weekly = rests.filter(r => r.h >= 24);
 
-    // 3. Daily driving (art. 6.1): 9 h, prórroga a 10 h máx. dos veces por semana
+    // 3. Daily driving (art. 6.1): 9 h, extendable to 10 h max. twice a week
     const periods = [];
     for (let i = 0; i + 1 < rests.length; i++) {
       const a = rests[i].end, b = rests[i + 1].start;
@@ -520,25 +520,25 @@ svg{display:block;width:100%;height:auto}
     for (const w in ext) if (ext[w] > 2) add('extension', +w, `${ext[w]} days with more than 9 h in the week (maximum 2 extensions)`, 'CA23', 100);
     periods.forEach(p => { if (p.drivingH > 9 && p.drivingH <= 10 && !p.extended) p.extended = false; });
 
-    // 4. Daily rest (art. 8.2): el siguiente descanso diario en las 24 h tras el fin del anterior
+    // 4. Daily rest (art. 8.2): the next daily rest within 24 h after the end of the previous one
     for (let i = 0; i + 1 < rests.length; i++) {
       const nxt = rests[i + 1];
       if (nxt.h < 24 && nxt.start - rests[i].end > DAY) add('rest', rests[i].end, 'more than 24 h between the end of one rest and the next daily rest', null, null);
     }
-    // 5. Máximo 3 descansos diarios reducidos entre dos semanales (art. 8.4)
+    // 5. Max. 3 reduced daily rests between two weekly rests (art. 8.4)
     let reduced = 0;
     for (const r of rests) {
       if (r.h >= 24) { reduced = 0; continue; }
       if (r.h < 11 && ++reduced > 3) add('rest', r.start, 'more than 3 reduced daily rests between two weekly rests', null, null);
     }
 
-    // 6. Weekly rest: máximo 144 h (6 × 24 h) entre semanales (art. 8.6)
+    // 6. Weekly rest: max. 144 h (6 × 24 h) between weekly rests (art. 8.6)
     for (let i = 0; i + 1 < weekly.length; i++) {
       const gap = weekly[i + 1].start - weekly[i].end;
       if (gap > 6 * DAY) add('weekly', weekly[i].end, `${(gap / H).toFixed(0)} h between weekly rests (maximum 144 h)`, 'CB71', 2001);
     }
 
-    // 7. Two weeks in a row: dos normales, o uno normal y uno reducido (art. 8.6)
+    // 7. Two weeks in a row: two regular, or one regular and one reduced (art. 8.6)
     const drvWeek = {};
     for (const s of segs) {
       if (s.activity !== 'driving') continue;
@@ -551,8 +551,8 @@ svg{display:block;width:100%;height:auto}
     const wkRest = (w) => weekly.filter(r => r.start < w + WEEK && r.end > w);
     for (let i = 0; i + 1 < allWeeks.length; i++) {
       const w1 = allWeeks[i], w2 = allWeeks[i + 1];
-      if (w2 + WEEK > dataEnd) break;                       // última pareja incompleta: no se evalúa
-      const a = w1, b = w2 + WEEK;                          // descansos que tocan el par (sin contar dos veces)
+      if (w2 + WEEK > dataEnd) break;                       // last incomplete pair: not evaluated
+      const a = w1, b = w2 + WEEK;                          // rests touching the pair (not counted twice)
       const rs = weekly.filter(r => r.start < b && r.end > a);
       const normal = rs.filter(r => r.h >= 45).length, red = rs.filter(r => r.h >= 24 && r.h < 45).length;
       if (normal >= 2 || (normal >= 1 && red >= 1)) continue;
@@ -561,7 +561,7 @@ svg{display:block;width:100%;height:auto}
       else add('weekly', w1, msg, 'CB51', 1001);
     }
 
-    // 8. Compensación del descanso semanal reducido (art. 8.6 y 8.7): diferencia con 45 h + 9 h, antes del fin de la 3.ª semana siguiente
+    // 8. Compensation of reduced weekly rest (art. 8.6 and 8.7): difference against 45 h + 9 h, before the end of the 3rd following week
     for (const r of weekly) {
       if (r.h >= 45) continue;
       const deficit = 45 - r.h, deadline = weekStart(r.start) + 4 * WEEK;
@@ -571,7 +571,7 @@ svg{display:block;width:100%;height:auto}
       else add('make-up', r.start, msg, 'CB61', 1001);
     }
 
-    // 9. Driving semanal (56 h) y bisemanal (90 h), semana lunes 00:00 a domingo 24:00 UTC
+    // 9. Weekly (56 h) and fortnightly (90 h) driving, week Monday 00:00 to Sunday 24:00 UTC
     for (const w of wkeys) {
       const h = drvWeek[w] / H;
       if (h > 56) {
@@ -588,7 +588,7 @@ svg{display:block;width:100%;height:auto}
       }
     }
 
-    // Hallazgos cerca de un periodo sin registrar: pasan a aviso
+    // Findings close to an unrecorded period: downgraded to notice
     for (const x of f) {
       const t = Date.parse(x.at);
       if (x.sev === 'infraccion' && gaps.some(g => t >= g.start - DAY && t <= g.end + DAY)) {
@@ -613,8 +613,8 @@ svg{display:block;width:100%;height:auto}
 
 </script>
 <script>
-/* Lector de archivos TGD / DDD (tacógrafo digital, descarga de tarjeta de conductor).
-   Sin dependencias. Funciona en el navegador y en Node (module.exports). */
+/* TGD / DDD file reader (digital tachograph, driver card download).
+   No dependencies. Works in the browser and in Node (module.exports). */
 (function (root) {
   'use strict';
 
@@ -638,18 +638,18 @@ svg{display:block;width:100%;height:auto}
     return out;
   }
 
-  // Secciones en claro (flag 0), primera aparición de cada etiqueta
+  // Plain sections (flag 0), first occurrence of each tag
   function sections(bytes) {
     const s = {};
     for (const b of readBlocks(bytes)) if (b.crypt === 0 && b.value && !(b.tag in s)) s[b.tag] = b.value;
     return s;
   }
 
-  function timeReal(v, o) {  // segundos desde 1970-01-01 UTC
+  function timeReal(v, o) {  // seconds since 1970-01-01 UTC
     const t = be32(v, o);
     return t ? new Date(t * 1000) : null;
   }
-  function txt(v) {  // primer byte < 0x20 = marcador de codificación
+  function txt(v) {  // first byte < 0x20 = encoding marker
     let s = v;
     if (s.length && s[0] < 0x20) s = s.subarray(1);
     let r = ''; for (const c of s) r += String.fromCharCode(c);
@@ -683,7 +683,7 @@ svg{display:block;width:100%;height:auto}
     };
   }
 
-  // Ciclo de days: cabecera 2+2 bytes, después registros de longitud variable
+  // Days cycle: 2+2 byte header, then variable-length records
   function activityDays(v) {
     const ring = v.subarray(4), size = ring.length;
     const rd = (q, n) => { const o = new Uint8Array(n); for (let i = 0; i < n; i++) o[i] = ring[(q + i) % size]; return o; };
@@ -703,7 +703,7 @@ svg{display:block;width:100%;height:auto}
     return days;
   }
 
-  // Minutos por actividad de cada día + tramos absolutos para descansos
+  // Minutes per activity for each day + absolute spans for rests
   function summarizeDays(days) {
     const timeline = [];
     const out = days.map((day, di) => {
@@ -780,27 +780,27 @@ svg{display:block;width:100%;height:auto}
     return out;
   }
 
-  // Identificación de una descarga de vehículo (1ª generación): VIN, matrícula y hora actual de la VU.
-  // La cabecera va tras el VIN: la matrícula seguida de su TimeReal es el primer registro (DDP_055).
-  // shortcut: validada contra los nombres de fichero de 22 descargas (1ª y 2ª gen.); el formato 76 31 no se ha decodificado.
+  // Identification of a vehicle download (1st generation): VIN, plate and current VU time.
+  // The header follows the VIN: the plate followed by its TimeReal is the first record (DDP_055).
+  // shortcut: validated against the file names of 22 downloads (1st and 2nd gen.); the 76 31 format has not been decoded.
   function vehicleId(bytes) {
     const txt = Array.from(bytes.subarray(0, 8192), c => (c >= 32 && c < 127 ? String.fromCharCode(c) : ' ')).join('');
     const vin = (txt.match(/[A-HJ-NPR-Z0-9]{17}/) || [null])[0];
-    const m = txt.match(/\d{4} ?[B-DF-HJ-NP-TV-Z]{3}/);   // a veces con espacio: 0861 LLK
-    // hora tras la matrícula: +13 en 1ª generación, +18 en 2ª (entre medias, cabecera de bloque 03 00 04 00 01)
+    const m = txt.match(/\d{4} ?[B-DF-HJ-NP-TV-Z]{3}/);   // sometimes with a space: 0861 LLK
+    // time after the plate: +13 in 1st generation, +18 in 2nd (in between, block header 03 00 04 00 01)
     const gen2 = bytes[0] === 0x76 && (bytes[1] === 0x21 || bytes[1] === 0x31);
     const t = m && m.index + 22 <= bytes.length ? timeReal(bytes, m.index + (gen2 ? 18 : 13)) : null;
     const vuTime = t && t.getUTCFullYear() >= 2010 && t.getUTCFullYear() <= 2040 ? t : null;
     return { vin, plate: m ? m[0].replace(' ', '') : null, vuTime: vuTime ? vuTime.toISOString() : null };
   }
 
-  // Punto de entrada: bytes del archivo -> datos listos para tablas y gráficas
+  // Entry point: file bytes -> data ready for tables and charts
   function parseTGD(buffer) {
     const bytes = new Uint8Array(buffer);
     const blocks = readBlocks(bytes);
     const s = sections(bytes);
     if (!s[0x0520] || !s[0x0504]) {
-      // Vehicle unit download: aún sin decodificar (falta un archivo de ejemplo).
+      // Vehicle unit download: not decoded yet (a sample file is missing).
       const inv = {};
       for (const b of blocks) { const k = '0x' + b.tag.toString(16).padStart(4, '0'); inv[k] ??= { tag: k, blocks: 0, bytes: 0 }; inv[k].blocks++; inv[k].bytes += b.n; }
       return { kind: 'vehiculo', fileBytes: bytes.length, vehicle: vehicleId(bytes), inventory: Object.values(inv).sort((a, b) => a.tag.localeCompare(b.tag)), complete: blocks.every(b => b.value !== null) };
@@ -833,10 +833,10 @@ svg{display:block;width:100%;height:auto}
 
 </script>
 <script>
-/* Verificación de firmas G2 (brainpoolP256r1 + SHA-256) de una descarga de tarjeta.
-   Sin dependencias: aritmética con BigInt y SHA-256 de WebCrypto. Funciona en el navegador y en Node. */
+/* G2 signature verification (brainpoolP256r1 + SHA-256) of a card download.
+   No dependencies: BigInt arithmetic and WebCrypto SHA-256. Works in the browser and in Node. */
 const TGDSIG = (() => {
-  // ERCA Gen2: certificado raíz (CVC), clave pública verificada contra su propia firma
+  // ERCA Gen2: root certificate (CVC), public key verified against its own signature
   const ERCA = {
     x: 0x08c04e3926c8de85544240cde40dab70d2b47e0f83762522d7b0b8543b9b29dcn,
     y: 0x80e5c67b82a62d55e3483ab4b00a24c2a2566c3786797a1a052822ab4bf1f292n,
@@ -871,7 +871,7 @@ const TGDSIG = (() => {
   }
 
   const hex = (b) => Array.from(b, x => x.toString(16).padStart(2, '0')).join('');
-  // TLV (tag, bytes completos, valor). Tags de 1 o 2 bytes; longitud corta o larga
+  // TLV (tag, full bytes, value). Tags of 1 or 2 bytes; short or long length
   function tlv(b) {
     const out = []; let i = 0;
     while (i < b.length) {
@@ -899,7 +899,7 @@ const TGDSIG = (() => {
     return { body: body.full, sig: sig.val, pub: pubOf(inner), chr: hex(get(inner, 0x5f20).val), car: hex(get(inner, 0x42).val), until: timeOf(get(inner, 0x5f24).val) };
   }
 
-  // blocks: lista { tag, crypt, value } de un TGD (readBlocks)
+  // blocks: list { tag, crypt, value } of a TGD (readBlocks)
   async function verifyG2(blocks) {
     const result = { chain: false, ok: 0, total: 0, error: null };
     try {
@@ -912,7 +912,7 @@ const TGDSIG = (() => {
       const cardOk = await verify(msca.pub, card.body, card.sig) && card.car === msca.chr;
       result.chain = msOk && cardOk;
       result.cardUntil = card.until;
-      // firmas de datos: bloque crypt 2 seguido de firma crypt 3 (64 bytes) con la clave de la tarjeta
+      // data signatures: crypt 2 block followed by crypt 3 signature (64 bytes) with the card key
       for (let i = 0; i + 1 < blocks.length; i++) {
         const d = blocks[i], s = blocks[i + 1];
         if (d.crypt !== 2 || s.crypt !== 3 || !d.value || !s.value) continue;
@@ -923,14 +923,14 @@ const TGDSIG = (() => {
     return result;
   }
 
-  // ---- Generación 1 (RSA-1024, ISO 9796-2 para certificados, PKCS#1 v1.5 + SHA-1 para datos) ----
-  // Raíz ERCA G1: certificado EC_PK.bin del JRC (CHR fd45432000ffff01, módulo y exponente 65537)
+  // ---- Generation 1 (RSA-1024, ISO 9796-2 for certificates, PKCS#1 v1.5 + SHA-1 for data) ----
+  // ERCA G1 root: EC_PK.bin certificate from the JRC (CHR fd45432000ffff01, modulus and exponent 65537)
   const ERCA_G1_CHR = 'fd45432000ffff01';
   const ERCA_G1_N = BigInt('0xe980763a444a95250a958782d1d54acfc323d25f3946b816e92fcf9d32b42a2613d1a363b4e43532a026686329c89663ccc001f7278206b6ab65ad2871848a680f6a57d8fda1d782c9b5812903ea5b66e2a9be1d85bdd0fdae76a46088d71a6176b1f6a98419100424dc56d0846aa3c84390d3517a0f1192dedff740924cdba7');
   const DI_SHA1 = [0x30, 0x21, 0x30, 0x09, 0x06, 0x05, 0x2b, 0x0e, 0x03, 0x02, 0x1a, 0x05, 0x00, 0x04, 0x14];
   const modpow = (b, e, m) => { let r = 1n; b %= m; while (e > 0n) { if (e & 1n) r = r * b % m; b = b * b % m; e >>= 1n; } return r; };
   const bytesOf = (x, n) => Uint8Array.from(x.toString(16).padStart(n * 2, '0').match(/../g), h => parseInt(h, 16));
-  // Certificado G1 (194 bytes): firma (128) + parte no recuperable (58) + CAR (8). Devuelve el contenido C y el CAR.
+  // G1 certificate (194 bytes): signature (128) + non-recoverable part (58) + CAR (8). Returns content C and the CAR.
   async function g1Open(c, n, e = 65537n) {
     const m = bytesOf(modpow(BigInt('0x' + hex(c.subarray(0, 128))), e, n), 128);
     if (m[0] !== 0x6a || m[127] !== 0xbc) return null;
@@ -959,7 +959,7 @@ const TGDSIG = (() => {
       result.chain = card.car === hex(ms.C.subarray(-144, -136));
       result.cardUntil = new Date((((card.C[16] << 24) | (card.C[17] << 16) | (card.C[18] << 8) | card.C[19]) >>> 0) * 1000).toISOString().slice(0, 10);
       const cardN = BigInt('0x' + hex(card.C.subarray(-136, -8)));
-      // firmas de datos: bloque crypt 0 seguido de firma crypt 1 (128 bytes) con la clave de la tarjeta
+      // data signatures: crypt 0 block followed by crypt 1 signature (128 bytes) with the card key
       for (let i = 0; i + 1 < blocks.length; i++) {
         const d = blocks[i], s = blocks[i + 1];
         if (d.crypt !== 0 || s.crypt !== 1 || !d.value || !s.value) continue;
@@ -969,12 +969,12 @@ const TGDSIG = (() => {
     } catch (e) { result.error = e.message; }
     return result;
   }
-  // Elige la generación según los certificados del fichero
+  // Picks the generation from the file's certificates
   const verifyAny = (blocks) => blocks.some(b => b.tag === 0xc101) ? verifyG2(blocks) : verifyG1(blocks);
 
-  // Descarga de VU de 1ª generación (cabecera 76 01): certificados MS (offset 2) y VU (offset 196) y firmas PKCS#1 v1.5 + SHA-1
-  // (CSM_033–035). Cada firma de 128 bytes cubre desde 390 (o desde la firma anterior + 2 bytes de cabecera).
-  // shortcut: solo 1ª generación; la descarga de 2ª (76 21/76 31) lleva otro esquema y no se verifica aquí.
+  // 1st-generation VU download (header 76 01): MS (offset 2) and VU (offset 196) certificates and PKCS#1 v1.5 + SHA-1 signatures
+  // (CSM_033–035). Each 128-byte signature covers from 390 (or from the previous signature + 2 header bytes).
+  // shortcut: 1st generation only; the 2nd-generation download (76 21/76 31) uses another scheme and is not verified here.
   async function verifyVU1(bytes) {
     const DI = [0x30, 0x21, 0x30, 0x09, 0x06, 0x05, 0x2b, 0x0e, 0x03, 0x02, 0x1a, 0x05, 0x00, 0x04, 0x14];
     const LEN = 128;
@@ -998,13 +998,13 @@ const TGDSIG = (() => {
     return { ok, total, valid: total > 0 && ok === total };
   }
 
-  // Descarga de VU de 2.ª generación (76 21 / 76 31): cadena ERCA → Status miembro → VU. Los dos certificados son CVC (7F21).
+  // 2nd-generation VU download (76 21 / 76 31): ERCA → Member State → VU chain. Both certificates are CVC (7F21).
   async function verifyVU2Chain(bytes) {
     if (bytes[0] !== 0x76 || (bytes[1] !== 0x21 && bytes[1] !== 0x31)) return null;
     const cs = [];
     for (let i = 0; i + 1 < bytes.length && cs.length < 2; i++) {
       if (bytes[i] !== 0x7f || bytes[i + 1] !== 0x21) continue;
-      try { cs.push(cert(bytes.subarray(i))); i += 2; } catch (e) { /* no es un certificado */ }
+      try { cs.push(cert(bytes.subarray(i))); i += 2; } catch (e) { /* not a certificate */ }
     }
     if (cs.length < 2) return null;
     const [ms, vu] = cs;
@@ -1028,7 +1028,7 @@ if (typeof module !== 'undefined' && module.exports) module.exports = TGDSIG;
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const MES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const DIA = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const LANES = [ // de arriba abajo, como en la hoja impresa
+  const LANES = [ // top to bottom, as on the printed sheet
     { k: 'driving', n: 'Driving', c: 'var(--drv)' },
     { k: 'work', n: 'Work', c: 'var(--work)' },
     { k: 'availability', n: 'Availability', c: 'var(--av)' },
@@ -1048,7 +1048,7 @@ if (typeof module !== 'undefined' && module.exports) module.exports = TGDSIG;
   const avisos = (d) => d.compliance.findings.filter(f => f.sev === 'aviso');
   let full = null, range = 'all';
   const mon = (s, k = 0) => { const t = new Date(s + 'T00:00:00Z'); t.setUTCDate(t.getUTCDate() - ((t.getUTCDay() + 6) % 7) + 7 * k); return t.toISOString().slice(0, 10); };
-  // Recorta el archivo a los últimos N days (o lo deja entero); cumplimiento y descansos se recortan igual
+  // Trims the file to the last N days (or leaves it whole); compliance and rests are trimmed the same way
   function scope(d) {
     if (range === 'all' || !d.days.length) return d;
     const last = d.days[d.days.length - 1].date, from = new Date(Date.parse(last + 'T00:00:00Z') - (+range - 1) * 864e5).toISOString().slice(0, 10);
@@ -1064,7 +1064,7 @@ if (typeof module !== 'undefined' && module.exports) module.exports = TGDSIG;
   }
   $('#tabs').addEventListener('click', e => { const b = e.target.closest('button[data-tab]'); if (b) show(b.dataset.tab); });
 
-  // ---- Day sheet: cuatro carriles como en el disco del tacógrafo ----
+  // ---- Day sheet: four lanes, as on the tachograph chart ----
   function hojaSvg(day, fs = []) {
     const W = 1000, lane = 46, gap = 6, top = 26, H = top + LANES.length * (lane + gap) + 24;
     const ch = day.changes.filter(c => c.slot === 'driver');
@@ -1086,7 +1086,7 @@ if (typeof module !== 'undefined' && module.exports) module.exports = TGDSIG;
       const x = (c.minutes / 1440) * W, w = ((Math.min(end, 1440) - c.minutes) / 1440) * W;
       if (w > 0) s += `<rect x="${x.toFixed(2)}" y="${y + 3}" width="${Math.max(w, 0.6).toFixed(2)}" height="${lane - 6}" fill="${COL[c.activity]}"><title>${hm(c.minutes)}–${hm(end)} · ${LBL[c.activity]}${c.card === 'not inserted' ? ' · card out' : ''}</title></rect>`;
     }
-    for (const f of fs) {   // marcas de hallazgos sobre el eje, con el detalle al pasar el ratón
+    for (const f of fs) {   // finding markers on the axis, with details on hover
       const [h, m] = f.at.slice(11, 16).split(':').map(Number), x = ((h * 60 + m) / 1440) * W;
       s += `<line x1="${x.toFixed(1)}" x2="${x.toFixed(1)}" y1="2" y2="${top - 4}" stroke="${f.sev === 'infraccion' ? 'var(--bad)' : 'var(--mut)'}" stroke-width="3"><title>${esc(f.type)}: ${esc(f.detail)}</title></line>`;
     }
@@ -1103,7 +1103,7 @@ if (typeof module !== 'undefined' && module.exports) module.exports = TGDSIG;
     return s + '</svg>';
   }
 
-  // ---- Overview: calendario de semanas coloreado por horas de conducción ----
+  // ---- Overview: week calendar coloured by driving hours ----
   function calendarSvg(days) {
     if (!days.length) return '';
     const map = Object.fromEntries(days.map(d => [d.date, d]));
@@ -1287,7 +1287,7 @@ if (typeof module !== 'undefined' && module.exports) module.exports = TGDSIG;
   function renderAll(d) {
     cur = d; selDay = null;
     const sec = d.security;
-    const last = d.days.length ? d.days[d.days.length - 1].date : null;   // fecha de los datos
+    const last = d.days.length ? d.days[d.days.length - 1].date : null;   // date of the data
     const caducado = sec && sec.cardUntil && last && sec.cardUntil < last;
     const secBox = (!sec ? '' : sec.error ? `<div class="warnbox">Signature not checked: ${esc(sec.error)}</div>`
       : sec.chain && sec.ok === sec.total ? `<div class="okbox">Signature verified: ERCA → MSCA → card certificates correct and ${sec.ok}/${sec.total} data blocks signed by the card.</div>`
@@ -1319,7 +1319,7 @@ if (typeof module !== 'undefined' && module.exports) module.exports = TGDSIG;
     show('panorama');
   }
 
-  // Several descargas de una misma tarjeta se unen: days y descansos por fecha (gana la descarga más reciente), hallazgos y eventos sin duplicar
+  // Several downloads from the same card are merged: days and rests by date (the most recent download wins), findings and events without duplicates
   const uniq = (a, key) => { const m = new Map(); for (const x of a) m.set(key(x), x); return [...m.values()]; };
   function mergeCard(a, b) {
     const days = uniq([...a.days, ...b.days], x => x.date).sort((p, q) => (p.date < q.date ? -1 : 1));
@@ -1331,7 +1331,7 @@ if (typeof module !== 'undefined' && module.exports) module.exports = TGDSIG;
     const faults = uniq([...b.faults, ...a.faults], e => JSON.stringify(e));
     return { ...b, days, rests, vehicles, events, faults, compliance: { ...b.compliance, findings, weeks }, checks: { ...b.checks, dayCount: days.length } };
   }
-  const merged = {};   // número de tarjeta -> nº de descargas unidas
+  const merged = {};   // card number -> number of merged downloads
 
   async function load(list) {
     $('#err').classList.add('hide');
