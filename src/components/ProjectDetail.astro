@@ -64,6 +64,10 @@ const photos = {
               <div class="device-bar"><span></span><span></span><span></span></div>
               <iframe class="device-screen" src={root + info.demo} title={p.name} loading="lazy"></iframe>
             </div>
+          ) : info.rotate ? (
+            <div class="device device-shot device-rotate" aria-hidden="true">
+              {info.rotate.map((src, k) => <img src={root + src} alt="" style={`animation-delay:${k * 5}s`} loading={k ? 'lazy' : 'eager'} />)}
+            </div>
           ) : info.shot ? (
             <div class="device device-shot">
               <img src={root + info.shot} alt={lang === 'en' ? `${p.name} screen` : `Pantalla de ${p.name}`} loading="lazy" />
