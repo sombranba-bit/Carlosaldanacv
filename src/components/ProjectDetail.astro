@@ -31,7 +31,7 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
 const photos = {
   'panel-infracciones': { src: '/img/tachograph.jpg', alt: lang === 'en' ? 'Tachograph in a truck cab with a chart disc being inserted' : 'Tacógrafo en cabina de camión con un disco de registro introduciéndose', credit: lang === 'en' ? 'Photo: “Tachograph” by Paettchen (Patrick Seidler), CC BY-SA 3.0, via Wikimedia Commons.' : 'Foto: “Tachograph” de Paettchen (Patrick Seidler), CC BY-SA 3.0, vía Wikimedia Commons.' },
   'cruce-descargas': { src: '/img/tachograafschijf-voorkant.webp', alt: lang === 'en' ? 'Tachograph chart disc, front side' : 'Disco de registro del tacógrafo, cara frontal', credit: lang === 'en' ? 'Photo: “Tachograafschijf voorkant”, public domain, via Wikimedia Commons.' : 'Foto: “Tachograafschijf voorkant”, dominio público, vía Wikimedia Commons.' },
-  'lector-tgd': { src: '/img/lkw-tachograph-aufgeklappt-bj-1958.jpg', alt: lang === 'en' ? 'Analogue tachograph from 1958 with its cover open' : 'Tacógrafo analógico de 1958 con la tapa abierta', credit: lang === 'en' ? 'Photo: “LKW-Tachograph aufgeklappt Bj.1958” by selbst, public domain, via Wikimedia Commons.' : 'Foto: “LKW-Tachograph aufgeklappt Bj.1958” de selbst, dominio público, vía Wikimedia Commons.' },
+  'lector-tgd': { src: '/img/lkw-tachograph-aufgeklappt-bj-1958.webp', alt: lang === 'en' ? 'Analogue tachograph from 1958 with its cover open' : 'Tacógrafo analógico de 1958 con la tapa abierta', credit: lang === 'en' ? 'Photo: “LKW-Tachograph aufgeklappt Bj.1958” by selbst, public domain, via Wikimedia Commons.' : 'Foto: “LKW-Tachograph aufgeklappt Bj.1958” de selbst, dominio público, vía Wikimedia Commons.' },
 }[info.slug];
 ---
 <Base title={`${p.name} · ${d.profile.name}`} active="proyectos" lang={lang} description={info.tagline ? `${p.name}. ${info.tagline}` : undefined} image={info.shot ?? photos?.src} jsonld={{ '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: p.name, description: info.body, applicationCategory: 'BusinessApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, author: { '@type': 'Person', name: d.profile.name } }}>
@@ -147,7 +147,7 @@ const photos = {
       </div>
       <ul class="socials">
         <li><span class="email-out"><button type="button" class="social-link email-reveal" data-reveal={btoa(d.profile.email)}><span class="social-text" data-text={d.ui.showEmail}>{d.ui.showEmail}</span></button></span> <button type="button" class="copy-btn" hidden data-label-copy={d.ui.copyEmail} data-label-done={d.ui.copied}>{d.ui.copyEmail}</button></li>
-        <li><a class="social-link" href={`tel:${d.profile.phoneHref}`}><span class="social-text" data-text={d.profile.phone}>{d.profile.phone}</span></a></li>
+        <li><span class="email-out"><button type="button" class="social-link email-reveal" data-reveal={btoa(d.profile.phoneHref)} data-proto="tel"><span class="social-text" data-text={d.ui.showPhone}>{d.ui.showPhone}</span></button></span></li>
         <li><a class="social-link" href={d.profile.linkedin} target="_blank" rel="noopener"><span class="social-text" data-text="LinkedIn">LinkedIn</span><span class="social-arrow">↗</span></a></li>
         <li><a class="social-link" href={root + "/cv.pdf"} download><span class="social-text" data-text={d.ui.cv}>{d.ui.cv}</span><span class="social-arrow">↓</span></a></li>
       </ul>

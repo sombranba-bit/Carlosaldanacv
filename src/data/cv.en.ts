@@ -108,6 +108,7 @@ export const ui = {
   theme: 'Switch theme',
   skip: 'Skip to content',
   showEmail: 'Show email',
+  showPhone: 'Show phone',
   copyEmail: 'Copy email',
   copied: 'Copied',
   available: 'Available for new challenges',

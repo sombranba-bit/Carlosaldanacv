@@ -25,6 +25,7 @@ const person = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0b0b0b" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="description" content={desc} />
     <title>{title}</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
@@ -181,9 +182,10 @@ const person = {
     if (!r) return;
     const addr = atob(r.dataset.reveal!);
     const li = r.closest('li')!;
-    li.querySelector('.email-out')!.innerHTML = `<a class="social-link" href="mailto:${addr}"><span class="social-text" data-text="${addr}">${addr}</span></a>`;
-    const copy = li.querySelector('.copy-btn') as HTMLButtonElement;
-    copy.dataset.copy = addr; copy.hidden = false;
+    const proto = r.dataset.proto ?? 'mailto';
+    li.querySelector('.email-out')!.innerHTML = `<a class="social-link" href="${proto}:${addr}"><span class="social-text" data-text="${addr}">${addr}</span></a>`;
+    const copy = li.querySelector('.copy-btn') as HTMLButtonElement | null;
+    if (copy) { copy.dataset.copy = addr; copy.hidden = false; }
   });
 
   // Copiar el email al portapapeles, con respaldo si el navegador no lo permite

@@ -161,7 +161,7 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
     </div>
     <ul class="socials reveal">
       <li><span class="email-out"><button type="button" class="social-link email-reveal" data-reveal={btoa(profile.email)}><span class="social-text" data-text={ui.showEmail}>{ui.showEmail}</span></button></span> <button type="button" class="copy-btn" hidden data-label-copy={ui.copyEmail} data-label-done={ui.copied}>{ui.copyEmail}</button></li>
-      <li><a class="social-link" href={`tel:${profile.phoneHref}`}><span class="social-text" data-text={profile.phone}>{profile.phone}</span></a></li>
+      <li><span class="email-out"><button type="button" class="social-link email-reveal" data-reveal={btoa(profile.phoneHref)} data-proto="tel"><span class="social-text" data-text={ui.showPhone}>{ui.showPhone}</span></button></span></li>
       <li><a class="social-link" href={profile.linkedin} target="_blank" rel="noopener"><span class="social-text" data-text="LinkedIn">LinkedIn</span><span class="social-arrow">↗</span></a></li>
       <li><a class="social-link" href={root + "/cv.pdf"} download><span class="social-text" data-text={ui.cv}>{ui.cv}</span><span class="social-arrow">↓</span></a></li>
     </ul>

@@ -109,6 +109,7 @@ export const ui = {
   skip: 'Saltar al contenido',
   copyEmail: 'Copiar email',
   showEmail: 'Mostrar email',
+  showPhone: 'Mostrar teléfono',
   copied: 'Copiado',
   available: 'Disponible para nuevos retos',
   notFound: 'Página no encontrada',
