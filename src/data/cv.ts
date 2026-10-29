@@ -1,5 +1,5 @@
 export const profile = {
-  available: false, // true = muestra el aviso de disponibilidad en la portada
+  available: true, // true = muestra el aviso de disponibilidad en la portada
   badge: 'Certificado de Competencia Profesional para el Transporte de Mercancías por Carretera',
   name: 'Carlos Aldana Guillén',
   title: 'Responsable de Tacógrafos',

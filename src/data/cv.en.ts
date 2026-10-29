@@ -1,5 +1,5 @@
 export const profile = {
-  available: false, // true = muestra el aviso de disponibilidad en la portada
+  available: true, // true = muestra el aviso de disponibilidad en la portada
   badge: 'Certificate of Professional Competence (CPC) for Road Freight Transport',
   name: 'Carlos Aldana Guillén',
   title: 'Tachograph Compliance Manager',
