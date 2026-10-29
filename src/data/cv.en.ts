@@ -107,6 +107,7 @@ export const ui = {
   switchLabel: 'ES',
   theme: 'Switch theme',
   skip: 'Skip to content',
+  showEmail: 'Show email',
   copyEmail: 'Copy email',
   copied: 'Copied',
   available: 'Available for new challenges',

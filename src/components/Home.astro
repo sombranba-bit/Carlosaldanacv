@@ -155,12 +155,12 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
   </section>
 
   <section class="contact-inner" id="contacto">
-    <a class="cta-block reveal" href={`mailto:${profile.email}`}>
+    <button type="button" class="cta-block reveal" data-reveal={btoa(profile.email)}>
       <span class="cta-line cta-sans">{ext.contactA}</span>
       <span class="cta-line cta-serif">{ext.contactB}</span>
-    </a>
+    </button>
     <ul class="socials reveal">
-      <li><a class="social-link" href={`mailto:${profile.email}`}><span class="social-text" data-text={profile.email}>{profile.email}</span></a> <button type="button" class="copy-btn" data-copy={profile.email} data-label-copy={ui.copyEmail} data-label-done={ui.copied}>{ui.copyEmail}</button></li>
+      <li><span class="email-out"><button type="button" class="social-link email-reveal" data-reveal={btoa(profile.email)}><span class="social-text" data-text={ui.showEmail}>{ui.showEmail}</span></button></span> <button type="button" class="copy-btn" hidden data-label-copy={ui.copyEmail} data-label-done={ui.copied}>{ui.copyEmail}</button></li>
       <li><a class="social-link" href={`tel:${profile.phoneHref}`}><span class="social-text" data-text={profile.phone}>{profile.phone}</span></a></li>
       <li><a class="social-link" href={profile.linkedin} target="_blank" rel="noopener"><span class="social-text" data-text="LinkedIn">LinkedIn</span><span class="social-arrow">↗</span></a></li>
       <li><a class="social-link" href={root + "/cv.pdf"} download><span class="social-text" data-text={ui.cv}>{ui.cv}</span><span class="social-arrow">↓</span></a></li>
@@ -169,22 +169,6 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
 </Base>
 
 <script>
-  // Copiar el email al portapapeles, con respaldo si el navegador no lo permite
-  function copyButtons() {
-    document.querySelectorAll('.copy-btn').forEach((b) => {
-      if (b.dataset.bound) return;
-      b.dataset.bound = '1';
-      b.addEventListener('click', async () => {
-        const txt = b.dataset.copy;
-        let ok = false;
-        try { await navigator.clipboard.writeText(txt); ok = true; } catch (e) {}
-        b.textContent = ok ? b.dataset.labelDone : b.dataset.labelCopy;
-        setTimeout(() => { b.textContent = b.dataset.labelCopy; }, 1800);
-      });
-    });
-  }
-  document.addEventListener('astro:page-load', copyButtons);
-  copyButtons();
 
   function init() {
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;

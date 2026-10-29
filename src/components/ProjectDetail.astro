@@ -141,12 +141,12 @@ const photos = {
     )}
 
     <div class="detail-contact reveal">
-      <a class="cta-block" href={`mailto:${d.profile.email}`}>
+      <button type="button" class="cta-block" data-reveal={btoa(d.profile.email)}>
         <span class="cta-line cta-sans">{d.ext.contactA}</span>
         <span class="cta-line cta-serif">{d.ext.contactB}</span>
-      </a>
+      </button>
       <ul class="socials">
-        <li><a class="social-link" href={`mailto:${d.profile.email}`}><span class="social-text" data-text={d.profile.email}>{d.profile.email}</span></a></li>
+        <li><span class="email-out"><button type="button" class="social-link email-reveal" data-reveal={btoa(d.profile.email)}><span class="social-text" data-text={d.ui.showEmail}>{d.ui.showEmail}</span></button></span> <button type="button" class="copy-btn" hidden data-label-copy={d.ui.copyEmail} data-label-done={d.ui.copied}>{d.ui.copyEmail}</button></li>
         <li><a class="social-link" href={`tel:${d.profile.phoneHref}`}><span class="social-text" data-text={d.profile.phone}>{d.profile.phone}</span></a></li>
         <li><a class="social-link" href={d.profile.linkedin} target="_blank" rel="noopener"><span class="social-text" data-text="LinkedIn">LinkedIn</span><span class="social-arrow">↗</span></a></li>
         <li><a class="social-link" href={root + "/cv.pdf"} download><span class="social-text" data-text={d.ui.cv}>{d.ui.cv}</span><span class="social-arrow">↓</span></a></li>

@@ -108,6 +108,7 @@ export const ui = {
   theme: 'Cambiar tema',
   skip: 'Saltar al contenido',
   copyEmail: 'Copiar email',
+  showEmail: 'Mostrar email',
   copied: 'Copiado',
   available: 'Disponible para nuevos retos',
   notFound: 'Página no encontrada',
