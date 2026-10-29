@@ -42,7 +42,7 @@ export const detail = {
         { cat: 'Panorama', title: 'Calendario y horas de conducción por mes, en periodos de 7, 14 o 30 días.' },
         { cat: 'Vehículos', title: 'Las matrículas registradas en la tarjeta del conductor.' },
         { cat: 'Exportación', title: 'Los días en CSV, listos para llevar a Excel.' },
-      ], shots: [], stage: false },
+      ], shots: [] },
   ],
   en: [
     { slug: 'panel-infracciones', tone: '#ffb000', year: '2026', demo: '/en/demo/panel.html', eyebrow: 'Fleet control · Web dashboard', tagline: 'From infringement data to decisions.',
@@ -87,6 +87,6 @@ export const detail = {
         { cat: 'Overview', title: 'Calendar and driving hours per month, in periods of 7, 14 or 30 days.' },
         { cat: 'Vehicles', title: 'The registration numbers stored on the driver card.' },
         { cat: 'Export', title: 'The days as CSV, ready for Excel.' },
-      ], shots: [], stage: false },
+      ], shots: [] },
   ],
 };
