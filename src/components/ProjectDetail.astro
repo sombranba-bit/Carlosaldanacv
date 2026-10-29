@@ -66,7 +66,7 @@ const photos = {
             </div>
           ) : info.rotate ? (
             <div class="device device-shot device-rotate" aria-hidden="true">
-              {info.rotate.map((src, k) => <img src={root + src} alt="" style={`animation-delay:${k * 5}s`} loading={k ? 'lazy' : 'eager'} />)}
+              {info.rotate.map((src) => <img src={root + src} alt="" />)}
             </div>
           ) : info.shot ? (
             <div class="device device-shot">
@@ -215,6 +215,24 @@ const photos = {
     }, { threshold: 0.2 });
     io.observe(dev);
   }
+  function rotate() {
+    document.querySelectorAll('.device-rotate').forEach((box) => {
+      const imgs = [...box.querySelectorAll('img')];
+      let n = 0;
+      const show = (k) => {
+        n = k;
+        imgs.forEach((im, j) => im.classList.toggle('on', j === k));
+        const im = imgs[k];
+        box.style.height = (im.naturalHeight * box.clientWidth / im.naturalWidth) + 'px';
+      };
+      show(0);
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const timer = setInterval(() => {
+        if (!box.isConnected) return clearInterval(timer);
+        show((n + 1) % imgs.length);
+      }, 5000);
+    });
+  }
   function shots() {
     document.querySelectorAll('.shots').forEach((box) => {
       const track = box.querySelector('.shots-track');
@@ -264,5 +282,5 @@ const photos = {
     addEventListener('scroll', zoom, { passive: true });
     zoom();
   }
-  document.addEventListener('astro:page-load', () => { timeline(); fx(); shots(); photo(); });
+  document.addEventListener('astro:page-load', () => { timeline(); fx(); shots(); photo(); rotate(); });
 </script>
