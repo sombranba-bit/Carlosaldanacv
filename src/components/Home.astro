@@ -68,7 +68,7 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
   <section class="section" id="acerca">
     <div class="section-head"><h2 class="gradient">{ui.aboutTitle}</h2></div>
     <div class="about">
-      <div>{about.map((t, i) => <p class="reveal" style={`--d:${i * 0.1}s`}>{t}</p>)}</div>
+      <div>{about.map((t, i) => <p class="reveal" style={`--d:${i * 0.08}s`}>{t}</p>)}</div>
       <figure class="about-photo reveal"><img src={root + "/avatar.jpg"} alt={profile.name} loading="lazy" /></figure>
     </div>
   </section>
@@ -82,7 +82,7 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
     </div>
     <div class="grid-cards">
       {projects.slice(0, 3).map((p, i) => (
-        <a class="project-card reveal" href={`${root}${ui.prefix}/proyectos/${detail[lang][i].slug}`} style={`--d:${i * 0.1}s`}>
+        <a class="project-card reveal" href={`${root}${ui.prefix}/proyectos/${detail[lang][i].slug}`} style={`--d:${i * 0.08}s`}>
           <div class="thumb"><span class="app-icon is-pro" data-tone={i} set:html={appIcons[i]} /></div>
           <div class="card-body">
             <span class="card-year">{detail[lang][i].year}</span>

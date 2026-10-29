@@ -20,7 +20,7 @@ import { detail } from '../data/projects-detail';
     </div>
     <div class="grid-cards">
       {projects.map((p, i) => (
-        <a class="project-card reveal" href={`${root}${ui.prefix}/proyectos/${detail[lang][i].slug}`} style={`--d:${(i % 3) * 0.1}s`}>
+        <a class="project-card reveal" href={`${root}${ui.prefix}/proyectos/${detail[lang][i].slug}`} style={`--d:${(i % 3) * 0.08}s`}>
           <div class="thumb"><span class="app-icon is-pro" data-tone={i} set:html={appIcons[i]} /></div>
           <div class="card-body">
             <span class="card-year">{detail[lang][i].year}</span>
