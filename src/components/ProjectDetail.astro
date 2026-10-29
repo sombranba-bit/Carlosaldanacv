@@ -141,10 +141,10 @@ const photos = {
     )}
 
     <div class="detail-contact reveal">
-      <button type="button" class="cta-block" data-reveal={btoa(d.profile.email)}>
+      <div class="cta-block">
         <span class="cta-line cta-sans">{d.ext.contactA}</span>
         <span class="cta-line cta-serif">{d.ext.contactB}</span>
-      </button>
+      </div>
       <ul class="socials">
         <li><span class="email-out"><button type="button" class="social-link email-reveal" data-reveal={btoa(d.profile.email)}><span class="social-text" data-text={d.ui.showEmail}>{d.ui.showEmail}</span></button></span> <button type="button" class="copy-btn" hidden data-label-copy={d.ui.copyEmail} data-label-done={d.ui.copied}>{d.ui.copyEmail}</button></li>
         <li><a class="social-link" href={`tel:${d.profile.phoneHref}`}><span class="social-text" data-text={d.profile.phone}>{d.profile.phone}</span></a></li>

@@ -180,7 +180,6 @@ const person = {
     const r = (e.target as Element).closest('[data-reveal]') as HTMLElement | null;
     if (!r) return;
     const addr = atob(r.dataset.reveal!);
-    if (r.classList.contains('cta-block')) { document.querySelector<HTMLElement>('.email-reveal')?.click(); document.querySelector('.email-out')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
     const li = r.closest('li')!;
     li.querySelector('.email-out')!.innerHTML = `<a class="social-link" href="mailto:${addr}"><span class="social-text" data-text="${addr}">${addr}</span></a>`;
     const copy = li.querySelector('.copy-btn') as HTMLButtonElement;

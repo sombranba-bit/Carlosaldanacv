@@ -155,10 +155,10 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
   </section>
 
   <section class="contact-inner" id="contacto">
-    <button type="button" class="cta-block reveal" data-reveal={btoa(profile.email)}>
+    <div class="cta-block reveal">
       <span class="cta-line cta-sans">{ext.contactA}</span>
       <span class="cta-line cta-serif">{ext.contactB}</span>
-    </button>
+    </div>
     <ul class="socials reveal">
       <li><span class="email-out"><button type="button" class="social-link email-reveal" data-reveal={btoa(profile.email)}><span class="social-text" data-text={ui.showEmail}>{ui.showEmail}</span></button></span> <button type="button" class="copy-btn" hidden data-label-copy={ui.copyEmail} data-label-done={ui.copied}>{ui.copyEmail}</button></li>
       <li><a class="social-link" href={`tel:${profile.phoneHref}`}><span class="social-text" data-text={profile.phone}>{profile.phone}</span></a></li>
