@@ -755,7 +755,7 @@ a.project-card { color: inherit; text-decoration: none; }
 .device.device-icon .app-icon svg { width: 96px; height: 96px; }
 
 /* Carrusel automático en la ficha: cada captura 5 s, ciclo de 25 s */
-.device-rotate { position: relative; aspect-ratio: 700 / 622; background: #101113; }
+.device-rotate { position: relative; aspect-ratio: 700 / 622; background: #0c0e13; }
 .device-rotate img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: top center; opacity: 0; animation: rotate-shot 25s infinite; }
 @keyframes rotate-shot { 0% { opacity: 0; } 2% { opacity: 1; } 18% { opacity: 1; } 20% { opacity: 0; } 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .device-rotate img { animation: none; opacity: 0; } .device-rotate img:first-child { opacity: 1; } }
