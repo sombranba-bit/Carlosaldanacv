@@ -131,10 +131,9 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 .seg-3 { background: #ffb000; }
 .seg.passed { opacity: .75; }
 .seg.current { opacity: 1; box-shadow: 0 0 16px var(--accent-glow), inset 0 0 0 1px color-mix(in srgb, var(--ink) 25%, transparent); animation: grow .9s var(--ease) var(--d, 0s) backwards, glow 1.6s var(--ease) 2; }
-@keyframes glow { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.35); } }
 @keyframes grow { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
 .needle-rail { position: absolute; top: -8px; bottom: -8px; left: 144px; right: 0; pointer-events: none; }
-.trail { position: absolute; top: 0; bottom: 0; left: 0; width: 0; background: #ffb0002e; }
+.trail { position: absolute; top: 0; bottom: 0; left: 0; width: 100%; transform: scaleX(0); transform-origin: left; background: #ffb0002e; }
 .needle { position: absolute; top: 0; bottom: 0; left: 0; width: 2px; margin-left: -1px; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
 .tacho-hours { display: flex; justify-content: space-between; margin: 12px 0 0 144px; font: 11px var(--font-mono); color: var(--muted); opacity: .75; }
 .tacho-status { display: flex; align-items: center; gap: .6rem; margin: 24px 0 0 144px; font: 13px var(--font-mono); color: var(--fg); }
