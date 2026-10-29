@@ -43,9 +43,10 @@ const p = root + d.ui.prefix;
     <div class="background" aria-hidden="true"><div class="glow"></div><div class="grid" style={`background-image:url(${root}/fondo-tacografo.svg)`}></div></div>
     <header class="nav">
       <div class="nav-inner">
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label={d.ui.menu}><span aria-hidden="true"></span></button>
         <a href={`${p}/`} class="brand" aria-label={d.profile.name}>
         </a>
-        <nav class="nav-list">
+        <nav class="nav-list" id="site-menu">
           <a href={`${p}/proyectos`} class:list={['nav-link', { active: active === 'proyectos' }]}><span class="nav-index">01</span><span class="nav-text" data-text={d.ui.nav1}>{d.ui.nav1}</span></a>
           <a href={`${p}/#experiencia`} class="nav-link"><span class="nav-index">02</span><span class="nav-text" data-text={d.ui.nav2}>{d.ui.nav2}</span></a>
           <a href={`${p}/#formacion`} class="nav-link"><span class="nav-index">03</span><span class="nav-text" data-text={d.ui.nav3}>{d.ui.nav3}</span></a>
@@ -57,7 +58,27 @@ const p = root + d.ui.prefix;
         </div>
       </div>
     </header>
+    <script>
+      if (!window.__menuBound) {
+        window.__menuBound = true;
+        const setOpen = (open) => {
+          const h = document.querySelector('.nav');
+          if (!h) return;
+          h.classList.toggle('is-open', open);
+          h.querySelector('.menu-btn')?.setAttribute('aria-expanded', String(open));
+        };
+        document.addEventListener('click', (e) => {
+          const t = e.target;
+          if (!(t instanceof Element)) return;
+          if (t.closest('.menu-btn')) setOpen(!document.querySelector('.nav')?.classList.contains('is-open'));
+          else if (t.closest('.nav-list a')) setOpen(false);
+          else if (!t.closest('.nav')) setOpen(false);
+        });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+      }
+    </script>
     <slot />
+    
     <footer class="bottom-bar">
       <span class="mono">© {new Date().getFullYear()} {d.profile.name}</span>
       <span class="mono">{d.ext.footer}</span>

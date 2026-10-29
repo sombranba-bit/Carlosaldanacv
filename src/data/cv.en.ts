@@ -120,6 +120,7 @@ export const ui = {
   contact: 'Contact',
   contactLead: 'Let’s talk. You can write or call me.',
   back: '← Back to home',
+  menu: 'Open menu',
   projectsTitle: 'Work',
   projectsLead: 'Systems, dashboards and tools built to track fleet compliance.',
   codeFile: 'profile.config.ts', codeName: 'profile', codeType: 'Profile',

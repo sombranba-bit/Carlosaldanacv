@@ -120,6 +120,7 @@ export const ui = {
   contact: 'Contacto',
   contactLead: '¿Hablamos? Puedes escribirme o llamarme.',
   back: '← Volver al inicio',
+  menu: 'Abrir menú',
   projectsTitle: 'Trabajo',
   projectsLead: 'Sistemas, paneles y herramientas hechos para el seguimiento del cumplimiento de la flota.',
   codeFile: 'perfil.config.ts', codeName: 'perfil', codeType: 'Perfil',
