@@ -1,25 +1,28 @@
-# Cabeceras de seguridad con Cloudflare
+# Cabeceras de seguridad con Cloudflare (Transform Rule)
 
-GitHub Pages no permite configurar cabeceras HTTP. Con este Worker delante del dominio, el sitio envía
-`frame-ancestors 'self'` y `X-Frame-Options: SAMEORIGIN`, lo que impide embeber las páginas desde otros sitios
-(clickjacking). El iframe de las demos en las páginas de proyecto sigue funcionando, porque es del mismo origen.
+GitHub Pages no permite configurar cabeceras HTTP. Con una **Transform Rule** de Cloudflare, cada respuesta
+del dominio añade estas cabeceras. No hace falta Worker.
 
-## Puesta en marcha (una sola vez, en tu cuenta de Cloudflare)
+- `Content-Security-Policy: frame-ancestors 'self'` y `X-Frame-Options: SAMEORIGIN`: impiden embeber la web desde otros sitios (clickjacking). El iframe de las demos en las páginas de proyecto sigue funcionando, porque es del mismo origen.
+- `X-Content-Type-Options: nosniff`
+- `Referrer-Policy: strict-origin-when-cross-origin`
+- `Strict-Transport-Security: max-age=300` (empezar con 5 minutos; subir a `max-age=31536000` cuando todo funcione durante un tiempo)
+
+## Puesta en marcha
 
 1. Añade `carlosaldanacv.com` a Cloudflare y cambia los nameservers en el registrador.
-2. En DNS, mantén los registros que apuntan a GitHub Pages con el proxy activado (nube naranja).
-3. En SSL/TLS, usa el modo "Full (strict)".
-4. En Workers & Pages, crea un Worker y pega el contenido de `worker.js`.
-5. Añade dos rutas: `carlosaldanacv.com/*` y `www.carlosaldanacv.com/*`, apuntando al Worker.
+2. En DNS, pon en modo proxy (nube naranja) los registros de GitHub Pages.
+3. En SSL/TLS, elige el modo **Full (strict)**.
+4. Ve a **Rules → Transform Rules → Modify Response Header** y pulsa **Create rule**.
+5. Aplícala a **All incoming requests** y, en **Then… Set static**, añade las cinco cabeceras de arriba.
+6. Guarda y despliega la regla.
 
 ## Comprobación
 
-    curl -sI https://carlosaldanacv.com/demo/tachocross.html | grep -iE "frame|content-security|x-content"
+    curl -sI https://carlosaldanacv.com/demo/tachocross.html | grep -iE "frame|content-security|x-content|referrer|strict"
 
-Debe mostrar `x-frame-options: SAMEORIGIN` y `content-security-policy: frame-ancestors 'self'`.
-Para probar el Worker sin red: `node cloudflare/check-worker.mjs`.
+Debe mostrar `x-frame-options: SAMEORIGIN`, `content-security-policy: frame-ancestors 'self'`, `x-content-type-options: nosniff`, `referrer-policy` y `strict-transport-security`.
 
 ## Pendiente
 
-- El Worker no está desplegado: hace falta acceso a tu cuenta de Cloudflare y al DNS del dominio.
-- Si se cambian los registros DNS, GitHub Pages puede tardar en reemitir el certificado.
+- Las Transform Rules se configuran en Cloudflare, no en el repositorio. Esta carpeta solo documenta el procedimiento.
