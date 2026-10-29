@@ -44,7 +44,6 @@ const p = root + d.ui.prefix;
     <header class="nav">
       <div class="nav-inner">
         <a href={`${p}/`} class="brand" aria-label={d.profile.name}>
-          <span class="brand-avatar"><img src={root + "/avatar.jpg"} alt="" width="112" height="112" /></span>
         </a>
         <nav class="nav-list">
           <a href={`${p}/proyectos`} class:list={['nav-link', { active: active === 'proyectos' }]}><span class="nav-index">01</span><span class="nav-text" data-text={d.ui.nav1}>{d.ui.nav1}</span></a>
@@ -103,18 +102,5 @@ const p = root + d.ui.prefix;
       window.addEventListener('scroll', onScroll, { passive: true });
       document.addEventListener('astro:page-load', onScroll);
     </script>
-  <script>
-  // La foto de la cabecera se desvanece al bajar; el resto de la barra no cambia
-  const fadeAvatar = () => {
-    const el = document.querySelector('.brand-avatar');
-    if (!el) return;
-    const o = Math.max(0, 1 - scrollY / 220);
-    el.style.opacity = String(o);
-    el.style.pointerEvents = o < 0.05 ? 'none' : '';
-  };
-  addEventListener('scroll', fadeAvatar, { passive: true });
-  document.addEventListener('astro:page-load', fadeAvatar);
-  fadeAvatar();
-</script>
 </body>
 </html>
