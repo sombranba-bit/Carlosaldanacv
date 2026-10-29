@@ -1,0 +1,1413 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tachoread</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 96 96%22 width=%22512%22 height=%22512%22%3E%3Cdefs%3E%3ClinearGradient id=%22gC%22 x1=%220%22 y1=%220%22 x2=%220.35%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22%239dbcff%22/%3E%3Cstop offset=%221%22 stop-color=%22%232f5fc6%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%2296%22 height=%2296%22 rx=%2222%22 fill=%22url(%23gC)%22/%3E%3Cpath d=%22M0 22Q0 0 22 0H74Q96 0 96 22V40Q48 52 0 40Z%22 fill=%22%23fff%22 opacity=%22.14%22/%3E%3Crect x=%22.5%22 y=%22.5%22 width=%2295%22 height=%2295%22 rx=%2221.5%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.12%22/%3E%3Ccircle cx=%2248%22 cy=%2248%22 r=%2228%22 fill=%22%23ffffff%22/%3E%3Cpath d=%22M48.0 29.0L48.0 26.0%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M57.5 31.5L59.0 28.9%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M64.5 38.5L67.1 37.0%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M67.0 48.0L70.0 48.0%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M64.5 57.5L67.1 59.0%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M57.5 64.5L59.0 67.1%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M48.0 67.0L48.0 70.0%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M38.5 64.5L37.0 67.1%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M31.5 57.5L28.9 59.0%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M29.0 48.0L26.0 48.0%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M31.5 38.5L28.9 37.0%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M38.5 31.5L37.0 28.9%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M48 48 L48 30 A18 18 0 0 1 63.6 57 Z%22 fill=%22%232c5fc4%22/%3E%3Cpath d=%22M48 48 L63.6 57 A18 18 0 0 1 48 66 Z%22 fill=%22%239dbcff%22/%3E%3Ccircle cx=%2248%22 cy=%2248%22 r=%224%22 fill=%22%231b3a7a%22/%3E%3Ccircle cx=%2248%22 cy=%2248%22 r=%221.6%22 fill=%22%23ffffff%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f7f5fc; --paper2:#eeebf7; --card:#ffffff; --ink:#1d1736; --mut:#6b6588; --rule:#e4e0f2;
+  --acc:#7c3aed; --acc2:#06b6d4; --accsoft:#ede6ff; --glow:#f97316;
+  --drv:#f97316; --work:#eab308; --av:#06b6d4; --rest:#22c55e;
+  --bad:#dc2626; --badsoft:#fde8e8; --warn:#b45309; --warnsoft:#fef3c7; --ok:#15803d; --oksoft:#dcfce7;
+  --sans:'Inter',system-ui,sans-serif; --serif:var(--sans); --mono:var(--sans);
+  --shadow:0 1px 2px rgba(29,23,54,.06),0 8px 24px rgba(29,23,54,.06);
+}
+:root[data-theme="dark"]{--paper:#0e1116; --paper2:#161b22; --card:#161b22; --ink:#e6edf3; --mut:#8b949e; --rule:#30363d; --acc:#818cf8; --acc2:#2dd4bf; --accsoft:#1f2a44; --glow:#fb923c; --drv:#fb923c; --work:#facc15; --av:#38bdf8; --rest:#4ade80; --bad:#f87171; --badsoft:#3a1f24; --warn:#fbbf24; --warnsoft:#372e14; --ok:#4ade80; --oksoft:#13301f; --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 var(--sans);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(900px 500px at 85% -10%,color-mix(in srgb,var(--acc) 22%,transparent),transparent 70%),radial-gradient(700px 420px at -5% 10%,color-mix(in srgb,var(--acc2) 18%,transparent),transparent 70%);background-attachment:fixed}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes sweep{from{background-position:0 0}to{background-position:200% 0}}
+.masthead{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:5;
+  padding:14px 36px;background:color-mix(in srgb,var(--card) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.brand{font:700 18px/1.2 var(--sans);letter-spacing:-.02em;display:flex;align-items:center;gap:12px;cursor:pointer}
+.brand img{width:40px;height:40px;flex:none;box-shadow:0 4px 14px color-mix(in srgb,var(--acc) 40%,transparent);border-radius:8px;transition:transform .4s}
+.brand:hover img{transform:rotate(90deg)}
+.brand small{display:block;font:400 12px var(--sans);color:var(--mut);margin-top:1px}
+.brand > span{display:block}
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tools > .muted{font-size:12.5px;margin-right:6px}
+.btn{font:600 13.5px var(--sans);color:var(--ink);background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:8px 14px;cursor:pointer;transition:transform .15s,box-shadow .2s,border-color .2s,background .2s}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow);border-color:var(--acc)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn.solid{background:linear-gradient(135deg,var(--acc),var(--acc2));border-color:transparent;color:#fff}
+.btn.solid:hover{box-shadow:0 10px 26px color-mix(in srgb,var(--acc) 45%,transparent)}
+.btn.big{padding:13px 22px;font-size:15px;border-radius:12px;display:inline-block;cursor:pointer}
+.btn:disabled{opacity:.4;cursor:default;transform:none;box-shadow:none}
+main{width:100%;margin:0 auto;padding:28px 36px 72px}
+/* portada */
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:36px 0 28px;animation:rise .7s ease both}
+.eyebrow{display:inline-block;font:600 12px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--acc);background:var(--accsoft);padding:5px 11px;border-radius:999px;margin-bottom:18px}
+.hero h1{font:800 clamp(38px,5.2vw,64px)/1.02 var(--sans);letter-spacing:-.035em;margin:0 0 18px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--acc2),var(--glow));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sweep 6s linear infinite}
+.hero p{font-size:18px;color:var(--mut);max-width:560px;margin:0 0 26px}
+.ctaRow{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.ghost{font:600 15px var(--sans);color:var(--ink);text-decoration:none;padding:12px 6px;border-bottom:2px solid transparent;transition:border-color .2s}
+.ghost:hover{border-color:var(--acc)}
+.heroArt{background:var(--card);border:1px solid var(--rule);border-radius:20px;padding:26px;box-shadow:var(--shadow)}
+.heroArt svg{overflow:visible}
+
+.carHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.dots{display:flex;gap:6px}
+.dot{width:8px;height:8px;border-radius:999px;border:0;background:var(--rule);cursor:pointer;padding:0;transition:width .3s,background .3s}
+.dot.on{width:22px;background:linear-gradient(90deg,var(--acc),var(--acc2))}
+.arrows{display:flex;gap:6px}
+.arr{width:30px;height:30px;border-radius:9px;border:1px solid var(--rule);background:var(--card);color:var(--ink);font:600 18px/1 var(--sans);cursor:pointer;transition:transform .15s,border-color .2s}
+.arr:hover{border-color:var(--acc);transform:translateY(-1px)}
+.slide{display:none}
+.slide.on{display:block;animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+.wkTitle{font:700 11px var(--sans);text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin-bottom:4px}
+.wkTitle::after{content:"  ·  dashed line: 9 h limit";text-transform:none;letter-spacing:0;font-weight:500}
+.heroArt .artSide svg{width:100%;height:auto}
+.finding{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;padding:8px 10px;margin-top:10px;border-radius:10px;background:var(--badsoft)}
+.finding .tag{font:700 11px var(--sans);padding:3px 9px;border-radius:999px;white-space:nowrap;background:var(--bad);color:#fff}
+.finding .when{font:600 12px var(--sans);color:var(--bad)}
+.finding > div > div:last-child{font:400 12px var(--sans);color:var(--ink)}
+.checks li.fail .mk{background:var(--badsoft);color:var(--bad)}
+.checks li.aviso .mk{background:var(--warnsoft);color:var(--warn)}
+.checks li.fail b{color:var(--bad)}
+.checks li.aviso b{color:var(--warn)}
+
+
+.hero{grid-template-columns:.85fr 1.25fr;gap:32px}
+.heroArt{padding:16px 18px 14px;overflow:hidden}
+.artHead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px}
+.artHead small{display:block;font:500 12.5px var(--sans);color:var(--mut)}
+.artHead b{font:700 17px var(--sans)}
+.chip{font:600 12px var(--sans);padding:4px 11px;border-radius:999px;white-space:nowrap}
+.chip.ok{background:var(--oksoft);color:var(--ok)}
+.chip.bad{background:var(--badsoft);color:var(--bad)}
+.chip.warn{background:var(--warnsoft);color:var(--warn)}
+.artBody{display:grid;grid-template-columns:1fr;gap:14px}
+.artSide{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.artChart svg{width:100%;height:auto}
+.artChart{padding:4px 0 0}
+.artSide h4{font:700 11px var(--sans);text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin:0 0 6px}
+.checks{list-style:none;margin:0 0 8px;padding:0;display:grid;gap:6px}
+.checks li{display:grid;grid-template-columns:18px 1fr;gap:7px;align-items:start}
+.checks .mk{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font:700 10px var(--sans);background:var(--oksoft);color:var(--ok)}
+.checks li.na .mk{background:var(--paper2);color:var(--mut)}
+.checks b{display:block;font:600 12.5px var(--sans)}
+.checks small{display:block;font:400 11.5px var(--sans);color:var(--mut);line-height:1.35}
+.week{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;height:76px;align-items:end}
+.wd{height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px}
+.wd i{display:block;width:100%;max-width:28px;background:linear-gradient(180deg,var(--acc2),var(--acc));border-radius:5px 5px 3px 3px;animation:grow .9s cubic-bezier(.2,.7,.2,1) both;transform-origin:bottom;min-height:4px}
+.wd small{font:600 11px var(--sans);color:var(--mut)}
+.wd b{font:600 10.5px var(--sans);font-variant-numeric:tabular-nums;color:var(--ink)}
+.wkTot{display:block;font:500 11.5px var(--sans);color:var(--mut);margin-top:6px}
+.artStats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid var(--rule)}
+.artStats small{display:block;font:500 12px var(--sans);color:var(--mut)}
+.artStats b{font:700 16px var(--sans);font-variant-numeric:tabular-nums}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.artSide{grid-template-columns:1fr}.artStats{grid-template-columns:repeat(2,1fr)}}
+
+
+.heroArt{padding:22px 24px}
+.artHead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+.artHead small{display:block;font:500 12px var(--sans);color:var(--mut)}
+.artHead b{font:700 16px var(--sans)}
+.chip{font:600 12px var(--sans);padding:4px 10px;border-radius:999px;white-space:nowrap}
+.chip.ok{background:var(--oksoft);color:var(--ok)}
+.artStats small{display:block;font:500 12px var(--sans);color:var(--mut)}
+.artStats b{font:700 20px var(--sans);font-variant-numeric:tabular-nums}
+.artStats .lim{grid-column:1/-1}
+.artStats .lim .bar{margin-top:6px}
+.heroSide{display:flex;flex-direction:column;gap:18px;min-width:0}
+.trust{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-start;margin:0 0 30px}
+.trust span{font:500 13.5px var(--sans);color:var(--ink);background:var(--card);border:1px solid var(--rule);border-radius:999px;padding:7px 14px;box-shadow:var(--shadow)}
+
+.heroArt rect{transform-box:fill-box;transform-origin:left;animation:grow 1.1s cubic-bezier(.2,.7,.2,1) both}
+.drop{margin:8px 0 34px;border:1.5px dashed color-mix(in srgb,var(--acc) 40%,transparent);border-radius:16px;background:var(--card);box-shadow:var(--shadow);padding:36px 24px;text-align:center;cursor:pointer;transition:border-color .25s,background .25s,transform .25s,box-shadow .25s;animation:rise .8s .1s ease both}
+.drop:hover{border-color:var(--acc);transform:translateY(-2px)}
+.drop .ic{width:52px;height:52px;margin:0 auto 14px;border-radius:16px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--acc),var(--acc2));box-shadow:0 8px 20px color-mix(in srgb,var(--acc) 30%,transparent)}
+.drop.over{border-color:var(--acc);background:var(--accsoft);transform:scale(1.01);box-shadow:0 14px 36px color-mix(in srgb,var(--acc) 25%,transparent)}
+.drop h2{font:700 20px/1.25 var(--sans);margin:0 0 6px;letter-spacing:-.01em}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:26px}
+.feat{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:22px;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s;animation:rise .6s ease both}
+.feat:nth-child(2){animation-delay:.1s}.feat:nth-child(3){animation-delay:.2s}
+.feat:hover{transform:translateY(-4px)}
+.feat .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;margin-bottom:14px;color:#fff}
+.feat h3{font:700 16px var(--sans);margin:0 0 6px}
+.feat p{font-size:14px;color:var(--mut);margin:0}
+.privacy{font-size:13px;color:var(--mut);text-align:center;margin:0}
+/* aplicación */
+.ficha{display:grid;grid-template-columns:1.5fr 1fr 1fr;background:var(--card);border:1px solid var(--rule);border-radius:16px;margin-bottom:20px;overflow:hidden;box-shadow:var(--shadow)}
+.ficha > div{padding:16px 22px;border-right:1px solid var(--rule)}
+.ficha > div:last-child{border-right:0}
+.lbl{font:600 11.5px var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--mut)}
+.val{font:700 18px/1.3 var(--sans);margin-top:3px}
+.stamp{display:inline-block;font:700 12px var(--sans);padding:3px 11px;border-radius:999px;background:var(--badsoft);color:var(--bad);margin-top:8px}
+.stamp.ok{background:var(--oksoft);color:var(--ok)} .stamp.warn{background:var(--warnsoft);color:var(--warn)}
+select{font:500 13px var(--sans);background:var(--card);color:var(--ink);border:1px solid var(--rule);border-radius:10px;padding:7px 11px;cursor:pointer}
+nav.tabs{position:relative;display:flex;gap:4px;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:4px;margin:0 0 22px;overflow-x:auto;width:max-content;max-width:100%}
+nav.tabs button{font:600 14px var(--sans);color:var(--mut);background:none;border:0;border-radius:9px;padding:9px 16px;cursor:pointer;white-space:nowrap;transition:color .2s,background .25s}
+nav.tabs button:hover{color:var(--ink);background:var(--paper2)}
+nav.tabs button[aria-selected="true"]{color:#fff;background:linear-gradient(135deg,var(--acc),var(--acc2));box-shadow:0 6px 16px color-mix(in srgb,var(--acc) 35%,transparent)}
+.sheet{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:22px 24px;margin-bottom:20px;box-shadow:var(--shadow)}
+.sheet h3{font:700 17px/1.3 var(--sans);margin:0 0 3px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sheet .sub{font:13.5px var(--sans);color:var(--mut);margin-bottom:14px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:20px}
+.kpis > div{padding:18px 20px;background:var(--card);border:1px solid var(--rule);border-radius:16px;box-shadow:var(--shadow);transition:transform .25s;animation:rise .5s ease both;border-top:3px solid var(--acc)}
+.kpis > div:nth-child(2){border-top-color:var(--acc2)}.kpis > div:nth-child(3){border-top-color:var(--glow)}.kpis > div:nth-child(4){border-top-color:var(--rest)}.kpis > div:nth-child(5){border-top-color:var(--work)}.kpis > div:nth-child(6){border-top-color:var(--av)}
+.kpis > div:hover{transform:translateY(-3px)}
+.kpis b{display:block;font:700 28px/1.15 var(--sans);margin:6px 0 2px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpis small{font:600 12.5px var(--sans);color:var(--mut)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font:500 12.5px var(--sans);color:var(--mut);margin:4px 0 14px}
+.sw{display:inline-block;width:11px;height:11px;margin-right:6px;vertical-align:-1px;border-radius:4px}
+.dayNav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.dayNav .big{font:700 22px/1.2 var(--sans);letter-spacing:-.02em}
+table{width:100%;border-collapse:collapse;font:13.5px var(--sans);font-variant-numeric:tabular-nums}
+th,td{padding:10px 12px;border-bottom:1px solid var(--rule);text-align:left;white-space:nowrap}
+th{font:600 12px var(--sans);color:var(--mut);background:var(--card);position:sticky;top:0}
+tbody tr{transition:background .15s}
+tbody tr:hover{background:var(--accsoft)}
+.scroll{overflow:auto;max-height:520px}
+.finding{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--rule);animation:rise .4s ease both}
+.finding:last-child{border-bottom:0}
+.finding .tag{font:700 12px var(--sans);padding:3px 10px;border-radius:999px;height:fit-content;white-space:nowrap;background:var(--warnsoft);color:var(--warn)}
+.finding .tag.infraccion{background:var(--badsoft);color:var(--bad)}
+.finding .when{font:600 12.5px var(--sans);color:var(--mut);margin-bottom:2px}
+.note{font-size:13.5px;color:var(--mut);background:var(--paper2);border-radius:12px;padding:12px 16px;margin:12px 0}
+.bar{height:10px;background:var(--paper2);border-radius:6px;position:relative;min-width:120px;overflow:hidden}
+.bar > i{position:absolute;inset:0;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:6px;transform-origin:left;animation:grow .9s cubic-bezier(.2,.7,.2,1) both}
+.bar > i.over{background:linear-gradient(90deg,var(--bad),var(--glow))}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.warnbox{background:var(--warnsoft);color:var(--warn);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:14px}
+svg rect{transition:opacity .2s}
+svg rect:hover{opacity:.75}
+section[data-panel].enter{animation:rise .45s cubic-bezier(.2,.7,.2,1) both}
+.enter .sheet{animation:rise .5s ease both}
+.enter .sheet:nth-child(2){animation-delay:.06s}.enter .sheet:nth-child(3){animation-delay:.12s}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.features{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.ficha{grid-template-columns:1fr}.ficha>div{border-right:0;border-bottom:1px solid var(--rule)}main{padding:18px 16px}.masthead{padding:12px 16px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.hide{display:none!important}
+svg{display:block;width:100%;height:auto}
+
+.heroArt.carousel{padding:18px 20px 14px}
+.c-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.c-kicker{display:block;font:500 12px var(--sans);color:var(--mut)}
+.c-title{display:block;font:700 19px/1.2 var(--sans);letter-spacing:-.01em;margin-top:2px}
+.c-nav{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.c-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:12px}
+.c-date{font:500 12.5px var(--sans);color:var(--mut)}
+.c-sec{font:600 11.5px var(--sans);text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin:0 0 10px}
+.c-sec span{display:none}
+.c-chart{margin-bottom:6px}
+.c-cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.c-checks{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.c-checks li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start}
+.c-checks .mk{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font:700 11px var(--sans);background:var(--oksoft);color:var(--ok)}
+.c-checks li.na .mk{background:var(--paper2);color:var(--mut)}
+.c-checks li.fail .mk{background:var(--badsoft);color:var(--bad)}
+.c-checks li.aviso .mk{background:var(--warnsoft);color:var(--warn)}
+.c-checks b{display:block;font:600 13.5px/1.35 var(--sans)}
+.c-checks li.fail b{color:var(--bad)} .c-checks li.aviso b{color:var(--warn)}
+.c-checks small{display:block;font:400 12.5px/1.4 var(--sans);color:var(--mut);margin-top:2px}
+.c-week svg{width:100%;height:auto;display:block}
+.c-alert{display:flex;gap:10px;align-items:flex-start;background:var(--badsoft);border-radius:10px;padding:9px 12px;margin-top:12px}
+.c-alert .tag{font:700 11px var(--sans);padding:3px 9px;border-radius:999px;background:var(--bad);color:#fff;white-space:nowrap}
+.c-alert b{display:block;font:600 13px var(--sans);color:var(--bad)}
+.c-alert small{display:block;font:400 12.5px/1.45 var(--sans);color:var(--ink);margin-top:2px}
+.c-kpis{display:grid;grid-template-columns:repeat(3,1fr);margin-top:14px;padding-top:12px;border-top:1px solid var(--rule)}
+.c-kpis > div{padding-right:16px}
+.c-kpis > div + div{border-left:1px solid var(--rule);padding-left:20px}
+.c-kpis small{display:block;font:500 12px var(--sans);color:var(--mut)}
+.c-kpis b{display:block;font:700 16px/1.2 var(--sans);margin-top:3px;font-variant-numeric:tabular-nums}
+.heroArt .slide{display:none}
+.heroArt .slide.on{display:block;animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+@media (max-width:900px){.c-cols{grid-template-columns:1fr;gap:24px}}
+
+.c-cols{display:grid;grid-template-columns:1fr;gap:28px;align-items:stretch;margin-top:4px}
+.c-cols > div{min-width:0}
+.c-cols .c-sec{margin-bottom:12px}
+.c-checks{gap:14px}
+.c-checks b{font:600 16px/1.35 var(--sans)}
+.c-checks small{font:400 14px/1.4 var(--sans)}
+.c-checks .mk{width:22px;height:22px;font-size:12px}
+.c-checks li{grid-template-columns:22px 1fr;gap:12px}
+.c-chart{margin-bottom:18px}
+
+.c-checks{gap:0;display:block}
+.c-checks li{display:grid;grid-template-columns:24px 200px 1fr 96px 56px;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid var(--rule)}
+.c-checks li:last-child{border-bottom:0}
+.c-checks b{font:600 14px/1.3 var(--sans);margin:0}
+.c-checks small{display:block;font:400 13px/1.45 var(--sans);color:var(--mut);margin:0}
+.c-checks em{font:600 13px var(--sans);font-style:normal;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.c-checks i{font:500 11.5px var(--sans);font-style:normal;color:var(--mut);text-align:right;white-space:nowrap}
+.c-checks li.fail em{color:var(--bad)} .c-checks li.aviso em{color:var(--warn)} .c-checks li.ok em{color:var(--ok)}
+.c-checks .mk{width:24px;height:24px;font-size:12px}
+@media (max-width:900px){.c-checks li{grid-template-columns:24px 1fr;gap:4px 12px}.c-checks li em,.c-checks li i{grid-column:2;text-align:left}}
+
+.c-top{display:none}
+.heroArt.carousel{padding:16px 18px 12px}
+.c-meta{margin-bottom:12px}
+.c-sec{margin:0 0 6px;font-size:11px}
+.c-chart{margin-bottom:8px}
+.c-cols{gap:0}
+.c-checks li{padding:7px 0;gap:14px;grid-template-columns:22px 190px 1fr 90px 52px}
+.c-checks .mk{width:20px;height:20px;font-size:11px}
+.c-checks b{font-size:13.5px}
+.c-checks small{font-size:12.5px;line-height:1.35}
+.c-checks em{font-size:12.5px}
+.c-checks i{font-size:11px}
+.c-kpis{margin-top:10px;padding-top:9px}
+.c-kpis b{font-size:15px}
+.c-kpis small{font-size:11.5px}
+.c-nav{margin-top:10px}
+.c-alert{margin-top:8px;padding:7px 10px}
+
+/* ---- movimiento: tarjeta flotante, transiciones del carrusel, progreso ---- */
+@keyframes levit{0%,100%{transform:translateY(0)}12.5%{transform:translateY(-1.17px)}25%{transform:translateY(-4px)}37.5%{transform:translateY(-6.83px)}50%{transform:translateY(-8px)}62.5%{transform:translateY(-6.83px)}75%{transform:translateY(-4px)}87.5%{transform:translateY(-1.17px)}}
+@keyframes inR{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
+@keyframes inL{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:none}}
+@keyframes prog{from{--p:0%}to{--p:100%}}
+@property --p{syntax:'<percentage>';inherits:false;initial-value:0%}
+@media (max-width:700px){.masthead .tools .muted{display:none}}
+.heroArt.carousel{animation:levit 8s linear infinite;will-change:transform;transition:border-color .3s}
+.heroArt.carousel:hover,.heroArt.carousel:focus-within{animation-play-state:paused;border-color:color-mix(in srgb,var(--acc) 35%,var(--rule))}
+.heroArt .slide.on.fwd{animation:inR .5s cubic-bezier(.2,.7,.2,1) both}
+.heroArt .slide.on.back{animation:inL .5s cubic-bezier(.2,.7,.2,1) both}
+.heroArt .slide.on .c-checks li{animation:rise .45s cubic-bezier(.2,.7,.2,1) both}
+.heroArt .slide.on .c-checks li:nth-child(2){animation-delay:.07s}
+.heroArt .slide.on .c-checks li:nth-child(3){animation-delay:.14s}
+.heroArt .slide.on .c-checks li:nth-child(4){animation-delay:.21s}
+.heroArt .slide.on .c-checks li:nth-child(5){animation-delay:.28s}
+.heroArt .slide.on .c-kpis > div{animation:fade .6s .35s both}
+.heroArt .slide.on .c-alert{animation:rise .5s .3s both}
+.dot.on{width:22px;background:linear-gradient(90deg,var(--acc) var(--p),var(--rule) var(--p));animation:prog 8s linear both}
+.heroArt.carousel:hover .dot.on,.heroArt.carousel:focus-within .dot.on{animation-play-state:paused}
+.arr{transition:transform .15s,border-color .2s,background .2s}
+.arr:hover{transform:translateY(-2px);border-color:var(--acc)}
+.arr:active{transform:scale(.94)}
+.feat:hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(76,29,149,.35)}
+.kpis > div:hover{transform:translateY(-3px)}
+@media (max-width:900px){.c-checks li{grid-template-columns:22px 1fr auto;gap:2px 12px}.c-checks li small{grid-column:2;grid-row:2}.c-checks li em{grid-column:3;grid-row:1}.c-checks li i{grid-column:3;grid-row:2}}
+@media (max-width:900px){.trust{justify-content:center}}
+.trust span{animation:levit 8s linear infinite;will-change:transform}
+.heroArt.carousel:hover ~ .trust span,.heroArt.carousel:focus-within ~ .trust span{animation-play-state:paused}
+
+#upload{animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+.actions{display:flex;gap:10px;justify-content:flex-end;margin-bottom:16px;flex-wrap:wrap}
+#upload{min-height:calc(100vh - 70px);display:flex;align-items:center;padding:40px 0}
+.upGrid{width:100%;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:center}
+.upInfo .btn{margin-bottom:26px}
+.upInfo h2{font:700 36px/1.15 var(--sans);letter-spacing:-.02em;margin:10px 0 10px}
+.upInfo > p.muted{font-size:16px;margin:0 0 30px}
+.steps{list-style:none;margin:0 0 30px;padding:0;display:grid;gap:18px}
+.steps li{display:grid;grid-template-columns:38px 1fr;gap:14px;align-items:start}
+.stepN{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font:700 15px var(--sans);color:#fff;background:linear-gradient(135deg,var(--acc),var(--acc2));box-shadow:0 6px 16px -6px color-mix(in srgb,var(--acc) 60%,transparent)}
+.steps b{display:block;font:600 16px var(--sans)}
+.steps small{display:block;font:400 14.5px/1.5 var(--sans);color:var(--mut);margin-top:2px}
+#upload .drop{margin:0;min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 32px}
+#upload .drop h2{font:700 22px/1.25 var(--sans);margin:18px 0 6px}
+.drop .ic{width:76px;height:76px;border-radius:22px}
+@media (max-width:900px){#upload{min-height:0;display:block;padding:24px 0 40px}.upGrid{grid-template-columns:1fr;gap:28px}#upload .drop{min-height:300px}.upInfo h2{font-size:30px}}
+.okbox{background:var(--oksoft);color:var(--ok);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:14px}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="brand" id="home"><img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 96 96%22 width=%22512%22 height=%22512%22%3E%3Cdefs%3E%3ClinearGradient id=%22gC%22 x1=%220%22 y1=%220%22 x2=%220.35%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22%239dbcff%22/%3E%3Cstop offset=%221%22 stop-color=%22%232f5fc6%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%2296%22 height=%2296%22 rx=%2222%22 fill=%22url(%23gC)%22/%3E%3Cpath d=%22M0 22Q0 0 22 0H74Q96 0 96 22V40Q48 52 0 40Z%22 fill=%22%23fff%22 opacity=%22.14%22/%3E%3Crect x=%22.5%22 y=%22.5%22 width=%2295%22 height=%2295%22 rx=%2221.5%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.12%22/%3E%3Ccircle cx=%2248%22 cy=%2248%22 r=%2228%22 fill=%22%23ffffff%22/%3E%3Cpath d=%22M48.0 29.0L48.0 26.0%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M57.5 31.5L59.0 28.9%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M64.5 38.5L67.1 37.0%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M67.0 48.0L70.0 48.0%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M64.5 57.5L67.1 59.0%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M57.5 64.5L59.0 67.1%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M48.0 67.0L48.0 70.0%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M38.5 64.5L37.0 67.1%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M31.5 57.5L28.9 59.0%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M29.0 48.0L26.0 48.0%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M31.5 38.5L28.9 37.0%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M38.5 31.5L37.0 28.9%22 stroke=%22%231b3a7a%22 stroke-opacity=%22.45%22 stroke-width=%222%22/%3E%3Cpath d=%22M48 48 L48 30 A18 18 0 0 1 63.6 57 Z%22 fill=%22%232c5fc4%22/%3E%3Cpath d=%22M48 48 L63.6 57 A18 18 0 0 1 48 66 Z%22 fill=%22%239dbcff%22/%3E%3Ccircle cx=%2248%22 cy=%2248%22 r=%224%22 fill=%22%231b3a7a%22/%3E%3Ccircle cx=%2248%22 cy=%2248%22 r=%221.6%22 fill=%22%23ffffff%22/%3E%3C/svg%3E" alt="" width="40" height="40" ><span>Tachoread<small>Tachograph download reader</small></span></div>
+  <div class="tools">
+    <button class="btn" id="theme">Dark mode</button>
+    <button class="btn hide" id="csv">Export days (CSV)</button>
+  </div>
+</header>
+<input id="file" type="file" multiple accept=".tgd,.ddd,.c1b,.v1b,.a1b" class="hide">
+<main>
+  <section id="landing">
+  <div class="hero">
+    <div>
+      <span class="eyebrow">Tachograph · Reg. 561/2006 · LOTT</span>
+      <h1>Your tachograph, <em>read</em> in seconds.</h1>
+      <p>Upload a card or vehicle download and get the day sheet, driving limits and compliance findings. Everything is processed in your browser.</p>
+      <div class="ctaRow">
+        <button class="btn solid big" id="open">Start analysing</button>
+        <a class="ghost" href="#features">What's included?</a>
+      </div>
+    </div>
+    <div class="heroSide">
+    <div class="heroArt carousel" id="carousel" aria-roledescription="carousel" aria-label="Day sheet examples"><div class="c-top"><div><small class="c-kicker">Illustrative example</small><b class="c-title">Day sheet</b></div></div><div class="slide on" data-i="0" aria-roledescription="slide" aria-label="Example 1 of 5">
+      <div class="c-meta"><span class="chip ok">No infringements</span><small class="c-date">14 Oct · Wednesday</small></div>
+      <div class="c-sec">Day sheet · hours in UTC</div>
+      <div class="c-chart"><svg viewBox="0 0 640 128" role="img" aria-label="Example day sheet in UTC"><defs><linearGradient id="gd0" x1="0" x2="1"><stop offset="0" stop-color="var(--drv)"/><stop offset="1" stop-color="var(--glow)"/></linearGradient><pattern id="hp0" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="var(--paper2)"/><rect width="3" height="7" fill="var(--rule)"/></pattern></defs><g><text x="0" y="22" font-size="12.5" font-weight="600" fill="var(--ink)">Driving</text><text x="0" y="50" font-size="12.5" font-weight="600" fill="var(--ink)">Work</text><text x="0" y="78" font-size="12.5" font-weight="600" fill="var(--ink)">Availability</text><text x="0" y="106" font-size="12.5" font-weight="600" fill="var(--ink)">Rest</text></g><g><line x1="150.0" x2="150.0" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="0"/><text x="150.0" y="124" text-anchor="start" font-size="11" fill="var(--mut)">00:00</text><line x1="208.8" x2="208.8" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="208.8" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">03:00</text><line x1="267.5" x2="267.5" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="267.5" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">06:00</text><line x1="326.2" x2="326.2" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="326.2" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">09:00</text><line x1="385.0" x2="385.0" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="385.0" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">12:00</text><line x1="443.8" x2="443.8" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="443.8" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">15:00</text><line x1="502.5" x2="502.5" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="502.5" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">18:00</text><line x1="561.2" x2="561.2" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="561.2" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">21:00</text><line x1="620.0" x2="620.0" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="0"/><text x="620.0" y="124" text-anchor="end" font-size="11" fill="var(--mut)">24:00</text></g><g><rect x="267.5" y="8" width="49.0" height="20" rx="5" fill="url(#gd0)" style="animation-delay:0.10s"/><rect x="331.1" y="8" width="49.0" height="20" rx="5" fill="url(#gd0)" style="animation-delay:0.17s"/><rect x="394.8" y="8" width="39.2" height="20" rx="5" fill="url(#gd0)" style="animation-delay:0.24s"/><rect x="448.6" y="8" width="34.3" height="20" rx="5" fill="url(#gd0)" style="animation-delay:0.31s"/><rect x="482.9" y="36" width="7.8" height="14" rx="5" fill="var(--work)" style="animation-delay:0.20s"/><rect x="502.5" y="36" width="7.8" height="14" rx="5" fill="var(--work)" style="animation-delay:0.27s"/><rect x="510.3" y="64" width="11.8" height="20" rx="5" fill="var(--av)" style="animation-delay:0.30s"/><rect x="150.0" y="92" width="117.5" height="20" rx="5" fill="var(--rest)" style="animation-delay:0.40s"/><rect x="522.1" y="92" width="97.9" height="20" rx="5" fill="var(--rest)" style="animation-delay:0.47s"/><rect x="316.5" y="92" width="14.7" height="20" rx="5" fill="var(--rest)" style="animation-delay:0.54s"/><rect x="380.1" y="92" width="14.7" height="20" rx="5" fill="var(--rest)" style="animation-delay:0.61s"/><rect x="434.0" y="92" width="14.7" height="20" rx="5" fill="var(--rest)" style="animation-delay:0.68s"/></g><g></g></svg></div>
+      <div class="c-cols">
+        <div><div class="c-sec">Compliance</div><ul class="c-checks"><li class="ok"><span class="mk">✓</span><b>45-min breaks</b><small>After every driving block; never more than 4 h 30 in a row</small><em>3 breaks</em><i>Art. 7</i></li><li class="ok"><span class="mk">✓</span><b>Daily driving</b><small>8 h 45 driving. Extension to 10 h allowed twice a week</small><em>8 h 45 / 9 h</em><i>Art. 6.1</i></li><li class="ok"><span class="mk">✓</span><b>Daily rest</b><small>11 h 00 continuous, from 19:00 to 06:00 (crosses midnight)</small><em>11 h 00</em><i>Art. 8.2</i></li><li class="ok"><span class="mk">✓</span><b>Next daily rest</b><small>Starts within 24 h of the previous one</small><em>Compliant</em><i>Art. 8.2</i></li><li class="na"><span class="mk">–</span><b>Weekly rest</b><small>The working day does not close the week</small><em>—</em><i>Art. 8.6</i></li></ul></div>
+      </div>
+      <div class="c-kpis"><div><small>Driving</small><b>8 h 45</b></div><div><small>Daily rest</small><b>11 h 00</b></div><div><small>Breaks</small><b>3 × 45 min</b></div></div>
+    </div><div class="slide" data-i="1" aria-roledescription="slide" aria-label="Example 2 of 5">
+      <div class="c-meta"><span class="chip ok">Within the rules</span><small class="c-date">21 Oct · Wednesday</small></div>
+      <div class="c-sec">Day sheet · hours in UTC</div>
+      <div class="c-chart"><svg viewBox="0 0 640 128" role="img" aria-label="Example day sheet in UTC"><defs><linearGradient id="gd1" x1="0" x2="1"><stop offset="0" stop-color="var(--drv)"/><stop offset="1" stop-color="var(--glow)"/></linearGradient><pattern id="hp1" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="var(--paper2)"/><rect width="3" height="7" fill="var(--rule)"/></pattern></defs><g><text x="0" y="22" font-size="12.5" font-weight="600" fill="var(--ink)">Driving</text><text x="0" y="50" font-size="12.5" font-weight="600" fill="var(--ink)">Work</text><text x="0" y="78" font-size="12.5" font-weight="600" fill="var(--ink)">Availability</text><text x="0" y="106" font-size="12.5" font-weight="600" fill="var(--ink)">Rest</text></g><g><line x1="150.0" x2="150.0" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="0"/><text x="150.0" y="124" text-anchor="start" font-size="11" fill="var(--mut)">00:00</text><line x1="208.8" x2="208.8" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="208.8" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">03:00</text><line x1="267.5" x2="267.5" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="267.5" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">06:00</text><line x1="326.2" x2="326.2" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="326.2" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">09:00</text><line x1="385.0" x2="385.0" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="385.0" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">12:00</text><line x1="443.8" x2="443.8" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="443.8" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">15:00</text><line x1="502.5" x2="502.5" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="502.5" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">18:00</text><line x1="561.2" x2="561.2" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="561.2" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">21:00</text><line x1="620.0" x2="620.0" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="0"/><text x="620.0" y="124" text-anchor="end" font-size="11" fill="var(--mut)">24:00</text></g><g><rect x="257.7" y="8" width="49.0" height="20" rx="5" fill="url(#gd1)" style="animation-delay:0.10s"/><rect x="321.4" y="8" width="49.0" height="20" rx="5" fill="url(#gd1)" style="animation-delay:0.17s"/><rect x="385.0" y="8" width="49.0" height="20" rx="5" fill="url(#gd1)" style="animation-delay:0.24s"/><rect x="448.6" y="8" width="39.2" height="20" rx="5" fill="url(#gd1)" style="animation-delay:0.31s"/><rect x="487.8" y="36" width="6.9" height="14" rx="5" fill="var(--work)" style="animation-delay:0.20s"/><rect x="494.7" y="64" width="7.8" height="20" rx="5" fill="var(--av)" style="animation-delay:0.30s"/><rect x="150.0" y="92" width="107.7" height="20" rx="5" fill="var(--rest)" style="animation-delay:0.40s"/><rect x="502.5" y="92" width="117.5" height="20" rx="5" fill="var(--rest)" style="animation-delay:0.47s"/><rect x="306.7" y="92" width="14.7" height="20" rx="5" fill="var(--rest)" style="animation-delay:0.54s"/><rect x="370.3" y="92" width="14.7" height="20" rx="5" fill="var(--rest)" style="animation-delay:0.61s"/><rect x="434.0" y="92" width="14.7" height="20" rx="5" fill="var(--rest)" style="animation-delay:0.68s"/></g><g></g></svg></div>
+      <div class="c-cols">
+        <div><div class="c-sec">Compliance</div><ul class="c-checks"><li class="ok"><span class="mk">✓</span><b>45-min breaks</b><small>After every driving block; never more than 4 h 30 in a row</small><em>3 breaks</em><i>Art. 7</i></li><li class="ok"><span class="mk">✓</span><b>Daily driving</b><small>9 h 30 driving. Extension to 10 h: 1 of the 2 allowed this week is used</small><em>9 h 30 / 10 h</em><i>Art. 6.1</i></li><li class="ok"><span class="mk">✓</span><b>Daily rest</b><small>11 h 30 continuous, from 18:00 to 05:30</small><em>11 h 30</em><i>Art. 8.2</i></li><li class="ok"><span class="mk">✓</span><b>Next daily rest</b><small>Starts within 24 h of the previous one</small><em>Compliant</em><i>Art. 8.2</i></li><li class="na"><span class="mk">–</span><b>Weekly rest</b><small>The working day does not close the week</small><em>—</em><i>Art. 8.6</i></li></ul></div>
+      </div>
+      <div class="c-kpis"><div><small>Driving</small><b>9 h 30</b></div><div><small>Daily rest</small><b>11 h 30</b></div><div><small>Extension</small><b>1 of 2</b></div></div>
+    </div><div class="slide" data-i="2" aria-roledescription="slide" aria-label="Example 3 of 5">
+      <div class="c-meta"><span class="chip bad">1 infringement</span><small class="c-date">23 Oct · Friday</small></div>
+      <div class="c-sec">Day sheet · hours in UTC</div>
+      <div class="c-chart"><svg viewBox="0 0 640 128" role="img" aria-label="Example day sheet in UTC"><defs><linearGradient id="gd2" x1="0" x2="1"><stop offset="0" stop-color="var(--drv)"/><stop offset="1" stop-color="var(--glow)"/></linearGradient><pattern id="hp2" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="var(--paper2)"/><rect width="3" height="7" fill="var(--rule)"/></pattern></defs><g><text x="0" y="22" font-size="12.5" font-weight="600" fill="var(--ink)">Driving</text><text x="0" y="50" font-size="12.5" font-weight="600" fill="var(--ink)">Work</text><text x="0" y="78" font-size="12.5" font-weight="600" fill="var(--ink)">Availability</text><text x="0" y="106" font-size="12.5" font-weight="600" fill="var(--ink)">Rest</text></g><g><line x1="150.0" x2="150.0" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="0"/><text x="150.0" y="124" text-anchor="start" font-size="11" fill="var(--mut)">00:00</text><line x1="208.8" x2="208.8" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="208.8" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">03:00</text><line x1="267.5" x2="267.5" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="267.5" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">06:00</text><line x1="326.2" x2="326.2" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="326.2" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">09:00</text><line x1="385.0" x2="385.0" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="385.0" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">12:00</text><line x1="443.8" x2="443.8" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="443.8" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">15:00</text><line x1="502.5" x2="502.5" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="502.5" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">18:00</text><line x1="561.2" x2="561.2" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="561.2" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">21:00</text><line x1="620.0" x2="620.0" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="0"/><text x="620.0" y="124" text-anchor="end" font-size="11" fill="var(--mut)">24:00</text></g><g><rect x="267.5" y="8" width="44.1" height="20" rx="5" fill="url(#gd2)" style="animation-delay:0.10s"/><rect x="316.5" y="8" width="49.0" height="20" rx="5" fill="url(#gd2)" style="animation-delay:0.17s"/><rect x="375.2" y="8" width="49.0" height="20" rx="5" fill="url(#gd2)" style="animation-delay:0.24s"/><rect x="438.9" y="8" width="34.3" height="20" rx="5" fill="url(#gd2)" style="animation-delay:0.31s"/><rect x="473.1" y="36" width="5.9" height="14" rx="5" fill="var(--work)" style="animation-delay:0.20s"/><rect x="479.0" y="64" width="3.9" height="20" rx="5" fill="var(--av)" style="animation-delay:0.30s"/><rect x="150.0" y="92" width="117.5" height="20" rx="5" fill="var(--rest)" style="animation-delay:0.40s"/><rect x="482.9" y="92" width="137.1" height="20" rx="5" fill="var(--rest)" style="animation-delay:0.47s"/><rect x="311.6" y="92" width="4.9" height="20" rx="5" fill="var(--rest)" style="animation-delay:0.54s"/><rect x="365.4" y="92" width="9.8" height="20" rx="5" fill="var(--rest)" style="animation-delay:0.61s"/><rect x="424.2" y="92" width="14.7" height="20" rx="5" fill="var(--rest)" style="animation-delay:0.68s"/></g><g><line x1="355.6" x2="355.6" y1="0" y2="110" stroke="var(--bad)" stroke-width="1.5" stroke-dasharray="4 3"/><text x="360.6" y="4" font-size="11" font-weight="700" fill="var(--bad)">CC03</text></g></svg></div>
+      <div class="c-cols">
+        <div><div class="c-sec">Compliance</div><ul class="c-checks"><li class="fail"><span class="mk">✕</span><b>45-min break after 4 h 30</b><small>At 10:30 the driver reaches 4 h 30 in a row. The 15-min and 30-min breaks come too late</small><em>4 h 30 without a break</em><i>Art. 7</i></li><li class="ok"><span class="mk">✓</span><b>Daily driving</b><small>9 h 00 driving, within the limit</small><em>9 h / 9 h</em><i>Art. 6.1</i></li><li class="ok"><span class="mk">✓</span><b>Daily rest</b><small>13 h 00 continuous, from 17:00 to 06:00</small><em>13 h 00</em><i>Art. 8.2</i></li><li class="ok"><span class="mk">✓</span><b>Next daily rest</b><small>Starts within 24 h of the previous one</small><em>Compliant</em><i>Art. 8.2</i></li><li class="na"><span class="mk">–</span><b>Weekly rest</b><small>The working day does not close the week</small><em>—</em><i>Art. 8.6</i></li></ul></div>
+      </div>
+      <div class="c-alert"><span class="tag">Minor</span><div><b>CC03 · 23 oct 10:30</b><small>Driving from 4 h 30 to 5 h without a valid break. Check it against the driver's real break.</small></div></div>
+      <div class="c-kpis"><div><small>Driving</small><b>9 h 00</b></div><div><small>Daily rest</small><b>13 h 00</b></div><div><small>Penalty</small><b>€100 · CC03</b></div></div>
+    </div><div class="slide" data-i="3" aria-roledescription="slide" aria-label="Example 4 of 5">
+      <div class="c-meta"><span class="chip warn">Notice</span><small class="c-date">3 Oct · Saturday</small></div>
+      <div class="c-sec">Day sheet · hours in UTC</div>
+      <div class="c-chart"><svg viewBox="0 0 640 128" role="img" aria-label="Example day sheet in UTC"><defs><linearGradient id="gd3" x1="0" x2="1"><stop offset="0" stop-color="var(--drv)"/><stop offset="1" stop-color="var(--glow)"/></linearGradient><pattern id="hp3" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="var(--paper2)"/><rect width="3" height="7" fill="var(--rule)"/></pattern></defs><g><text x="0" y="22" font-size="12.5" font-weight="600" fill="var(--ink)">Driving</text><text x="0" y="50" font-size="12.5" font-weight="600" fill="var(--ink)">Work</text><text x="0" y="78" font-size="12.5" font-weight="600" fill="var(--ink)">Availability</text><text x="0" y="106" font-size="12.5" font-weight="600" fill="var(--ink)">Rest</text></g><g><line x1="150.0" x2="150.0" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="0"/><text x="150.0" y="124" text-anchor="start" font-size="11" fill="var(--mut)">00:00</text><line x1="208.8" x2="208.8" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="208.8" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">03:00</text><line x1="267.5" x2="267.5" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="267.5" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">06:00</text><line x1="326.2" x2="326.2" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="326.2" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">09:00</text><line x1="385.0" x2="385.0" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="385.0" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">12:00</text><line x1="443.8" x2="443.8" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="443.8" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">15:00</text><line x1="502.5" x2="502.5" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="502.5" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">18:00</text><line x1="561.2" x2="561.2" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="561.2" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">21:00</text><line x1="620.0" x2="620.0" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="0"/><text x="620.0" y="124" text-anchor="end" font-size="11" fill="var(--mut)">24:00</text></g><g><rect x="150.0" y="92" width="470.0" height="20" rx="5" fill="url(#hp3)" style="animation-delay:0.40s" stroke="var(--rule)"/></g><g></g></svg></div>
+      <div class="c-cols">
+        <div><div class="c-sec">Compliance</div><ul class="c-checks"><li class="aviso"><span class="mk">!</span><b>Period without card inserted</b><small>Three days without records. Treated as rest, not as an infringement</small><em>3 days</em><i>Notice</i></li><li class="na"><span class="mk">–</span><b>Weekly rest</b><small>Pending confirmation with the manual entry</small><em>—</em><i>Art. 8.6</i></li><li class="ok"><span class="mk">✓</span><b>No infringements</b><small>The only issue is the period without records</small><em>0</em><i>—</i></li></ul></div>
+      </div>
+      <div class="c-kpis"><div><small>Period</small><b>3 days</b></div><div><small>Treated as</small><b>Rest</b></div><div><small>Action</small><b>Manual entry</b></div></div>
+    </div><div class="slide" data-i="4" aria-roledescription="slide" aria-label="Example 5 of 5">
+      <div class="c-meta"><span class="chip warn">Notice</span><small class="c-date">11 Oct · Sunday</small></div>
+      <div class="c-sec">Day sheet · hours in UTC</div>
+      <div class="c-chart"><svg viewBox="0 0 640 128" role="img" aria-label="Example day sheet in UTC"><defs><linearGradient id="gd4" x1="0" x2="1"><stop offset="0" stop-color="var(--drv)"/><stop offset="1" stop-color="var(--glow)"/></linearGradient><pattern id="hp4" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="var(--paper2)"/><rect width="3" height="7" fill="var(--rule)"/></pattern></defs><g><text x="0" y="22" font-size="12.5" font-weight="600" fill="var(--ink)">Driving</text><text x="0" y="50" font-size="12.5" font-weight="600" fill="var(--ink)">Work</text><text x="0" y="78" font-size="12.5" font-weight="600" fill="var(--ink)">Availability</text><text x="0" y="106" font-size="12.5" font-weight="600" fill="var(--ink)">Rest</text></g><g><line x1="150.0" x2="150.0" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="0"/><text x="150.0" y="124" text-anchor="start" font-size="11" fill="var(--mut)">00:00</text><line x1="208.8" x2="208.8" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="208.8" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">03:00</text><line x1="267.5" x2="267.5" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="267.5" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">06:00</text><line x1="326.2" x2="326.2" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="326.2" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">09:00</text><line x1="385.0" x2="385.0" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="385.0" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">12:00</text><line x1="443.8" x2="443.8" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="443.8" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">15:00</text><line x1="502.5" x2="502.5" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="502.5" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">18:00</text><line x1="561.2" x2="561.2" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="561.2" y="124" text-anchor="middle" font-size="11" fill="var(--mut)">21:00</text><line x1="620.0" x2="620.0" y1="2" y2="110" stroke="var(--rule)" stroke-dasharray="0"/><text x="620.0" y="124" text-anchor="end" font-size="11" fill="var(--mut)">24:00</text></g><g><rect x="150.0" y="92" width="470.0" height="20" rx="5" fill="var(--rest)" style="animation-delay:0.40s"/></g><g></g></svg></div>
+      <div class="c-cols">
+        <div><div class="c-sec">Compliance</div><ul class="c-checks"><li class="aviso"><span class="mk">!</span><b>Reduced weekly rest</b><small>Duration 30 h. Make up 15 h in one block with another 9 h rest</small><em>30 h</em><i>Art. 8.6</i></li><li class="aviso"><span class="mk">!</span><b>Make-up deadline</b><small>Before the end of the third week after the rest</small><em>Pending</em><i>Art. 8.6</i></li><li class="ok"><span class="mk">✓</span><b>Two weeks in a row</b><small>One normal and one reduced rest in the pair</small><em>Compliant</em><i>Art. 8.6</i></li></ul></div>
+      </div>
+      <div class="c-kpis"><div><small>Rest</small><b>30 h</b></div><div><small>To make up</small><b>15 h</b></div><div><small>Status</small><b>Pending</b></div></div>
+    </div><div class="c-nav"><div class="dots" role="tablist"><button class="dot on" data-go="0" aria-label="Example 1"></button><button class="dot" data-go="1" aria-label="Example 2"></button><button class="dot" data-go="2" aria-label="Example 3"></button><button class="dot" data-go="3" aria-label="Example 4"></button><button class="dot" data-go="4" aria-label="Example 5"></button></div><div class="arrows"><button class="arr" id="prevS" aria-label="Previous">‹</button><button class="arr" id="nextS" aria-label="Next">›</button></div></div></div>
+    <div class="trust"><span>Formats .TGD and .DDD</span><span>Hours in UTC, as in the file</span><span>Processed in your browser</span></div>
+    </div>
+  </div>
+  <div class="features" id="features">
+    <div class="feat"><div class="ic" style="background:linear-gradient(135deg,var(--drv),var(--glow))"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M8 15h4"/></svg></div>
+      <h3>Day sheet</h3><p>Driving, work, availability and rest on a UTC timeline, with every change of activity.</p></div>
+    <div class="feat"><div class="ic" style="background:linear-gradient(135deg,var(--acc),var(--acc2))"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <h3>Compliance</h3><p>Breaks, daily and weekly rests, and driving limits under Regulation (EC) 561/2006 and the penalty scale.</p></div>
+    <div class="feat"><div class="ic" style="background:linear-gradient(135deg,var(--rest),var(--av))"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5M4 19h16M8 15l4-4 3 3 5-6"/></svg></div>
+      <h3>Overview and export</h3><p>Calendar, hours per month and 7, 14 or 30-day periods. Export days to CSV.</p></div>
+  </div>
+  <p class="privacy">Nothing is uploaded to any server: the file never leaves your device.</p>
+</section>
+<section id="upload" class="hide">
+  <div class="upGrid">
+    <div class="upInfo">
+      <button class="btn" id="backHome">← Home</button>
+      <span class="eyebrow">Upload</span>
+      <h2>Upload your files</h2>
+      <p class="muted">Driver card or vehicle unit download. You can upload several at once.</p>
+      <ol class="steps">
+        <li><span class="stepN">1</span><div><b>Upload</b><small>Choose or drag the .TGD or .DDD files.</small></div></li>
+        <li><span class="stepN">2</span><div><b>Reading</b><small>Activities, breaks and rests are decoded in your browser, in UTC.</small></div></li>
+        <li><span class="stepN">3</span><div><b>Analysis</b><small>Day sheet, driving limits and findings under 561/2006, LOTT and the penalty scale.</small></div></li>
+      </ol>
+      <p class="privacy" style="text-align:left;margin:0">Nothing is uploaded to any server: the file never leaves your device.</p>
+    </div>
+    <div id="drop" class="drop" role="button" tabindex="0">
+      <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3"/></svg></div>
+      <h2>Drag your files here</h2>
+      <p class="muted">.TGD or .DDD · or click to choose them</p>
+      <span class="btn solid" style="margin-top:14px">Choose files</span>
+    </div>
+  </div>
+</section>
+  <div id="app" class="hide">
+    <div class="actions"><button class="btn" id="toHome">Back to home</button><button class="btn solid" id="toUpload">Upload another file</button></div>
+    <div class="row" id="pick" style="margin-bottom:12px"></div>
+    <div class="ficha" id="ficha"></div>
+    <div id="warnings"></div>
+    <nav class="tabs" id="tabs">
+      <button data-tab="panorama" aria-selected="true">Overview</button>
+      <button data-tab="hoja">Day sheet</button>
+      <button data-tab="cumplimiento">Compliance</button>
+      <button data-tab="dias">Days</button>
+      <button data-tab="registros">Records</button>
+    </nav>
+    <section data-panel="panorama"></section>
+    <section data-panel="hoja" class="hide"></section>
+    <section data-panel="cumplimiento" class="hide"></section>
+    <section data-panel="dias" class="hide"></section>
+    <section data-panel="registros" class="hide"></section>
+  </div>
+  <p id="err" class="warnbox hide"></p>
+</main>
+<script>
+/* Compliance: Regulation (EC) 561/2006 (DOUE L 102, 11.4.2006), con códigos del Baremo sancionador v7.4 (5-oct-2026).
+   Segmentos: [{start, end, activity}] en ms UTC, ordenados, sin solapes.
+   Pausa: 45 min seguidos, o 15 min y después 30 min (art. 7). Otra forma no cuenta.
+   Daily rest: 11 h; reducido 9–11 h (máx. 3 entre semanales); fraccionado 3 h + 9 h (art. 8).
+   Weekly rest: dos normales, o uno normal y uno reducido (≥24 h) en dos semanas seguidas (art. 8.6).
+   Compensación de reducido: bloque de la diferencia con 45 h + 9 h, antes del fin de la 3.ª semana siguiente (art. 8.6 y 8.7).
+   shortcut: los códigos de baremo son el código base; las bandas por exceso se revisan contra la tabla completa.
+   shortcut: dos descansos seguidos sin cambio en la tarjeta aparecen fundidos; el orden no se puede verificar.
+   shortcut: se usa la duración total del descanso, no la parte dentro de las 24 h (art. 8.2). */
+(function (root) {
+  'use strict';
+  const MIN = 60000, H = 60 * MIN, DAY = 24 * H, WEEK = 7 * DAY;
+  const weekStart = (ms) => { const d = new Date(ms), off = (d.getUTCDay() + 6) % 7; return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() - off); };
+  const iso = (ms) => new Date(ms).toISOString();
+  const kindOf = (h) => h >= 45 ? 'regular weekly' : h >= 24 ? 'reduced weekly' : h >= 11 ? 'regular daily' : 'reduced daily';
+
+  function fillGaps(segs, f, gaps) {
+    const out = [];
+    for (const s of [...segs].sort((a, b) => a.start - b.start)) {
+      const p = out[out.length - 1];
+      if (p && s.start > p.end) {
+        const gap = { start: p.end, end: s.start, activity: 'rest/break', unrecorded: true };
+        if (gap.end - gap.start >= DAY) {
+          gaps.push(gap);
+          f.push({ type: 'period without records', sev: 'aviso', at: iso(gap.start), detail: `${((gap.end - gap.start) / DAY).toFixed(1)} days without records: the manual entry at the start of the day is usually missing. Counted as rest.` });
+        }
+        out.push(gap);
+      }
+      out.push({ ...s });
+    }
+    const m = [];
+    for (const s of out) { const p = m[m.length - 1]; if (p && p.activity === s.activity && !!p.unrecorded === !!s.unrecorded && p.end === s.start) p.end = s.end; else m.push({ ...s }); }
+    return m;
+  }
+
+  function checkCompliance(input) {
+    const f = [];
+    const add = (type, at, detail, cod, base) => f.push({ type, sev: 'infraccion', at: iso(at), detail, cod: cod || null, base: base || null });
+    const gaps = [];
+    for (const s of input) if (s.unrecorded && s.end - s.start >= DAY) {   // tarjeta no insertada: sin registro, cuenta como descanso
+      gaps.push(s);
+      f.push({ type: 'period without records', sev: 'aviso', at: iso(s.start), detail: `${((s.end - s.start) / DAY).toFixed(0)} days with the card not inserted and no activity recorded. Counted as rest.` });
+    }
+    const segs = fillGaps(input, f, gaps);
+    const dataEnd = input.length ? Math.max(...input.map(s => s.end)) : 0;
+
+    // 1. Breaks (art. 7). Pausa válida: ≥45 min, o ≥15 min seguida de ≥30 min.
+    let acc = 0, warned = false, pending15 = false;
+    for (const s of segs) {
+      const dur = s.end - s.start;
+      if (s.activity === 'driving') {
+        const before = acc; acc += dur;
+        if (!warned && acc > 4.5 * H) {
+          const h = acc / H, cod = h >= 6 ? ['CC01', 1001] : h >= 5 ? ['CC02', 401] : ['CC03', 100];
+          add('break', s.start + (4.5 * H - before), `${h.toFixed(2)} h of driving without a valid break (45 min, or 15 + 30 min)`, cod[0], cod[1]);
+          warned = true;
+        }
+      } else if (s.activity === 'work' || s.activity === 'availability') {
+        pending15 = false;   // trabajo u otra actividad entre medias: la pausa de 15 deja de contar
+      } else if (s.activity === 'rest/break') {
+        if (dur >= 45 * MIN || (dur >= 30 * MIN && pending15)) { acc = 0; warned = false; pending15 = false; }
+        else if (dur >= 15 * MIN) pending15 = true;
+      }
+    }
+
+    // 2. Rests ≥ 9 h: separan los periodos diarios de conducción
+    const rests = segs.filter(s => s.activity === 'rest/break' && s.end - s.start >= 9 * H)
+      .map(s => ({ start: s.start, end: s.end, h: (s.end - s.start) / H, kind: kindOf((s.end - s.start) / H) }));
+    const weekly = rests.filter(r => r.h >= 24);
+
+    // 3. Daily driving (art. 6.1): 9 h, prórroga a 10 h máx. dos veces por semana
+    const periods = [];
+    for (let i = 0; i + 1 < rests.length; i++) {
+      const a = rests[i].end, b = rests[i + 1].start;
+      let drv = 0;
+      for (const s of segs) if (s.activity === 'driving' && s.start >= a && s.end <= b) drv += s.end - s.start;
+      periods.push({ from: a, to: b, drivingH: drv / H });
+    }
+    const ext = {};
+    for (const p of periods) {
+      const h = p.drivingH;
+      if (h > 10) {
+        const cod = h >= 12 ? ['CA11', 1001] : h >= 11 ? ['CA12', 401] : ['CA13', 100];
+        add('daily', p.from, `daily driving of ${h.toFixed(2)} h (maximum 10 h)`, cod[0], cod[1]);
+      } else if (h > 9) { const w = weekStart(p.from); ext[w] = (ext[w] || 0) + 1; p.extended = true; }
+    }
+    for (const w in ext) if (ext[w] > 2) add('extension', +w, `${ext[w]} days with more than 9 h in the week (maximum 2 extensions)`, 'CA23', 100);
+    periods.forEach(p => { if (p.drivingH > 9 && p.drivingH <= 10 && !p.extended) p.extended = false; });
+
+    // 4. Daily rest (art. 8.2): el siguiente descanso diario en las 24 h tras el fin del anterior
+    for (let i = 0; i + 1 < rests.length; i++) {
+      const nxt = rests[i + 1];
+      if (nxt.h < 24 && nxt.start - rests[i].end > DAY) add('rest', rests[i].end, 'more than 24 h between the end of one rest and the next daily rest', null, null);
+    }
+    // 5. Máximo 3 descansos diarios reducidos entre dos semanales (art. 8.4)
+    let reduced = 0;
+    for (const r of rests) {
+      if (r.h >= 24) { reduced = 0; continue; }
+      if (r.h < 11 && ++reduced > 3) add('rest', r.start, 'more than 3 reduced daily rests between two weekly rests', null, null);
+    }
+
+    // 6. Weekly rest: máximo 144 h (6 × 24 h) entre semanales (art. 8.6)
+    for (let i = 0; i + 1 < weekly.length; i++) {
+      const gap = weekly[i + 1].start - weekly[i].end;
+      if (gap > 6 * DAY) add('weekly', weekly[i].end, `${(gap / H).toFixed(0)} h between weekly rests (maximum 144 h)`, 'CB71', 2001);
+    }
+
+    // 7. Two weeks in a row: dos normales, o uno normal y uno reducido (art. 8.6)
+    const drvWeek = {};
+    for (const s of segs) {
+      if (s.activity !== 'driving') continue;
+      let t = s.start;
+      while (t < s.end) { const ws = weekStart(t), we = Math.min(s.end, ws + WEEK); drvWeek[ws] = (drvWeek[ws] || 0) + (we - t); t = we; }
+    }
+    const wkeys = Object.keys(drvWeek).map(Number).sort((a, b) => a - b);
+    const allWeeks = [];
+    if (wkeys.length) for (let w = weekStart(input[0].start); w <= weekStart(dataEnd); w += WEEK) allWeeks.push(w);
+    const wkRest = (w) => weekly.filter(r => r.start < w + WEEK && r.end > w);
+    for (let i = 0; i + 1 < allWeeks.length; i++) {
+      const w1 = allWeeks[i], w2 = allWeeks[i + 1];
+      if (w2 + WEEK > dataEnd) break;                       // última pareja incompleta: no se evalúa
+      const a = w1, b = w2 + WEEK;                          // descansos que tocan el par (sin contar dos veces)
+      const rs = weekly.filter(r => r.start < b && r.end > a);
+      const normal = rs.filter(r => r.h >= 45).length, red = rs.filter(r => r.h >= 24 && r.h < 45).length;
+      if (normal >= 2 || (normal >= 1 && red >= 1)) continue;
+      const msg = 'en dos semanas seguidas no hay dos descansos semanales normales, ni uno normal y uno reducido';
+      if (segs.some(s => s.unrecorded && s.start < b && s.end > a)) f.push({ type: 'weekly', sev: 'aviso', at: iso(w1), detail: msg + ' (period with card not inserted: not assessed)', cod: null, base: null });
+      else add('weekly', w1, msg, 'CB51', 1001);
+    }
+
+    // 8. Compensación del descanso semanal reducido (art. 8.6 y 8.7): diferencia con 45 h + 9 h, antes del fin de la 3.ª semana siguiente
+    for (const r of weekly) {
+      if (r.h >= 45) continue;
+      const deficit = 45 - r.h, deadline = weekStart(r.start) + 4 * WEEK;
+      if (weekly.some(x => x.start >= r.end && x.start < deadline && x.h >= deficit + 9)) continue;
+      const msg = `reduced weekly rest of ${r.h.toFixed(1)} h: ${deficit.toFixed(1)} h must be made up in one block with another 9 h rest, before ${iso(deadline).slice(0, 10)}`;
+      if (deadline >= dataEnd) f.push({ type: 'make-up', sev: 'aviso', at: iso(r.start), detail: msg, cod: null, base: null });
+      else add('make-up', r.start, msg, 'CB61', 1001);
+    }
+
+    // 9. Driving semanal (56 h) y bisemanal (90 h), semana lunes 00:00 a domingo 24:00 UTC
+    for (const w of wkeys) {
+      const h = drvWeek[w] / H;
+      if (h > 56) {
+        const cod = h >= 65 ? ['CA31', 1001] : h >= 60 ? ['CA32', 401] : ['CA33', 100];
+        add('weekly', w, `weekly driving of ${h.toFixed(1)} h (maximum 56 h)`, cod[0], cod[1]);
+      }
+    }
+    for (const w of wkeys) {
+      if (drvWeek[w + WEEK] === undefined) continue;
+      const h = (drvWeek[w] + drvWeek[w + WEEK]) / H;
+      if (h > 90) {
+        const cod = h >= 105 ? ['CA41', 1001] : h >= 100 ? ['CA42', 401] : ['CA43', 100];
+        add('fortnightly', w, `${h.toFixed(1)} h in two consecutive weeks (maximum 90 h)`, cod[0], cod[1]);
+      }
+    }
+
+    // Hallazgos cerca de un periodo sin registrar: pasan a aviso
+    for (const x of f) {
+      const t = Date.parse(x.at);
+      if (x.sev === 'infraccion' && gaps.some(g => t >= g.start - DAY && t <= g.end + DAY)) {
+        x.sev = 'aviso';
+        x.detail += ' (near a period without records: check manual entries before treating it as an infringement)';
+      }
+    }
+    f.sort((a, b) => a.at.localeCompare(b.at));
+    const weeks = allWeeks.map(w => {
+      const rs = wkRest(w), best = rs.reduce((m, r) => (m && m.h >= r.h ? m : r), null);
+      const unrec = segs.some(s => s.unrecorded && s.start < w + WEEK && s.end > w);
+      return { week: iso(w).slice(0, 10), drivingH: (drvWeek[w] || 0) / H, weeklyRest: unrec ? 'no records' : best ? best.kind : 'none', extensions: 0 };
+    });
+    for (const p of periods) if (p.extended) { const w = weeks.find(x => x.week === iso(weekStart(p.from)).slice(0, 10)); if (w) w.extensions++; }
+    return { findings: f, weeks, periods: periods.map(p => ({ from: iso(p.from), drivingH: +p.drivingH.toFixed(2), extended: !!p.extended })) };
+  }
+
+  const api = { checkCompliance, kindOf, weekStart };
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  else root.TGDCompliance = api;
+})(typeof self !== 'undefined' ? self : globalThis);
+
+</script>
+<script>
+/* Lector de archivos TGD / DDD (tacógrafo digital, descarga de tarjeta de conductor).
+   Sin dependencias. Funciona en el navegador y en Node (module.exports). */
+(function (root) {
+  'use strict';
+
+  const CMP = (typeof require !== 'undefined') ? require('./compliance.js') : root.TGDCompliance;
+  const ACT = ['rest/break', 'availability', 'work', 'driving'];
+  const SLOT = ['driver', 'co-driver'];
+
+  function be16(b, o) { return (b[o] << 8) | b[o + 1]; }
+  function be32(b, o) { return ((b[o] << 24) | (b[o + 1] << 16) | (b[o + 2] << 8) | b[o + 3]) >>> 0; }
+
+  // Blocks TLV: etiqueta(2) + flag(1) + longitud(2) + valor
+  function readBlocks(bytes) {
+    const out = [];
+    let p = 0;
+    while (p + 5 <= bytes.length) {
+      const tag = be16(bytes, p), crypt = bytes[p + 2], n = be16(bytes, p + 3);
+      if (p + 5 + n > bytes.length) { out.push({ off: p, tag, crypt, n, value: null }); break; }
+      out.push({ off: p, tag, crypt, n, value: bytes.subarray(p + 5, p + 5 + n) });
+      p += 5 + n;
+    }
+    return out;
+  }
+
+  // Secciones en claro (flag 0), primera aparición de cada etiqueta
+  function sections(bytes) {
+    const s = {};
+    for (const b of readBlocks(bytes)) if (b.crypt === 0 && b.value && !(b.tag in s)) s[b.tag] = b.value;
+    return s;
+  }
+
+  function timeReal(v, o) {  // segundos desde 1970-01-01 UTC
+    const t = be32(v, o);
+    return t ? new Date(t * 1000) : null;
+  }
+  function txt(v) {  // primer byte < 0x20 = marcador de codificación
+    let s = v;
+    if (s.length && s[0] < 0x20) s = s.subarray(1);
+    let r = ''; for (const c of s) r += String.fromCharCode(c);
+    return r.replace(/[\x00-\x1f]/g, '').trim();
+  }
+  function alnum(v) { return txt(v).replace(/[^A-Za-z0-9]/g, ''); }
+  function bcdDate(v) { const h = Array.from(v, x => x.toString(16).padStart(2, '0')).join(''); return `${h.slice(0,4)}-${h.slice(4,6)}-${h.slice(6,8)}`; }
+  function isoDay(d) { return d ? d.toISOString().slice(0, 10) : null; }
+
+  function identification(v) {
+    return {
+      cardNumber: alnum(v.subarray(1, 17)),
+      issuingAuthority: txt(v.subarray(17, 53)),
+      issueDate: isoDay(timeReal(v, 53)),
+      validFrom: isoDay(timeReal(v, 57)),
+      expiry: isoDay(timeReal(v, 61)),
+      surname: txt(v.subarray(65, 101)),
+      firstNames: txt(v.subarray(101, 137)),
+      birthDate: bcdDate(v.subarray(137, 141)),
+      language: txt(v.subarray(141, 143)).toLowerCase(),
+    };
+  }
+
+  function decodeChange(w) {
+    return {
+      slot: SLOT[(w >> 15) & 1],
+      status: (w >> 14) & 1 ? 'team' : 'single',
+      card: (w >> 13) & 1 ? 'not inserted' : 'inserted',
+      activity: ACT[(w >> 11) & 3],
+      minutes: w & 0x7FF,
+    };
+  }
+
+  // Ciclo de days: cabecera 2+2 bytes, después registros de longitud variable
+  function activityDays(v) {
+    const ring = v.subarray(4), size = ring.length;
+    const rd = (q, n) => { const o = new Uint8Array(n); for (let i = 0; i < n; i++) o[i] = ring[(q + i) % size]; return o; };
+    const days = [];
+    let pos = be16(v, 0), seen = 0;
+    while (seen < size) {
+      const rl = be16(rd(pos + 2, 2), 0);
+      if (rl < 12 || rl > size) break;
+      const date = timeReal(rd(pos + 4, 4), 0);
+      const dist = be16(rd(pos + 10, 2), 0);
+      const changes = [];
+      const cb = rd(pos + 12, rl - 12);
+      for (let i = 0; i + 1 < cb.length; i += 2) changes.push(decodeChange(be16(cb, i)));
+      days.push({ date: isoDay(date), distanceKm: dist, changes });
+      seen += rl; pos = (pos + rl) % size;
+    }
+    return days;
+  }
+
+  // Minutos por actividad de cada día + tramos absolutos para descansos
+  function summarizeDays(days) {
+    const timeline = [];
+    const out = days.map((day, di) => {
+      const acc = { driving: 0, work: 0, availability: 0, 'rest/break': 0 };
+      const base = Date.parse(day.date + 'T00:00:00Z');
+      const ch = day.changes;
+      const last = di === days.length - 1;
+      for (let i = 0; i < ch.length; i++) {
+        const c = ch[i];
+        if (c.slot !== 'driver') continue;
+        let end;
+        if (i + 1 < ch.length) end = ch[i + 1].minutes;
+        else if (last) end = c.minutes;   // open segment: the card does not show when it ends
+        else end = 1440;
+        end = Math.min(Math.max(end, c.minutes), 1440);
+        const dur = end - c.minutes;
+        if (dur <= 0) continue;
+        acc[c.activity] += dur;
+        timeline.push({ start: base + c.minutes * 60000, end: base + end * 60000, activity: c.activity, unrecorded: c.card === 'not inserted' });
+      }
+      const total = acc.driving + acc.work + acc.availability + acc['rest/break'];
+      return {
+        date: day.date, drivingMin: acc.driving, workMin: acc.work, availabilityMin: acc.availability,
+        restMin: acc['rest/break'], distanceKm: day.distanceKm, changes: ch,
+        complete: !last || total === 1440, openSegment: last && total !== 1440,
+      };
+    });
+    return { days: out, timeline };
+  }
+
+  function mergeTimeline(tl) {
+    const m = [];
+    for (const s of tl) {
+      const p = m[m.length - 1];
+      if (p && p.activity === s.activity && !!p.unrecorded === !!s.unrecorded && p.end === s.start) p.end = s.end;
+      else m.push({ ...s });
+    }
+    return m;
+  }
+
+  function restPeriods(timeline, minHours = 9) {
+    return mergeTimeline(timeline)
+      .filter(s => s.activity === 'rest/break' && (s.end - s.start) / 3600000 >= minHours)
+      .map(s => ({ from: new Date(s.start).toISOString(), to: new Date(s.end).toISOString(),
+                   hours: Math.round((s.end - s.start) / 360000) / 10, unrecorded: !!s.unrecorded }));
+  }
+
+  function vehicles(v) {
+    const out = [], ring = v.subarray(2);
+    for (let i = 0; i + 31 <= ring.length; i += 31) {
+      const r = ring.subarray(i, i + 31);
+      const first = timeReal(r, 6), last = timeReal(r, 10);
+      if (!first) continue;
+      out.push({
+        plate: alnum(r.subarray(14, 29)),
+        odometerBegin: (r[0] << 16) | (r[1] << 8) | r[2],
+        odometerEnd: (r[3] << 16) | (r[4] << 8) | r[5],
+        firstUse: first.toISOString(), lastUse: last ? last.toISOString() : null,
+      });
+    }
+    return out.sort((a, b) => a.firstUse.localeCompare(b.firstUse));
+  }
+
+  function eventList(v, kindName) {
+    const out = [];
+    if (!v) return out;
+    for (let i = 0; i + 24 <= v.length; i += 24) {
+      const r = v.subarray(i, i + 24);
+      if (r[0] === 0 && be32(r, 1) === 0) continue;
+      const b = timeReal(r, 1), e = timeReal(r, 5);
+      if (!b) continue;
+      out.push({ [kindName]: r[0], begin: b.toISOString(), end: e ? e.toISOString() : null, vehicle: alnum(r.subarray(9, 24)) });
+    }
+    return out;
+  }
+
+  // Identificación de una descarga de vehículo (1ª generación): VIN, matrícula y hora actual de la VU.
+  // La cabecera va tras el VIN: la matrícula seguida de su TimeReal es el primer registro (DDP_055).
+  // shortcut: validada contra los nombres de fichero de 22 descargas (1ª y 2ª gen.); el formato 76 31 no se ha decodificado.
+  function vehicleId(bytes) {
+    const txt = Array.from(bytes.subarray(0, 8192), c => (c >= 32 && c < 127 ? String.fromCharCode(c) : ' ')).join('');
+    const vin = (txt.match(/[A-HJ-NPR-Z0-9]{17}/) || [null])[0];
+    const m = txt.match(/\d{4} ?[B-DF-HJ-NP-TV-Z]{3}/);   // a veces con espacio: 0861 LLK
+    // hora tras la matrícula: +13 en 1ª generación, +18 en 2ª (entre medias, cabecera de bloque 03 00 04 00 01)
+    const gen2 = bytes[0] === 0x76 && (bytes[1] === 0x21 || bytes[1] === 0x31);
+    const t = m && m.index + 22 <= bytes.length ? timeReal(bytes, m.index + (gen2 ? 18 : 13)) : null;
+    const vuTime = t && t.getUTCFullYear() >= 2010 && t.getUTCFullYear() <= 2040 ? t : null;
+    return { vin, plate: m ? m[0].replace(' ', '') : null, vuTime: vuTime ? vuTime.toISOString() : null };
+  }
+
+  // Punto de entrada: bytes del archivo -> datos listos para tablas y gráficas
+  function parseTGD(buffer) {
+    const bytes = new Uint8Array(buffer);
+    const blocks = readBlocks(bytes);
+    const s = sections(bytes);
+    if (!s[0x0520] || !s[0x0504]) {
+      // Vehicle unit download: aún sin decodificar (falta un archivo de ejemplo).
+      const inv = {};
+      for (const b of blocks) { const k = '0x' + b.tag.toString(16).padStart(4, '0'); inv[k] ??= { tag: k, blocks: 0, bytes: 0 }; inv[k].blocks++; inv[k].bytes += b.n; }
+      return { kind: 'vehiculo', fileBytes: bytes.length, vehicle: vehicleId(bytes), inventory: Object.values(inv).sort((a, b) => a.tag.localeCompare(b.tag)), complete: blocks.every(b => b.value !== null) };
+    }
+    const ident = identification(s[0x0520]);
+    const act = summarizeDays(activityDays(s[0x0504]));
+    const checks = {
+      blocksConsumed: blocks.every(b => b.value !== null),
+      daysWithoutOpenSegment: act.days.filter(d => !d.complete).length === 0,
+      dayCount: act.days.length,
+    };
+    return {
+      kind: 'tarjeta',
+      card: { number: ident.cardNumber, holder: { surname: ident.surname, firstNames: ident.firstNames, birthDate: ident.birthDate, language: ident.language },
+              issuingAuthority: ident.issuingAuthority, issueDate: ident.issueDate, validFrom: ident.validFrom, expiry: ident.expiry },
+      days: act.days,
+      rests: restPeriods(act.timeline, 9),
+      compliance: CMP.checkCompliance(mergeTimeline(act.timeline)),
+      vehicles: vehicles(s[0x0505] || new Uint8Array(0)),
+      events: eventList(s[0x0502], 'eventType'),
+      faults: eventList(s[0x0503], 'faultType'),
+      checks,
+    };
+  }
+
+  const api = { parseTGD, readBlocks, sections, identification, activityDays };
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  else root.TGD = api;
+})(typeof self !== 'undefined' ? self : globalThis);
+
+</script>
+<script>
+/* Verificación de firmas G2 (brainpoolP256r1 + SHA-256) de una descarga de tarjeta.
+   Sin dependencias: aritmética con BigInt y SHA-256 de WebCrypto. Funciona en el navegador y en Node. */
+const TGDSIG = (() => {
+  // ERCA Gen2: certificado raíz (CVC), clave pública verificada contra su propia firma
+  const ERCA = {
+    x: 0x08c04e3926c8de85544240cde40dab70d2b47e0f83762522d7b0b8543b9b29dcn,
+    y: 0x80e5c67b82a62d55e3483ab4b00a24c2a2566c3786797a1a052822ab4bf1f292n,
+  };
+  const ERCA_CHR = 'fd45432001ffff01';
+  const P = 0xA9FB57DBA1EEA9BC3E660A909D838D726E3BF623D52620282013481D1F6E5377n;
+  const A = 0x7D5A0975FC2C3057EEF67530417AFFE7FB8055C126DC5C6CE94A4B44F330B5D9n;
+  const B = 0x26DC5C6CE94A4B44F330B5D9BBD77CBF958416295CF7E1CE6BCCDC18FF8C07B6n;
+  const N = 0xA9FB57DBA1EEA9BC3E660A909D838D718C397AA3B561A6F7901E0E82974856A7n;
+  const G = { x: 0x8BD2AEB9CB7E57CB2C4B482FFC81B7AFB9DE27E1E3BD23C23A4453BD9ACE3262n, y: 0x547EF835C3DAC4FD97F8461A14611DC9C27745132DED8E545C1D54C72F046997n };
+
+  const mod = (a, m) => ((a % m) + m) % m;
+  const inv = (a, m) => { let [r0, r1, s0, s1] = [mod(a, m), m, 1n, 0n]; while (r1) { const q = r0 / r1; [r0, r1] = [r1, r0 - q * r1]; [s0, s1] = [s1, s0 - q * s1]; } return mod(s0, m); };
+  function add(Pt, Q) {
+    if (!Pt) return Q; if (!Q) return Pt;
+    if (Pt.x === Q.x) { if (mod(Pt.y + Q.y, P) === 0n) return null; }
+    const l = Pt.x === Q.x && Pt.y === Q.y ? mod((3n * Pt.x * Pt.x + A) * inv(2n * Pt.y, P), P) : mod((Q.y - Pt.y) * inv(Q.x - Pt.x, P), P);
+    const x = mod(l * l - Pt.x - Q.x, P);
+    return { x, y: mod(l * (Pt.x - x) - Pt.y, P) };
+  }
+  function mul(k, Pt) { let R = null; let base = Pt; while (k > 0n) { if (k & 1n) R = add(R, base); base = add(base, base); k >>= 1n; } return R; }
+  function onCurve(Pt) { return mod(Pt.y * Pt.y - (Pt.x ** 3n + A * Pt.x + B), P) === 0n; }
+
+  async function verify(pub, msg, sig) {
+    if (sig.length !== 64) return false;
+    const r = BigInt('0x' + hex(sig.subarray(0, 32))), s = BigInt('0x' + hex(sig.subarray(32)));
+    if (r <= 0n || r >= N || s <= 0n || s >= N) return false;
+    const e = BigInt('0x' + hex(new Uint8Array(await crypto.subtle.digest('SHA-256', msg))));
+    const w = inv(s, N), u1 = mod(e * w, N), u2 = mod(r * w, N);
+    const R = add(mul(u1, G), mul(u2, pub));
+    return !!R && mod(R.x, N) === r;
+  }
+
+  const hex = (b) => Array.from(b, x => x.toString(16).padStart(2, '0')).join('');
+  // TLV (tag, bytes completos, valor). Tags de 1 o 2 bytes; longitud corta o larga
+  function tlv(b) {
+    const out = []; let i = 0;
+    while (i < b.length) {
+      const s = i; let t = b[i++]; if ((t & 0x1f) === 0x1f) t = (t << 8) | b[i++];
+      let l = b[i++]; if (l & 0x80) { const n = l & 0x7f; l = 0; for (let k = 0; k < n; k++) l = l * 256 + b[i++]; }
+      if (i + l > b.length) break;
+      out.push({ t, full: b.subarray(s, i + l), val: b.subarray(i, i + l) }); i += l;
+    }
+    return out;
+  }
+  const get = (list, t) => list.find(x => x.t === t);
+  const timeOf = (v) => new Date((((v[0] << 24) | (v[1] << 16) | (v[2] << 8) | v[3]) >>> 0) * 1000).toISOString().slice(0, 10);
+  function pubOf(list) {
+    const pk = tlv(get(list, 0x7f49).val), q = get(pk, 0x86).val;
+    if (q[0] !== 4 || q.length !== 65) throw new Error('uncompressed key');
+    const Pt = { x: BigInt('0x' + hex(q.subarray(1, 33))), y: BigInt('0x' + hex(q.subarray(33))) };
+    if (!onCurve(Pt)) throw new Error('point off the curve');
+    return Pt;
+  }
+  // Certificado CVC: { body (7F4E completo), sig (5F37), pub, chr (5F20), car (42) }
+  function cert(bytes) {
+    const top = get(tlv(bytes), 0x7f21); if (!top) throw new Error('no 7F21 data');
+    const c = tlv(top.val), body = get(c, 0x7f4e), sig = get(c, 0x5f37);
+    const inner = tlv(body.val);
+    return { body: body.full, sig: sig.val, pub: pubOf(inner), chr: hex(get(inner, 0x5f20).val), car: hex(get(inner, 0x42).val), until: timeOf(get(inner, 0x5f24).val) };
+  }
+
+  // blocks: lista { tag, crypt, value } de un TGD (readBlocks)
+  async function verifyG2(blocks) {
+    const result = { chain: false, ok: 0, total: 0, error: null };
+    try {
+      const certBlk = (t) => blocks.find(b => b.tag === t && b.crypt === 2 && b.value);
+      const cardB = certBlk(0xc101), msB = certBlk(0xc108);
+      if (!cardB || !msB) { result.error = 'no G2 certificates'; return result; }
+      const root = { x: ERCA.x, y: ERCA.y };
+      const msca = cert(msB.value), card = cert(cardB.value);
+      const msOk = await verify(root, msca.body, msca.sig) && msca.car === ERCA_CHR;
+      const cardOk = await verify(msca.pub, card.body, card.sig) && card.car === msca.chr;
+      result.chain = msOk && cardOk;
+      result.cardUntil = card.until;
+      // firmas de datos: bloque crypt 2 seguido de firma crypt 3 (64 bytes) con la clave de la tarjeta
+      for (let i = 0; i + 1 < blocks.length; i++) {
+        const d = blocks[i], s = blocks[i + 1];
+        if (d.crypt !== 2 || s.crypt !== 3 || !d.value || !s.value) continue;
+        result.total++;
+        if (await verify(card.pub, d.value, s.value)) result.ok++;
+      }
+    } catch (e) { result.error = e.message; }
+    return result;
+  }
+
+  // ---- Generación 1 (RSA-1024, ISO 9796-2 para certificados, PKCS#1 v1.5 + SHA-1 para datos) ----
+  // Raíz ERCA G1: certificado EC_PK.bin del JRC (CHR fd45432000ffff01, módulo y exponente 65537)
+  const ERCA_G1_CHR = 'fd45432000ffff01';
+  const ERCA_G1_N = BigInt('0xe980763a444a95250a958782d1d54acfc323d25f3946b816e92fcf9d32b42a2613d1a363b4e43532a026686329c89663ccc001f7278206b6ab65ad2871848a680f6a57d8fda1d782c9b5812903ea5b66e2a9be1d85bdd0fdae76a46088d71a6176b1f6a98419100424dc56d0846aa3c84390d3517a0f1192dedff740924cdba7');
+  const DI_SHA1 = [0x30, 0x21, 0x30, 0x09, 0x06, 0x05, 0x2b, 0x0e, 0x03, 0x02, 0x1a, 0x05, 0x00, 0x04, 0x14];
+  const modpow = (b, e, m) => { let r = 1n; b %= m; while (e > 0n) { if (e & 1n) r = r * b % m; b = b * b % m; e >>= 1n; } return r; };
+  const bytesOf = (x, n) => Uint8Array.from(x.toString(16).padStart(n * 2, '0').match(/../g), h => parseInt(h, 16));
+  // Certificado G1 (194 bytes): firma (128) + parte no recuperable (58) + CAR (8). Devuelve el contenido C y el CAR.
+  async function g1Open(c, n, e = 65537n) {
+    const m = bytesOf(modpow(BigInt('0x' + hex(c.subarray(0, 128))), e, n), 128);
+    if (m[0] !== 0x6a || m[127] !== 0xbc) return null;
+    const C = Uint8Array.from([...m.subarray(1, 107), ...c.subarray(128, c.length - 8)]);
+    const h = new Uint8Array(await crypto.subtle.digest('SHA-1', C));
+    if (hex(h) !== hex(m.subarray(107, 127))) return null;
+    return { C, car: hex(c.subarray(c.length - 8)) };
+  }
+  async function rsaVerify1(n, msg, sig) {
+    const m = bytesOf(modpow(BigInt('0x' + hex(sig)), 65537n, n), 128);
+    const h = new Uint8Array(await crypto.subtle.digest('SHA-1', msg));
+    const exp = [0, 1, ...new Array(128 - 3 - DI_SHA1.length - h.length).fill(0xff), 0, ...DI_SHA1, ...h];
+    return hex(m) === hex(Uint8Array.from(exp));
+  }
+  async function verifyG1(blocks) {
+    const result = { chain: false, ok: 0, total: 0, error: null };
+    try {
+      const msB = blocks.find(b => b.tag === 0xc108 && b.crypt === 0 && b.value);
+      const cardB = blocks.find(b => b.tag === 0xc100 && b.crypt === 0 && b.value);
+      if (!msB || !cardB) { result.error = 'no G1 certificates'; return result; }
+      const ms = await g1Open(msB.value, ERCA_G1_N);
+      if (!ms || ms.car !== ERCA_G1_CHR) { result.error = 'invalid member state certificate'; return result; }
+      const msN = BigInt('0x' + hex(ms.C.subarray(-136, -8)));
+      const card = await g1Open(cardB.value, msN);
+      if (!card) { result.error = 'invalid card certificate'; return result; }
+      result.chain = card.car === hex(ms.C.subarray(-144, -136));
+      result.cardUntil = new Date((((card.C[16] << 24) | (card.C[17] << 16) | (card.C[18] << 8) | card.C[19]) >>> 0) * 1000).toISOString().slice(0, 10);
+      const cardN = BigInt('0x' + hex(card.C.subarray(-136, -8)));
+      // firmas de datos: bloque crypt 0 seguido de firma crypt 1 (128 bytes) con la clave de la tarjeta
+      for (let i = 0; i + 1 < blocks.length; i++) {
+        const d = blocks[i], s = blocks[i + 1];
+        if (d.crypt !== 0 || s.crypt !== 1 || !d.value || !s.value) continue;
+        result.total++;
+        if (await rsaVerify1(cardN, d.value, s.value)) result.ok++;
+      }
+    } catch (e) { result.error = e.message; }
+    return result;
+  }
+  // Elige la generación según los certificados del fichero
+  const verifyAny = (blocks) => blocks.some(b => b.tag === 0xc101) ? verifyG2(blocks) : verifyG1(blocks);
+
+  // Descarga de VU de 1ª generación (cabecera 76 01): certificados MS (offset 2) y VU (offset 196) y firmas PKCS#1 v1.5 + SHA-1
+  // (CSM_033–035). Cada firma de 128 bytes cubre desde 390 (o desde la firma anterior + 2 bytes de cabecera).
+  // shortcut: solo 1ª generación; la descarga de 2ª (76 21/76 31) lleva otro esquema y no se verifica aquí.
+  async function verifyVU1(bytes) {
+    const DI = [0x30, 0x21, 0x30, 0x09, 0x06, 0x05, 0x2b, 0x0e, 0x03, 0x02, 0x1a, 0x05, 0x00, 0x04, 0x14];
+    const LEN = 128;
+    if (bytes[0] !== 0x76 || bytes[1] !== 0x01 || bytes.length < 390 + LEN) return null;
+    const ms = await g1Open(bytes.subarray(2, 196), ERCA_G1_N, 65537n);
+    if (!ms || ms.car !== ERCA_G1_CHR) return null;
+    const msN = BigInt('0x' + hex(ms.C.subarray(-136, -8))), msE = BigInt('0x' + hex(ms.C.subarray(-8)));
+    const vu = await g1Open(bytes.subarray(196, 390), msN, msE);
+    if (!vu) return null;
+    const vuN = BigInt('0x' + hex(vu.C.subarray(-136, -8))), vuE = BigInt('0x' + hex(vu.C.subarray(-8)));
+    const dec = (s) => bytesOf(modpow(BigInt('0x' + hex(bytes.subarray(s, s + LEN))), vuE, vuN), LEN);
+    let start = 390, ok = 0, total = 0;
+    for (let s = 390; s + LEN <= bytes.length; s++) {
+      const m = dec(s);
+      if (m[0] !== 0 || m[1] !== 1 || m[LEN - 36] !== 0 || hex(m.subarray(LEN - 35, LEN - 20)) !== hex(Uint8Array.from(DI))) continue;
+      if (s < start) continue;
+      total++;
+      const h = new Uint8Array(await crypto.subtle.digest('SHA-1', bytes.subarray(start, s)));
+      if (hex(h) === hex(m.subarray(LEN - 20))) { ok++; start = s + LEN + 2; }
+    }
+    return { ok, total, valid: total > 0 && ok === total };
+  }
+
+  // Descarga de VU de 2.ª generación (76 21 / 76 31): cadena ERCA → Status miembro → VU. Los dos certificados son CVC (7F21).
+  async function verifyVU2Chain(bytes) {
+    if (bytes[0] !== 0x76 || (bytes[1] !== 0x21 && bytes[1] !== 0x31)) return null;
+    const cs = [];
+    for (let i = 0; i + 1 < bytes.length && cs.length < 2; i++) {
+      if (bytes[i] !== 0x7f || bytes[i + 1] !== 0x21) continue;
+      try { cs.push(cert(bytes.subarray(i))); i += 2; } catch (e) { /* no es un certificado */ }
+    }
+    if (cs.length < 2) return null;
+    const [ms, vu] = cs;
+    return {
+      msSigned: await verify(ERCA, ms.body, ms.sig),
+      vuSigned: await verify(ms.pub, vu.body, vu.sig),
+      carOk: ms.car === ERCA_CHR && vu.car === ms.chr,
+      msUntil: ms.until, vuUntil: vu.until,
+    };
+  }
+
+  return { verifyG2, verifyG1, verifyAny, verifyVU1, verifyVU2Chain, cert, verify, pubOf };
+})();
+if (typeof module !== 'undefined' && module.exports) module.exports = TGDSIG;
+
+</script>
+<script>
+(function () {
+  'use strict';
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const MES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const DIA = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const LANES = [ // de arriba abajo, como en la hoja impresa
+    { k: 'driving', n: 'Driving', c: 'var(--drv)' },
+    { k: 'work', n: 'Work', c: 'var(--work)' },
+    { k: 'availability', n: 'Availability', c: 'var(--av)' },
+    { k: 'rest/break', n: 'Rest', c: 'var(--rest)' },
+  ];
+  const LBL = Object.fromEntries(LANES.map(l => [l.k, l.n]));
+  const COL = Object.fromEntries(LANES.map(l => [l.k, l.c]));
+  const files = {}; let cur = null, selDay = null;
+
+  const hm = (m) => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(Math.round(m % 60)).padStart(2, '0')}`;
+  const hrs = (m) => (m / 60).toFixed(1).replace('.', ',') + ' h';
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const fd = (d) => { const [y, m, dd] = d.split('-'); return `${dd}/${m}/${y}`; };
+  const wd = (d) => DIA[new Date(d + 'T12:00:00Z').getUTCDay()];
+  const med = (a) => { if (!a.length) return 0; const s = [...a].sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+  const infr = (d) => d.compliance.findings.filter(f => f.sev === 'infraccion');
+  const avisos = (d) => d.compliance.findings.filter(f => f.sev === 'aviso');
+  let full = null, range = 'all';
+  const mon = (s, k = 0) => { const t = new Date(s + 'T00:00:00Z'); t.setUTCDate(t.getUTCDate() - ((t.getUTCDay() + 6) % 7) + 7 * k); return t.toISOString().slice(0, 10); };
+  // Recorta el archivo a los últimos N days (o lo deja entero); cumplimiento y descansos se recortan igual
+  function scope(d) {
+    if (range === 'all' || !d.days.length) return d;
+    const last = d.days[d.days.length - 1].date, from = new Date(Date.parse(last + 'T00:00:00Z') - (+range - 1) * 864e5).toISOString().slice(0, 10);
+    const ok = s => s.slice(0, 10) >= from;
+    return { ...d, days: d.days.filter(x => x.date >= from), rests: d.rests.filter(r => ok(r.from)),
+      compliance: { ...d.compliance, findings: d.compliance.findings.filter(f => ok(f.at)), weeks: d.compliance.weeks.filter(w => w.week >= mon(from)) } };
+  }
+
+  function show(name) {
+    $$('#tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === name)));
+    $$('section[data-panel]').forEach(s => s.classList.toggle('hide', s.dataset.panel !== name));
+    const el = $(`section[data-panel="${name}"]`); el.classList.remove('enter'); void el.offsetWidth; el.classList.add('enter');
+  }
+  $('#tabs').addEventListener('click', e => { const b = e.target.closest('button[data-tab]'); if (b) show(b.dataset.tab); });
+
+  // ---- Day sheet: cuatro carriles como en el disco del tacógrafo ----
+  function hojaSvg(day, fs = []) {
+    const W = 1000, lane = 46, gap = 6, top = 26, H = top + LANES.length * (lane + gap) + 24;
+    const ch = day.changes.filter(c => c.slot === 'driver');
+    let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Day sheet ${fd(day.date)}">`;
+    LANES.forEach((l, i) => {
+      const y = top + i * (lane + gap);
+      s += `<rect x="0" y="${y}" width="${W}" height="${lane}" fill="var(--paper2)"/>`;
+      s += `<text x="8" y="${y + lane / 2 + 4}" font-family="Inter, sans-serif" font-size="12" fill="var(--mut)">${l.n}</text>`;
+    });
+    for (let hh = 0; hh <= 24; hh++) {
+      const x = (hh / 24) * W, major = hh % 3 === 0;
+      s += `<line x1="${x}" x2="${x}" y1="${top}" y2="${top + LANES.length * (lane + gap) - gap}" stroke="var(--rule)" stroke-width="${major ? 1 : 0.5}"/>`;
+      if (major) s += `<text x="${x}" y="${H - 6}" text-anchor="${hh === 0 ? 'start' : hh === 24 ? 'end' : 'middle'}" font-family="Inter, sans-serif" font-size="12" fill="var(--mut)">${String(hh).padStart(2, '0')}</text>`;
+    }
+    for (let i = 0; i < ch.length; i++) {
+      const c = ch[i];
+      const end = i + 1 < ch.length ? ch[i + 1].minutes : (day === cur.days[cur.days.length - 1] ? c.minutes : 1440);
+      const li = LANES.findIndex(l => l.k === c.activity), y = top + li * (lane + gap);
+      const x = (c.minutes / 1440) * W, w = ((Math.min(end, 1440) - c.minutes) / 1440) * W;
+      if (w > 0) s += `<rect x="${x.toFixed(2)}" y="${y + 3}" width="${Math.max(w, 0.6).toFixed(2)}" height="${lane - 6}" fill="${COL[c.activity]}"><title>${hm(c.minutes)}–${hm(end)} · ${LBL[c.activity]}${c.card === 'not inserted' ? ' · card out' : ''}</title></rect>`;
+    }
+    for (const f of fs) {   // marcas de hallazgos sobre el eje, con el detalle al pasar el ratón
+      const [h, m] = f.at.slice(11, 16).split(':').map(Number), x = ((h * 60 + m) / 1440) * W;
+      s += `<line x1="${x.toFixed(1)}" x2="${x.toFixed(1)}" y1="2" y2="${top - 4}" stroke="${f.sev === 'infraccion' ? 'var(--bad)' : 'var(--mut)'}" stroke-width="3"><title>${esc(f.type)}: ${esc(f.detail)}</title></line>`;
+    }
+    return s + '</svg>';
+  }
+
+  function stripSvg(x) {
+    const ch = x.changes.filter(c => c.slot === 'driver');
+    let s = '<svg viewBox="0 0 1000 12" preserveAspectRatio="none" style="width:220px;height:12px;display:block;background:var(--paper2)">';
+    ch.forEach((c, i) => {
+      const end = i + 1 < ch.length ? ch[i + 1].minutes : (x.openSegment ? c.minutes : 1440);
+      if (end > c.minutes) s += `<rect x="${(c.minutes / 1.44).toFixed(1)}" width="${((end - c.minutes) / 1.44).toFixed(1)}" height="12" fill="${COL[c.activity]}"/>`;
+    });
+    return s + '</svg>';
+  }
+
+  // ---- Overview: calendario de semanas coloreado por horas de conducción ----
+  function calendarSvg(days) {
+    if (!days.length) return '';
+    const map = Object.fromEntries(days.map(d => [d.date, d]));
+    const start = new Date(days[0].date + 'T00:00:00Z'); start.setUTCDate(start.getUTCDate() - ((start.getUTCDay() + 6) % 7));
+    const end = new Date(days[days.length - 1].date + 'T00:00:00Z');
+    const cell = 16, gap = 3, weeks = Math.ceil((end - start) / 864e5 / 7) + 1;
+    const W = 40 + weeks * (cell + gap), H = 24 + 7 * (cell + gap);
+    const col = (m) => m === 0 ? 'var(--paper2)' : m < 240 ? '#c7d2fe' : m < 360 ? '#818cf8' : m < 480 ? '#4f46e5' : 'var(--drv)';
+    let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Driving calendar">`;
+    ['L','M','X','J','V','S','D'].forEach((l, i) => s += `<text x="0" y="${24 + i * (cell + gap) + 12}" font-family="Inter, sans-serif" font-size="10" fill="var(--mut)">${l}</text>`);
+    for (let w = 0; w < weeks; w++) {
+      for (let r = 0; r < 7; r++) {
+        const dt = new Date(start.getTime() + (w * 7 + r) * 864e5), k = dt.toISOString().slice(0, 10);
+        const x = 40 + w * (cell + gap), y = 24 + r * (cell + gap), d = map[k];
+        const m = d ? d.drivingMin : null;
+        const fill = d ? col(m) : 'transparent';
+        const title = d ? `${fd(k)} · ${hrs(m)} · ${d.distanceKm} km` : fd(k);
+        s += `<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="2" fill="${fill}" stroke="${d ? 'none' : 'var(--rule)'}" stroke-dasharray="${d ? '' : '2 2'}" ${d ? 'style="cursor:pointer" data-go="' + k + '"' : ''}><title>${title}</title></rect>`;
+      }
+      if (w % 4 === 0) { const dt = new Date(start.getTime() + w * 7 * 864e5); s += `<text x="${40 + w * (cell + gap)}" y="14" font-family="Inter, sans-serif" font-size="10" fill="var(--mut)">${dt.getUTCDate()} ${MES[dt.getUTCMonth()]}</text>`; }
+    }
+    return s + '</svg>';
+  }
+  function monthSvg(days) {
+    const m = {};
+    for (const d of days) { const k = d.date.slice(0, 7); m[k] ??= { drv: 0, km: 0, n: 0 }; m[k].drv += d.drivingMin; m[k].km += d.distanceKm; m[k].n++; }
+    const keys = Object.keys(m).sort(), W = 900, H = 200, pad = { l: 8, r: 8, t: 24, b: 26 };
+    const bw = (W - pad.l - pad.r) / keys.length, max = Math.max(...keys.map(k => m[k].drv / 60)) * 1.1;
+    let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Hours per month">`;
+    keys.forEach((k, i) => {
+      const hv = (m[k].drv / 60 / max) * (H - pad.t - pad.b), x = pad.l + i * bw + bw * 0.18, y = H - pad.b - hv;
+      s += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(bw * 0.64).toFixed(1)}" height="${hv.toFixed(1)}" fill="var(--ink)"><title>${k} · ${hrs(m[k].drv)} · ${m[k].km} km · ${m[k].n} days</title></rect>`;
+      s += `<text x="${(x + bw * 0.32).toFixed(1)}" y="${(y - 6).toFixed(1)}" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="var(--ink)">${Math.round(m[k].drv / 60)}</text>`;
+      s += `<text x="${(x + bw * 0.32).toFixed(1)}" y="${H - 8}" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="var(--mut)">${MES[+k.slice(5) - 1]} ${k.slice(2, 4)}</text>`;
+    });
+    return s + '</svg>';
+  }
+
+  function renderOverview(d) {
+    const act = d.days.filter(x => x.drivingMin > 0);
+    const drv = d.days.reduce((a, x) => a + x.drivingMin, 0), km = d.days.reduce((a, x) => a + x.distanceKm, 0);
+    const rests = d.rests.map(r => r.hours);
+    const longest = act.reduce((m, x) => (!m || x.drivingMin > m.drivingMin) ? x : m, null);
+    $('[data-panel="panorama"]').innerHTML = `
+      <div class="kpis">
+        <div><small>Total driving</small><b>${hrs(drv)}</b></div>
+        <div><small>Kilometres</small><b>${km.toLocaleString('en-GB')}</b></div>
+        <div><small>Days with driving</small><b>${act.length}</b><small>of ${d.days.length} days read</small></div>
+        <div><small>Average per active day</small><b>${hrs(act.length ? drv / act.length : 0)}</b></div>
+        <div><small>Longest day</small><b>${longest ? hm(longest.drivingMin) : '—'}</b><small>${longest ? fd(longest.date) : ''}</small></div>
+        <div><small>Rests ≥ 9 h</small><b>${d.rests.length}</b><small>median ${med(rests).toFixed(1)} h</small></div>
+      </div>
+      <div class="sheet"><h3>Driving calendar</h3>
+        <div class="sub">Each square is a day. Shade by driving hours. Click a day to open its sheet.</div>
+        <div class="legend"><span><i class="sw" style="background:var(--paper2)"></i>no driving</span><span><i class="sw" style="background:#c7d2fe"></i>&lt; 4 h</span><span><i class="sw" style="background:#818cf8"></i>4–6 h</span><span><i class="sw" style="background:#4f46e5"></i>6–8 h</span><span><i class="sw" style="background:var(--drv)"></i>≥ 8 h</span></div>
+        <div class="scroll" style="max-height:none">${calendarSvg(d.days)}</div></div>
+      <div class="sheet"><h3>Driving hours per month</h3><div class="sub">Hours and monthly total</div>${monthSvg(d.days)}</div>`;
+  }
+
+  // ---- Day sheet ----
+  function renderHoja(d) {
+    const days = d.days, i = days.findIndex(x => x.date === selDay);
+    const x = days[i >= 0 ? i : days.length - 1]; selDay = x.date;
+    const idx = days.indexOf(x), last = idx === days.length - 1;
+    const opts = days.slice().reverse().map(y => `<option value="${y.date}" ${y.date === x.date ? 'selected' : ''}>${fd(y.date)} · ${wd(y.date)}</option>`).join('');
+    const rows = x.changes.filter(c => c.slot === 'driver').map((c, k, a) => {
+      const end = k + 1 < a.length ? a[k + 1].minutes : (last ? c.minutes : 1440);
+      return `<tr><td>${hm(c.minutes)}</td><td>${hm(end)}</td><td>${hm(Math.max(0, end - c.minutes))}</td><td><i class="sw" style="background:${COL[c.activity]}"></i>${LBL[c.activity]}</td><td>${c.card === 'inserted' ? 'yes' : 'no'}</td><td>${c.status === 'team' ? 'team' : 'individual'}</td></tr>`;
+    });
+    const dayF = d.compliance.findings.filter(f => f.at.slice(0, 10) === x.date);
+    const wk = (k) => full.compliance.weeks.find(w => w.week === mon(x.date, k))?.drivingH || 0;
+    const lim = (label, v, max, cap) => `<div style="display:grid;grid-template-columns:260px 1fr 130px;gap:10px;align-items:center;margin:6px 0"><span>${label}</span><div class="bar"><i class="${v > max ? 'over' : ''}" style="width:${Math.min(100, (v / cap) * 100).toFixed(1)}%"></i></div><span class="mono" style="font-size:13px">${hrs(v * 60)} / ${max} h</span></div>`;
+    const weekly = full.compliance.weeks.some(w => w.week === mon(x.date)) ? `${lim('Driving this week', wk(0), 56, 60)}${lim('Two weeks (with the previous one)', wk(0) + wk(-1), 90, 100)}` : '';
+    $('[data-panel="hoja"]').innerHTML = `
+      <div class="dayNav">
+        <button class="btn" id="prev" ${idx === 0 ? 'disabled' : ''}>← Previous</button>
+        <select id="dsel">${opts}</select>
+        <button class="btn" id="next" ${idx === days.length - 1 ? 'disabled' : ''}>Next →</button>
+        <span class="big">${fd(x.date)} <span class="muted" style="font-size:15px">${wd(x.date)}</span></span>
+      </div>
+      <div class="kpis" style="margin-bottom:12px">
+        <div><small>Driving</small><b>${hrs(x.drivingMin)}</b></div>
+        <div><small>Work</small><b>${hrs(x.workMin)}</b></div>
+        <div><small>Availability</small><b>${hrs(x.availabilityMin)}</b></div>
+        <div><small>Rest</small><b>${hrs(x.restMin)}</b></div>
+        <div><small>Distance</small><b>${x.distanceKm} km</b></div>
+      </div>
+      <div class="sheet"><h3>Day sheet</h3>
+        <div class="sub">Hours in UTC, as in the file. ${last && !x.complete ? 'Open segment: the card does not show when the last activity ends.' : ''}</div>
+        ${hojaSvg(x, dayF)}</div>
+      <div class="sheet"><h3>Limits</h3><div class="sub">Daily driving and weekly total (Monday to Sunday, UTC)</div>
+        ${lim('Driving for the day (10 h with extension)', x.drivingMin / 60, 9, 11)}${weekly}</div>
+      <div class="sheet"><h3>Activity changes</h3><div class="sub">${x.changes.length} records</div>
+        <div class="scroll"><table><thead><tr><th>Start</th><th>End</th><th>Duration</th><th>Activity</th><th>Card</th><th>Crew</th></tr></thead><tbody>${rows.join('')}</tbody></table></div></div>`;
+    $('#dsel').onchange = e => { selDay = e.target.value; renderHoja(d); };
+    $('#prev').onclick = () => { selDay = days[idx - 1].date; renderHoja(d); };
+    $('#next').onclick = () => { selDay = days[idx + 1].date; renderHoja(d); };
+  }
+
+  // ---- Compliance ----
+  function renderCompliance(d) {
+    const c = d.compliance, inf = infr(d), av = avisos(d);
+    const stamp = inf.length ? `<span class="stamp bad">${inf.length} incident${inf.length > 1 ? 's' : ''}</span>` : `<span class="stamp ok">No incidents</span>`;
+    const byType = {};
+    inf.forEach(f => byType[f.type] = (byType[f.type] || 0) + 1);
+    const weeks = c.weeks.slice().reverse();
+    const maxH = Math.max(60, ...c.weeks.map(w => w.drivingH));
+    $('[data-panel="cumplimiento"]').innerHTML = `
+      <div class="sheet"><h3>Status under Regulation (EC) 561/2006 ${stamp}</h3>
+        <div class="sub">Automatic check of the card's activity. Indicative only: it does not replace a tachograph check or inspection.</div>
+        <div class="legend">${Object.entries(byType).map(([k, v]) => `<span>${k}: <b>${v}</b></span>`).join('') || '<span>No limits exceeded.</span>'}</div>
+        ${av.length ? `<p class="muted" style="font-size:12.5px">Notices (not infringements): ${av.length} period(s) without records.</p>` : ''}
+        <div class="note">Limits checked: break of 45 min (or 15 + 30 in two rests) after 4 h 30 of driving · 9 h daily driving (10 h twice a week) · 56 h weekly · 90 h in two weeks · daily rest of 11 h, or reduced 9 h (max. 3 between weekly rests), or split 3 h + 9 h · next daily rest within 24 h after the previous · weekly rest every week, max. 144 h between weekly rests. Week runs Monday 00:00 to Sunday 24:00. Two rests in a row without a change in the card do not show their order.</div>
+      </div>
+      <div class="sheet"><h3>Hallazgos</h3>
+        ${c.findings.length ? c.findings.map(f => `<div class="finding"><span class="tag ${f.sev}">${f.sev === 'infraccion' ? 'Review' : 'Notice'}</span><div><div class="when">${fd(f.at.slice(0, 10))} ${f.at.slice(11, 16)} · ${f.type}</div><div>${esc(f.detail)}</div></div></div>`).join('') : '<p class="muted">Nothing to flag.</p>'}
+      </div>
+      <div class="sheet"><h3>Weeks</h3><div class="sub">Weekly driving against the 56 h limit</div>
+        <div class="scroll"><table><thead><tr><th>Week</th><th>Driving</th><th style="min-width:160px">Against 56 h</th><th>10 h extensions</th><th>Weekly rest</th></tr></thead><tbody>
+        ${weeks.map(w => `<tr><td>${fd(w.week)}</td><td>${hrs(w.drivingH * 60)}</td><td><div class="bar"><i class="${w.drivingH > 56 ? 'over' : ''}" style="width:${Math.min(100, (w.drivingH / maxH) * 100).toFixed(1)}%"></i></div></td><td>${w.extensions}</td><td>${esc(w.weeklyRest)}</td></tr>`).join('')}
+        </tbody></table></div></div>
+      <div class="sheet"><h3>Rules applied</h3><div class="sub">What is checked, where it comes from and its status</div>${normaTable()}</div>`;
+  }
+
+  const NORMA = [
+    ['Regulation (EC) 561/2006', 'Breaks, daily, weekly and fortnightly driving, rests', 'European Commission summary and rule summaries. Official EUR-Lex text not accessible.', 'Pending check against the official text'],
+    ['Regulation (EU) 165/2014, art. 36', 'Records the driver must keep: 28 days (56 with G2V2)', 'legislation.gov.uk', 'Verified in text'],
+    ['Download frequency', 'Card every 28 days (56 with G2V2); vehicle unit every 90 days', 'Geotab summary, no official text', 'Pending'],
+    ['Make-up of reduced weekly rest', 'Recover the difference against 45 h, in one block, before the end of the 3rd week after', 'Summary of the rules', 'Pending official text'],
+    ['LOTT, ROTT and penalty scale', 'Classification and amounts of penalties', 'Not checked', 'Not included in the calculations'],
+  ];
+  function normaTable() {
+    return `<div class="scroll" style="max-height:none"><table><thead><tr><th>Rule</th><th>What it checks</th><th>Source</th><th>Status</th></tr></thead><tbody>${NORMA.map(r => `<tr><td>${esc(r[0])}</td><td style="white-space:normal">${esc(r[1])}</td><td style="white-space:normal">${esc(r[2])}</td><td style="white-space:normal">${esc(r[3])}</td></tr>`).join('')}</tbody></table></div>`;
+  }
+
+  // ---- Days and Records ----
+  function renderDias(d) {
+    const months = [...new Set(d.days.map(x => x.date.slice(0, 7)))].sort().reverse();
+    $('[data-panel="dias"]').innerHTML = `<div class="dayNav"><select id="month"><option value="">All months</option>${months.map(m => `<option value="${m}">${MES[+m.slice(5) - 1]} ${m.slice(0, 4)}</option>`).join('')}</select><span class="muted mono" id="cnt"></span></div><div class="sheet" style="padding:0"><div class="scroll" id="tbl"></div></div>`;
+    const draw = () => {
+      const m = $('#month').value, rows = d.days.filter(x => !m || x.date.startsWith(m)).slice().reverse();
+      $('#cnt').textContent = `${rows.length} days`;
+      $('#tbl').innerHTML = `<table><thead><tr><th>Date</th><th>Day</th><th>Driving</th><th>Work</th><th>Avail.</th><th>Rest</th><th>Km</th><th>Day line (UTC)</th><th>Changes</th><th></th></tr></thead><tbody>${rows.map(x => `<tr><td>${fd(x.date)}</td><td>${wd(x.date)}</td><td>${hm(x.drivingMin)}</td><td>${hm(x.workMin)}</td><td>${hm(x.availabilityMin)}</td><td>${hm(x.restMin)}</td><td>${x.distanceKm}</td><td>${stripSvg(x)}</td><td>${x.changes.length}</td><td><button class="btn" data-go="${x.date}">Abrir</button></td></tr>`).join('')}</tbody></table>`;
+    };
+    $('#month').onchange = draw;
+    $('[data-panel="dias"]').onclick = e => { const b = e.target.closest('button[data-go]'); if (b) { selDay = b.dataset.go; renderHoja(cur); show('hoja'); } };
+    draw();
+  }
+  function renderRecords(d) {
+    const v = {};
+    for (const x of d.vehicles) { const p = v[x.plate] ??= { plate: x.plate, uses: 0, km: 0, first: x.firstUse, last: x.lastUse }; p.uses++; p.km += Math.max(0, x.odometerEnd - x.odometerBegin); if (x.firstUse < p.first) p.first = x.firstUse; if (x.lastUse > p.last) p.last = x.lastUse; }
+    const list = Object.values(v).sort((a, b) => b.uses - a.uses);
+    const ev = (arr, kind) => arr.length ? `<div class="scroll"><table><thead><tr><th>Start</th><th>End</th><th>Type</th><th>Vehicle</th></tr></thead><tbody>${arr.map(e => `<tr><td>${fd(e.begin.slice(0, 10))} ${e.begin.slice(11, 16)}</td><td>${e.end ? e.end.slice(11, 16) : '—'}</td><td>${kind} ${e[Object.keys(e).find(k => k.endsWith('Type'))]}</td><td>${esc(e.vehicle)}</td></tr>`).join('')}</tbody></table></div>` : '<p class="muted">Sin registros.</p>';
+    $('[data-panel="registros"]').innerHTML = `
+      <div class="grid2">
+        <div class="sheet"><h3>Vehicles</h3><div class="sub">Registrations recorded on the card</div>
+          <div class="scroll"><table><thead><tr><th>Registration</th><th>Uses</th><th>Km</th><th>First use</th><th>Last</th></tr></thead><tbody>${list.map(x => `<tr><td>${esc(x.plate)}</td><td>${x.uses}</td><td>${x.km}</td><td>${fd(x.first.slice(0, 10))}</td><td>${fd(x.last.slice(0, 10))}</td></tr>`).join('')}</tbody></table></div></div>
+        <div class="sheet"><h3>Holder and card</h3><div class="sub">Card data</div>
+          <table><tbody>
+            <tr><td>Number</td><td>${esc(d.card.number)}</td></tr>
+            <tr><td>Holder</td><td>${esc(d.card.holder.surname)} ${esc(d.card.holder.firstNames)}</td></tr>
+            <tr><td>Date of birth</td><td>${d.card.holder.birthDate ? fd(d.card.holder.birthDate) : '—'}</td></tr>
+            <tr><td>Issuer</td><td>${esc(d.card.issuingAuthority)}</td></tr>
+            <tr><td>Validez</td><td>${d.card.validFrom ? fd(d.card.validFrom) : '—'} → ${d.card.expiry ? fd(d.card.expiry) : '—'}</td></tr>
+          </tbody></table></div>
+      </div>
+      <div class="grid2" style="margin-top:16px">
+        <div class="sheet"><h3>Events (${d.events.length})</h3><div class="sub">Type code as it appears in the file</div>${ev(d.events, 'Type')}</div>
+        <div class="sheet"><h3>Faults (${d.faults.length})</h3><div class="sub">Type code as it appears in the file</div>${ev(d.faults, 'Type')}</div>
+      </div>`;
+  }
+
+  function renderFicha(d) {
+    const n = infr(d).length;
+    $('#ficha').innerHTML = `
+      <div><div class="lbl">Holder</div><div class="val">${esc(d.card.holder.surname)} ${esc(d.card.holder.firstNames)}</div><div class="mono muted" style="font-size:12px">${esc(d.card.number)}</div></div>
+      <div><div class="lbl">Period read</div><div class="val">${d.days.length ? fd(d.days[0].date) + ' – ' + fd(d.days[d.days.length - 1].date) : '—'}</div><div class="mono muted" style="font-size:12px">${d.days.length} days</div></div>
+      <div><div class="lbl">Compliance 561/2006</div><div class="val">${n ? n + ' to review' : 'No incidents'}</div><span class="stamp ${n ? 'bad' : 'ok'}">${n ? 'Review' : 'OK'}</span></div>`;
+  }
+
+  function renderAll(d) {
+    cur = d; selDay = null;
+    const sec = d.security;
+    const last = d.days.length ? d.days[d.days.length - 1].date : null;   // fecha de los datos
+    const caducado = sec && sec.cardUntil && last && sec.cardUntil < last;
+    const secBox = (!sec ? '' : sec.error ? `<div class="warnbox">Signature not checked: ${esc(sec.error)}</div>`
+      : sec.chain && sec.ok === sec.total ? `<div class="okbox">Signature verified: ERCA → MSCA → card certificates correct and ${sec.ok}/${sec.total} data blocks signed by the card.</div>`
+      : `<div class="warnbox">Invalid signature: ${sec.chain ? '' : 'invalid certificate chain. '}${sec.total - sec.ok} of ${sec.total} data blocks do not match the signature. The file may be altered or damaged.</div>`)
+      + (caducado ? `<div class="warnbox">The card certificate expired on ${sec.cardUntil}, before the last data date (${last}).</div>` : '');
+    const nDl = merged[d.card.number];
+    $('#warnings').innerHTML = secBox + (!d.checks.blocksConsumed ? '<div class="warnbox">Incomplete blocks: some data may be missing.</div>' : '')
+      + (nDl ? `<div class="warnbox">Merged ${nDl} downloads from this card. If a day appears in several, the last one uploaded prevails; repeated findings are shown once.</div>` : '');
+    renderFicha(d); renderOverview(d); renderHoja(d); renderCompliance(d); renderDias(d); renderRecords(d);
+    $('#csv').classList.remove('hide');
+  }
+
+  function pick(num) {
+    const d = files[num];
+    if (d.kind === 'tarjeta') { full = d; return renderAll(scope(d)); }
+    cur = null; $('#csv').classList.add('hide');
+    const v = d.vehicle;
+    const hora = v.vuTime ? new Date(v.vuTime).toLocaleString('en-GB', { dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Madrid' }) : '—';
+    $('#ficha').innerHTML = `<div><div class="lbl">Type</div><div class="val">Vehicle unit download</div><div class="mono muted" style="font-size:12px">${esc(v.vin || num.slice(2))}</div></div><div><div class="lbl">Registration</div><div class="val">${esc(v.plate || '—')}</div></div><div><div class="lbl">Time of the VU</div><div class="val">${hora}</div></div>`;
+    $('#warnings').innerHTML = '<div class="warnbox">Vehicle unit download: identification and blocks are shown. Speed, calibrations and unit events are not decoded yet.</div>';
+    const rows = d.inventory.map(x => `<tr><td>${x.tag}</td><td>${x.blocks}</td><td>${x.bytes.toLocaleString('en-GB')}</td></tr>`).join('');
+    const msg = '<div class="sheet"><p class="muted">Not yet applicable to vehicle unit downloads.</p></div>';
+    $('[data-panel="panorama"]').innerHTML = `<div class="sheet"><h3>File blocks</h3><div class="sub">${(d.fileBytes / 1024).toFixed(0)} KB · tags found (not decoded)</div><div class="scroll"><table><thead><tr><th>Tag</th><th>Blocks</th><th>Bytes</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+    ['hoja','cumplimiento','dias'].forEach(p => $(`[data-panel="${p}"]`).innerHTML = msg);
+    const sig = d.vuSig ? (d.vuSig.valid ? `VU data signature verified (${d.vuSig.ok} of ${d.vuSig.total} blocks).` : `VU data signature invalid (${d.vuSig.ok} of ${d.vuSig.total} blocks).`)
+      : d.vuChain ? (d.vuChain.msSigned && d.vuChain.vuSigned && d.vuChain.carOk ? 'VU certificates verified up to the ERCA root. The 2nd-generation data signature is not verified.' : 'VU certificates not verified.')
+      : 'VU data signature not verified (unsupported format).';
+    $('[data-panel="registros"]').innerHTML = `<div class="sheet"><h3>Integrity</h3><p>${d.complete ? 'All blocks are complete.' : 'Some blocks are incomplete.'}</p><p>${sig}</p></div>`;
+    show('panorama');
+  }
+
+  // Several descargas de una misma tarjeta se unen: days y descansos por fecha (gana la descarga más reciente), hallazgos y eventos sin duplicar
+  const uniq = (a, key) => { const m = new Map(); for (const x of a) m.set(key(x), x); return [...m.values()]; };
+  function mergeCard(a, b) {
+    const days = uniq([...a.days, ...b.days], x => x.date).sort((p, q) => (p.date < q.date ? -1 : 1));
+    const rests = uniq([...a.rests, ...b.rests], r => r.from + r.to);
+    const findings = uniq([...b.compliance.findings, ...a.compliance.findings], f => f.type + f.at);
+    const weeks = uniq([...b.compliance.weeks, ...a.compliance.weeks], w => w.week).sort((p, q) => (p.week < q.week ? -1 : 1));
+    const vehicles = uniq([...b.vehicles, ...a.vehicles], v => JSON.stringify(v));
+    const events = uniq([...b.events, ...a.events], e => JSON.stringify(e));
+    const faults = uniq([...b.faults, ...a.faults], e => JSON.stringify(e));
+    return { ...b, days, rests, vehicles, events, faults, compliance: { ...b.compliance, findings, weeks }, checks: { ...b.checks, dayCount: days.length } };
+  }
+  const merged = {};   // número de tarjeta -> nº de descargas unidas
+
+  async function load(list) {
+    $('#err').classList.add('hide');
+    const failed = [];
+    for (const f of list) {
+      try {
+        const buf = await f.arrayBuffer();
+        const d = TGD.parseTGD(buf);
+        if (d.kind === 'tarjeta') d.security = await TGDSIG.verifyAny(TGD.readBlocks(new Uint8Array(buf)));
+        else { d.vuSig = await TGDSIG.verifyVU1(new Uint8Array(buf)); d.vuChain = await TGDSIG.verifyVU2Chain(new Uint8Array(buf)); }
+        const key = d.kind === 'tarjeta' ? d.card.number : 'V|' + f.name;
+        if (d.kind === 'tarjeta' && files[key]) { files[key] = mergeCard(files[key], d); merged[key] = (merged[key] || 1) + 1; }
+        else files[key] = d;
+      }
+      catch (e) { failed.push(`${f.name}: ${e.message}`); }
+    }
+    const nums = Object.keys(files);
+    if (!nums.length) { const e = $('#err'); e.textContent = 'No file could be read. ' + failed.join(' '); e.classList.remove('hide'); return; }
+    if (failed.length) { const e = $('#err'); e.textContent = 'Files not read: ' + failed.join(' · '); e.classList.remove('hide'); }
+    $('#landing').classList.add('hide'); $('#upload').classList.add('hide'); $('#app').classList.remove('hide');
+    const label = n => files[n].kind === 'tarjeta' ? `${n} · ${files[n].card.holder.surname}` : `Vehicle · ${n.slice(2)}`;
+    const ranges = [['all', 'Whole file'], ['7', 'Last 7 days'], ['14', 'Last 14 days'], ['30', 'Last 30 days']];
+    $('#pick').innerHTML = (nums.length > 1 ? `<label class="lbl">File <select id="card">${nums.map(n => `<option value="${esc(n)}">${esc(label(n))}</option>`).join('')}</select></label>` : '')
+      + `<label class="lbl">Period <select id="range">${ranges.map(([v, n]) => `<option value="${v}" ${v === range ? 'selected' : ''}>${n}</option>`).join('')}</select></label>`;
+    if (nums.length > 1) $('#card').onchange = e => pick(e.target.value);
+    $('#range').onchange = e => { range = e.target.value; if (full) renderAll(scope(full)); };
+    pick(nums[0]);
+    show($('#tabs [aria-selected="true"]').dataset.tab);
+  }
+
+  $('#file').addEventListener('change', e => load([...e.target.files]));
+  const showOnly = id => ['#landing', '#upload', '#app'].forEach(s => $(s).classList.toggle('hide', s !== id));
+  const goUpload = () => { showOnly('#upload'); $('#file').value = ''; $('#upload').classList.remove('enter'); void $('#upload').offsetWidth; $('#upload').classList.add('enter'); };
+  const goHome = () => { showOnly('#landing'); $('#file').value = ''; $('#landing').classList.remove('enter'); void $('#landing').offsetWidth; $('#landing').classList.add('enter'); };
+  $('#open').addEventListener('click', goUpload);
+  $('#toUpload').onclick = goUpload; $('#backHome').onclick = goHome; $('#toHome').onclick = goHome;
+  $('#home').onclick = () => { if (cur || full) goHome(); };
+  const drop = $('#drop');
+  drop.addEventListener('click', () => $('#file').click());
+  drop.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); $('#file').click(); } });
+  ['dragenter', 'dragover'].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.add('over'); }));
+  ['dragleave', 'drop'].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.remove('over'); }));
+  drop.addEventListener('drop', e => load([...e.dataTransfer.files]));
+  ['dragenter', 'dragover', 'drop'].forEach(t => window.addEventListener(t, e => e.preventDefault()));
+  window.addEventListener('drop', e => { if (e.dataTransfer.files.length && !$('#upload').classList.contains('hide')) load([...e.dataTransfer.files]); });
+  $('[data-panel="panorama"]').addEventListener('click', e => { const r = e.target.closest('rect[data-go]'); if (r) { selDay = r.dataset.go; renderHoja(cur); show('hoja'); } });
+  const themeBtn = $('#theme');
+  const paintTheme = () => { themeBtn.textContent = document.documentElement.dataset.theme === 'dark' ? 'Light mode' : 'Dark mode'; };
+  themeBtn.onclick = () => { const r = document.documentElement; r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark'; paintTheme(); };
+  paintTheme();
+  $('#csv').onclick = () => {
+    if (!cur) return;
+    const lines = ['date;driving_min;work_min;availability_min;rest_min;km;changes'].concat(cur.days.map(x => [x.date, x.drivingMin, x.workMin, x.availabilityMin, x.restMin, x.distanceKm, x.changes.length].join(';')));
+    const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob(['﻿' + lines.join('\n')], { type: 'text/csv;charset=utf-8' })), download: `tgd_${cur.card.number}_dias.csv` });
+    a.click();
+  };
+})();
+
+</script>
+<script>
+(function(){
+  const root=document.getElementById('carousel'); if(!root) return;
+  const slides=[...root.querySelectorAll('.slide')], dots=[...root.querySelectorAll('.dot')];
+  let i=0, timer=null;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function go(n){ const d=n<i?-1:1; i=(n+slides.length)%slides.length; slides.forEach((s,k)=>{ s.classList.toggle('fwd',d>0); s.classList.toggle('back',d<0); s.classList.toggle('on',k===i); }); dots.forEach((d,k)=>{ d.classList.toggle('on',k===i); d.setAttribute('aria-selected',String(k===i)); }); }
+  function start(){ if(!reduce){ stop(); timer=setInterval(()=>go(i+1),8000); } }
+  function stop(){ clearInterval(timer); }
+  document.getElementById('nextS').onclick=()=>{go(i+1);start();};
+  document.getElementById('prevS').onclick=()=>{go(i-1);start();};
+  dots.forEach((d,k)=>d.onclick=()=>{go(k);start();});
+  root.onmouseenter=stop; root.onmouseleave=start; root.onfocusin=stop; root.onfocusout=start;
+  root.addEventListener('keydown',e=>{ if(e.key==='ArrowRight'){go(i+1);start();} if(e.key==='ArrowLeft'){go(i-1);start();} });
+  root.tabIndex=0; start();
+})();
+</script>
+</body>
+</html>
