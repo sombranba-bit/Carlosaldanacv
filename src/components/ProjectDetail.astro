@@ -35,7 +35,6 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
     <a class="detail-back" href={`${base}/proyectos`}>{back}</a>
     <div class={info.stage === false ? "detail-split solo" : "detail-split"}>
       <div class="detail-text">
-        <p class="detail-eyebrow">{info.eyebrow}</p>
         <div class="detail-head">
           <span class="app-icon is-pro detail-icon" data-tone={i} set:html={appIcons[i]} />
           <div>
@@ -60,6 +59,10 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
               <div class="device-bar"><span></span><span></span><span></span></div>
               <iframe class="device-screen" src={root + info.demo} title={p.name} loading="lazy"></iframe>
             </div>
+          ) : info.shot ? (
+            <div class="device device-shot">
+              <img src={root + info.shot} alt="" loading="lazy" />
+            </div>
           ) : (
             <div class="device device-icon">
               <span class="app-icon is-pro" data-tone={i} set:html={appIcons[i]} />
@@ -67,7 +70,6 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
           )}
           {!dashboard && info.summary && (
             <section class="detail-summary">
-              <p class="detail-eyebrow">{info.summaryLabel}</p>
               <p>{info.summary}</p>
             </section>
           )}
@@ -128,7 +130,6 @@ const live = lang === 'en' ? 'Try the interactive demo' : 'Ver demo interactiva'
     )}
 
     <div class="detail-contact">
-      <p class="eyebrow">{contactLabel}</p>
       <a class="cta-block" href={`mailto:${d.profile.email}`}>
         <span class="cta-line cta-sans">{d.ext.contactA}</span>
         <span class="cta-line cta-serif">{d.ext.contactB}</span>

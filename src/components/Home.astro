@@ -14,7 +14,6 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
 <Base title={`${profile.name} · ${profile.title}`} lang={lang}>
   <section class="hero">
     <div class="hero-content">
-      <p class="mono hero-eyebrow">{profile.name} · {profile.location}</p>
       <h1 class="hero-title">
         <span class="line line-dev">{ext.heroLine1}</span>
         <span class="line line-accent">{ext.heroLine2}</span>
@@ -150,7 +149,6 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
   </section>
 
   <section class="contact-inner" id="contacto">
-    <p class="eyebrow reveal">04 · {ui.contact}</p>
     <a class="cta-block reveal" href={`mailto:${profile.email}`}>
       <span class="cta-line cta-sans">{ext.contactA}</span>
       <span class="cta-line cta-serif">{ext.contactB}</span>

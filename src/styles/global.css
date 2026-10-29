@@ -86,10 +86,10 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 .btn-ghost:hover { color: var(--fg); border-color: var(--accent); transform: translateY(-1px); }
 
 /* Gráfico de tacógrafo (24 h) en vivo */
-.tacho { position: absolute; right: 0; bottom: 0; width: min(460px, 34vw); pointer-events: none; user-select: none; -webkit-mask-image: linear-gradient(90deg, #0000 0%, #000 28%); mask-image: linear-gradient(90deg, #0000 0%, #000 28%); }
+.tacho { position: absolute; right: 0; bottom: 0; width: min(460px, 34vw); pointer-events: none; user-select: none; }
 .tacho-plot { position: relative; display: grid; gap: 18px; }
 .lane { display: grid; grid-template-columns: 130px 1fr; align-items: center; gap: 14px; }
-.lane-label { font: 12px var(--font-mono); color: var(--muted); letter-spacing: .03em; }
+.lane-label { font: 12px var(--font-mono); color: var(--fg); opacity: .85; text-shadow: 0 0 6px var(--bg), 0 0 2px var(--bg); letter-spacing: .03em; }
 .track { position: relative; height: 22px; background: #ffffff0a; border-radius: 4px; overflow: hidden; }
 .seg { position: absolute; top: 0; bottom: 0; background: var(--accent); opacity: .22; transform-origin: left; animation: grow .9s var(--ease) var(--d, 0s) backwards; transition: opacity .6s var(--ease), box-shadow .6s var(--ease); }
 .seg-0 { background: #ffffff; }
@@ -643,3 +643,15 @@ a.project-card { color: inherit; text-decoration: none; }
 /* Certificado destacado en la cabecera */
 .hero-badge { display: inline-flex; align-items: center; gap: .55rem; margin: -2rem 0 2.6rem; padding: .55rem 1rem; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--fg); font: 500 .8rem var(--font-mono); letter-spacing: .04em; }
 .hero-badge span { color: var(--accent); font-weight: 700; }
+
+/* Tarjeta de captura real en la página de cada herramienta */
+.device-shot { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #101113; box-shadow: 0 30px 60px -28px #000d; }
+.device-shot img { display: block; width: 100%; height: auto; }
+
+/* Portada de herramientas: la primera tarjeta ocupa el ancho completo */
+@media (min-width: 961px) {
+  .grid-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-cards > .project-card:first-child { grid-column: 1 / -1; flex-direction: row; }
+  .grid-cards > .project-card:first-child .thumb { width: 42%; height: auto; min-height: 260px; border-bottom: 0; border-right: 1px solid var(--line); }
+  .grid-cards > .project-card:first-child .card-body { justify-content: center; padding-top: 2.2rem; }
+}
