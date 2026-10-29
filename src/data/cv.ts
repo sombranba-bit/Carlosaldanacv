@@ -113,6 +113,7 @@ export const ui = {
   notFound: 'Página no encontrada',
   notFoundText: 'La página que buscas no existe o se ha movido.',
   backHome: 'Volver al inicio',
+  home: 'Inicio',
   calcTitle: 'Calculadora de plazos de descarga',
   calcLead: 'Introduce la fecha de la última descarga y calcula cuándo vence el plazo legal. Es orientativa: confírmala siempre con la normativa vigente.',
   calcCard: 'Tarjeta de conductor · 28 días',

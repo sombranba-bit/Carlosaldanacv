@@ -72,6 +72,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
 @media (hover: hover) and (pointer: fine) { .brand-avatar:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 16px 34px -14px #000000b3, 0 0 20px var(--accent-glow); } }
 .brand-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .nav-list { display: flex; gap: 2.5rem; align-items: center; }
+.nav-list .nav-home { display: none; }
 .nav-link { display: inline-flex; align-items: baseline; gap: .5rem; padding: .5rem 0; font-size: 1.05rem; font-weight: 600; color: var(--fg-soft); }
 .nav-index { font: 12px var(--font-mono); color: var(--accent-text); opacity: .85; transition: color .3s var(--ease), opacity .3s var(--ease); }
 .nav-text { display: inline-block; position: relative; }
@@ -91,6 +92,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
   .nav.is-open .nav-list { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
   .nav-list .nav-link { padding: .9rem 0; border-bottom: 1px solid var(--line); font-size: 1.1rem; }
   .nav-list .nav-link:last-child { border-bottom: 0; }
+  .nav-list .nav-home { display: flex; }
   .menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-left: -10px; background: none; border: 1px solid var(--line-strong); border-radius: 9999px; color: var(--fg); cursor: pointer; }
   .menu-btn span, .menu-btn span::before, .menu-btn span::after { display: block; width: 18px; height: 1.5px; background: currentColor; transition: transform .3s var(--ease), opacity .3s var(--ease); }
   .menu-btn span { position: relative; }

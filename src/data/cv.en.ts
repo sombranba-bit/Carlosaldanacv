@@ -112,6 +112,7 @@ export const ui = {
   available: 'Available for new challenges',
   notFound: 'Page not found',
   notFoundText: 'The page you are looking for does not exist or has moved.',
+  home: 'Home',
   backHome: 'Back to home',
   calcTitle: 'Download deadline calculator',
   calcLead: 'Enter the date of the last download to work out when the legal deadline expires. It is indicative only: always check it against the rules in force.',
