@@ -89,8 +89,11 @@ const p = root + d.ui.prefix;
         if (matchMedia('(prefers-reduced-motion: reduce)').matches || matchMedia('(pointer: coarse)').matches) return;
         document.querySelectorAll('.magnetic').forEach((el) => {
           el.addEventListener('mousemove', (e) => {
-            const r = el.getBoundingClientRect();
-            el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.2}px, ${(e.clientY - r.top - r.height / 2) * 0.25}px)`;
+            cancelAnimationFrame(el._raf);
+            el._raf = requestAnimationFrame(() => {
+              const r = el.getBoundingClientRect();
+              el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.2}px, ${(e.clientY - r.top - r.height / 2) * 0.25}px)`;
+            });
           });
           el.addEventListener('mouseleave', () => { el.style.transform = ''; });
         });
