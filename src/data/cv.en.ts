@@ -160,4 +160,6 @@ export const chart = {
 export const stats = [
     { to: 500, prefix: '+', suffix: '', label: 'vehicles in the fleet' },
     { to: 600, prefix: '+', suffix: '', label: 'drivers' },
+    { to: 3, prefix: '', suffix: '', label: 'tools I built', gauge: false },
+    { to: 4, prefix: '+', suffix: '', label: 'years in transport (since 2022)', gauge: false },
   ];

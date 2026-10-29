@@ -161,4 +161,6 @@ export const chart = {
 export const stats = [
     { to: 500, prefix: '+', suffix: '', label: 'vehículos en la flota' },
     { to: 600, prefix: '+', suffix: '', label: 'conductores' },
+    { to: 3, prefix: '', suffix: '', label: 'herramientas propias', gauge: false },
+    { to: 4, prefix: '+', suffix: '', label: 'años en transporte (desde 2022)', gauge: false },
   ];
