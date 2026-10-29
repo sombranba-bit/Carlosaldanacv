@@ -8,9 +8,11 @@ const { lang } = Astro.props;
 const d = lang === 'en' ? en : es;
 const u = d.ui;
 const locale = lang === 'en' ? 'en-GB' : 'es-ES';
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base title={`${u.calcTitle} · ${d.profile.name}`} active="" lang={lang} description={u.calcLead}>
   <section class="section calc">
+    <a class="calc-back" href={`${root}${u.prefix}/`}>{u.back}</a>
     <h1 class="calc-title">{u.calcTitle}</h1>
     <p class="calc-lead">{u.calcLead}</p>
 
