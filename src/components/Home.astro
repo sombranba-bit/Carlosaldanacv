@@ -244,6 +244,12 @@ const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((
         if (label !== last) { text.textContent = `${tac.dataset.now} ${label}`; last = label; }
         window.__tachoRaf = requestAnimationFrame(frame);
       };
+      // Solo se redibuja mientras el gráfico está en pantalla
+      const io = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) { if (!window.__tachoRaf) window.__tachoRaf = requestAnimationFrame(frame); }
+        else if (window.__tachoRaf) { cancelAnimationFrame(window.__tachoRaf); window.__tachoRaf = 0; }
+      });
+      io.observe(tac);
       if (window.__tachoRaf) cancelAnimationFrame(window.__tachoRaf);
       window.__tachoRaf = requestAnimationFrame(frame);
     }
