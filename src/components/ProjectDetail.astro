@@ -65,8 +65,8 @@ const photos = {
               <iframe class="device-screen" src={root + info.demo} title={p.name} loading="lazy"></iframe>
             </div>
           ) : info.rotate ? (
-            <div class="device device-shot device-rotate" aria-hidden="true">
-              {info.rotate.map((src) => <img src={root + src} alt="" />)}
+            <div class="device device-shot device-rotate">
+              {info.rotate.map((src, k) => <img src={root + src} alt={`${p.name}: captura ${k + 1} de ${info.rotate.length}`} />)}
             </div>
           ) : info.shot ? (
             <div class="device device-shot">
