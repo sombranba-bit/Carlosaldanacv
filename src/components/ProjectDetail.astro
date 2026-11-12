@@ -268,7 +268,7 @@ const photos = {
   // Misma foto cinematográfica que en la portada: zoom que se abre al hacer scroll
   function photo() {
     const img = document.querySelector<HTMLElement>('.detail-photo .zoom-img');
-    if (!img?.parentElement) return;
+    if (!img?.parentElement || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     let raf = 0;
     const zoom = () => {
       if (raf) return;
